@@ -1,0 +1,21 @@
+{
+    "name": "yireo/magento2-loki-checkout-mollie",
+    "version": "0.0.1",
+    "description": "Mollie compatibility for Loki Checkout",
+    "type": "magento2-module",
+    "require": {
+        "mollie/magento2": "^2.41",
+        "yireo/magento2-loki-checkout": "@dev"
+    },
+    "license": [
+        "OSL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Yireo\\LokiCheckoutMollie\\": ""
+        }
+    }
+}
