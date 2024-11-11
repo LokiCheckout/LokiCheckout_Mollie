@@ -3,66 +3,55 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method;
 
-use Magento\Checkout\Model\Session as SessionCheckout;
+use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Quote\Api\CartRepositoryInterface;
-use Magewirephp\Magewire\Component\Form;
+use Magewirephp\Magewire\Component;
+use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\GetIssuers;
 use Mollie\Payment\Service\Mollie\MollieApiClient;
-use Rakit\Validation\Validator;
 
-class WithIssuer extends Form
+class WithIssuer extends Component
 {
-    protected $rules = [
-        'mollie_issuer' => 'required',
-    ];
-
     public array $issuers = [];
 
     public string $selectedIssuer = '';
 
-    private SessionCheckout $sessionCheckout;
-
-    private CartRepositoryInterface $quoteRepository;
-
-    private MollieApiClient $mollieApiClient;
-
-    private GetIssuers $getIssuers;
-
-    private string $method;
-
     public function __construct(
-        Validator $validator,
-        SessionCheckout $sessionCheckout,
-        CartRepositoryInterface $quoteRepository,
-        MollieApiClient $mollieApiClient,
-        GetIssuers $getIssuers,
-        string $method
+        private CheckoutSession $checkoutSession,
+        private CartRepositoryInterface $quoteRepository,
+        private MollieApiClient $mollieApiClient,
+        private GetIssuers $getIssuers,
+        private MollieConfig $mollieConfig,
     ) {
-        parent::__construct($validator);
-        $this->sessionCheckout = $sessionCheckout;
-        $this->mollieApiClient = $mollieApiClient;
-        $this->getIssuers = $getIssuers;
-        $this->quoteRepository = $quoteRepository;
-        $this->method = $method;
     }
 
     public function mount(): void
     {
-        $quote = $this->sessionCheckout->getQuote();
-
         $mollieApiClient = $this->mollieApiClient->loadByStore();
-        $this->issuers = $this->getIssuers->execute($mollieApiClient, $this->method, 'list');
+        $method = str_replace('mollie_methods_', '', (string)$this->getParent()->getMethod());
+        $this->issuers = $this->getIssuers->execute($mollieApiClient, $method, 'list');
 
+        $quote = $this->checkoutSession->getQuote();
         if ($selectedIssuer = $quote->getPayment()->getAdditionalInformation('selected_issuer')) {
             $this->selectedIssuer = $selectedIssuer;
         }
+
+        $listType = $this->mollieConfig->getIssuerListType($method);
+        if ($listType == 'none') {
+            $this->switchTemplate('Yireo_LokiCheckoutMollie::method/issuer/none.phtml');
+        }
+
+        if ($listType == 'dropdown') {
+            $this->switchTemplate( 'Yireo_LokiCheckoutMollie::method/issuer/dropdown.phtml');
+        }
+
+        $this->switchTemplate('Yireo_LokiCheckoutMollie::method/issuer/list.phtml');
     }
 
     public function updatedSelectedIssuer(string $value): ?string
     {
-        $quote = $this->sessionCheckout->getQuote();
+        $quote = $this->checkoutSession->getQuote();
         $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
-
         $this->quoteRepository->save($quote);
 
         return $value;

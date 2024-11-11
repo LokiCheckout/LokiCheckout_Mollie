@@ -15,5 +15,16 @@
                 <argument name="additional_css" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</argument>
             </arguments>
         </block>
+
+        <block
+            name="loki.checkout.billing-step.payment-methods.mollie_methods_ideal.form"
+            template="Yireo_LokiCheckoutMollie::method/issuer/none.phtml">
+            <arguments>
+                <argument name="magewire" xsi:type="object">
+                    Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer
+                </argument>
+                <argument name="additional_css" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</argument>
+            </arguments>
+        </block>
     </body>
 </page>

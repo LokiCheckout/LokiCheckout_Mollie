@@ -4,6 +4,9 @@ declare(strict_types=1);
 use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
 
 /** @var Creditcard $magewire */
+if (false === $magewire->isComponentsEnabled()) {
+    return '<div></div>';
+}
 ?>
 <div>
     <div id="<?= $magewire->getJsName() ?>"></div>
@@ -36,8 +39,12 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
                     return;
                 }
 
-                // @todo: let {token, error} = await mollie.createToken();
-                // @todo: Add validation based on "error"
+                let {token, error} = mollie.createToken();
+                if (error) {
+                    // @todo: Add validation based on "error"
+                    console.log('<error>@todo: error</error>', error, token);
+                    return;
+                }
 
             });
 
