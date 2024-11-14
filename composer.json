@@ -4,7 +4,7 @@
     "description": "Mollie compatibility for Loki Checkout",
     "type": "magento2-module",
     "require": {
-        "mollie/magento2": "^2.41",
+        "mollie/magento2": "^2.0",
         "yireo/magento2-loki-checkout": "@dev"
     },
     "license": [
