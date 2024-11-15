@@ -2,6 +2,13 @@
     "name": "yireo/magento2-loki-checkout-mollie",
     "version": "0.0.1",
     "description": "Mollie compatibility for Loki Checkout",
+    "homepage": "https://loki-checkout.com/",
+    "authors": [
+        {
+            "name": "Jisse Reitsma (Yireo)",
+            "email": "jisse@yireo.com"
+        }
+    ],
     "type": "magento2-module",
     "require": {
         "mollie/magento2": "^2.0",
