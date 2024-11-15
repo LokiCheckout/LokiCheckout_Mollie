@@ -7,7 +7,7 @@ use Magento\Checkout\Model\Session as SessionCheckout;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magewirephp\Magewire\Component;
-use Mollie\HyvaCheckout\Service\Vault\GetSavedCards;
+use Yireo\LokiCheckoutMollie\Service\Vault\GetSavedCards;
 
 class CreditcardVault extends Component
 {
