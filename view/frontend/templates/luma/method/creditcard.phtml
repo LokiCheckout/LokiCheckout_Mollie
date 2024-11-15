@@ -1,0 +1,52 @@
+<?php
+declare(strict_types=1);
+
+use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
+
+/** @var Creditcard $magewire */
+if (false === $magewire->isComponentsEnabled()) {
+    return '<div></div>';
+}
+?>
+<div>
+    <div id="<?= $magewire->getJsName() ?>"></div>
+    <script>
+        require([
+            'mollie'
+        ], function(Mollie) {
+            const mollie = Mollie('<?= $magewire->getProfileId() ?>', {
+                locale: '<?= $magewire->getLocale() ?>',
+                testmode: <?= $magewire->isTestMode() ? 'true' : 'false' ?>,
+            });
+
+            let cardComponent = mollie.createComponent('card', {
+                styles: {
+                    base: {
+                        border: '1px solid #000',
+                    },
+                    invalid: {
+                        color: '#dc2626',
+                    }
+                }
+            });
+
+            cardComponent.mount('#<?= $magewire->getJsName() ?>');
+        });
+    </script>
+    <script>
+        (() => {
+            window.addEventListener('checkout:payment:method-activate', event => {
+                if (event.detail.method !== 'mollie_methods_creditcard') {
+                    return;
+                }
+
+                let {token, error} = mollie.createToken();
+                if (error) {
+                    // @todo: Add validation based on "error"
+                    console.log('<error>@todo: error</error>', error, token);
+                    return;
+                }
+            });
+        })();
+    </script>
+</div>
