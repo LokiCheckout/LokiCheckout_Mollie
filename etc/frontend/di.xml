@@ -4,8 +4,14 @@
         <plugin name="Yireo_LokiCheckoutMollie::overrideDefaultPayment"
                 type="Yireo\LokiCheckoutMollie\Plugin\OverrideDefaultPayment"/>
     </type>
+
     <type name="Yireo\LokiCheckout\Step\FinalStep\RedirectUrl">
         <plugin name="Yireo_LokiCheckoutMollie::mollieRedirectUrlPlugin"
                 type="Yireo\LokiCheckoutMollie\Plugin\MollieRedirectUrlPlugin"/>
+    </type>
+
+    <type name="Yireo\LokiCheckout\ViewModel\PaymentMethodIcon">
+        <plugin name="Yireo_LokiCheckoutMollie::paymentMethodIconPlugin"
+                type="Yireo\LokiCheckoutMollie\Plugin\PaymentMethodIconPlugin"/>
     </type>
 </config>
