@@ -1,6 +1,7 @@
 module.exports = {
     content: [
-        '../templates/**/*.phtml',
+        "../layout/*.xml",
+        "../templates/**/*.phtml"
     ],
     options: {
         safelist: [
