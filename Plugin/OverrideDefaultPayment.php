@@ -3,7 +3,7 @@
 namespace Yireo\LokiCheckoutMollie\Plugin;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Yireo\LokiCheckout\Magewire\Checkout\BillingStep\PaymentMethods;
+use Yireo\LokiCheckout\Magewire\Checkout\Billing\PaymentMethods;
 
 class OverrideDefaultPayment
 {
