@@ -9,6 +9,7 @@ use Magewirephp\Magewire\Component;
 use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\GetIssuers;
 use Mollie\Payment\Service\Mollie\MollieApiClient;
+use Yireo\LokiCheckout\Util\CurrentTheme;
 
 class WithIssuer extends Component
 {
@@ -22,6 +23,7 @@ class WithIssuer extends Component
         private MollieApiClient $mollieApiClient,
         private GetIssuers $getIssuers,
         private MollieConfig $mollieConfig,
+        private CurrentTheme $currentTheme,
     ) {
     }
 
@@ -38,14 +40,14 @@ class WithIssuer extends Component
 
         $listType = $this->mollieConfig->getIssuerListType($method);
         if ($listType == 'none') {
-            $this->switchTemplate('Yireo_LokiCheckoutMollie::method/issuer/none.phtml');
+            $this->switchTemplate($this->getTemplatePrefix() . '/none.phtml');
         }
 
         if ($listType == 'dropdown') {
-            $this->switchTemplate( 'Yireo_LokiCheckoutMollie::method/issuer/dropdown.phtml');
+            $this->switchTemplate( $this->getTemplatePrefix() . '/dropdown.phtml');
         }
 
-        $this->switchTemplate('Yireo_LokiCheckoutMollie::method/issuer/list.phtml');
+        $this->switchTemplate($this->getTemplatePrefix() . '/list.phtml');
     }
 
     public function updatedSelectedIssuer(string $value): ?string
@@ -55,5 +57,14 @@ class WithIssuer extends Component
         $this->quoteRepository->save($quote);
 
         return $value;
+    }
+
+    private function getTemplatePrefix(): string
+    {
+        if ($this->currentTheme->isHyva()) {
+            return 'Yireo_LokiCheckoutMollie::hyva/method/issuer/';
+        }
+
+        return 'Yireo_LokiCheckoutMollie::luma/method/issuer/';
     }
 }
