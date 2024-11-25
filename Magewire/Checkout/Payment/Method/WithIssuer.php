@@ -27,7 +27,7 @@ class WithIssuer extends Component
     ) {
     }
 
-    public function mount(): void
+    public function boot(): void
     {
         $mollieApiClient = $this->mollieApiClient->loadByStore();
         $method = str_replace('mollie_methods_', '', (string)$this->getParent()->getMethod());
