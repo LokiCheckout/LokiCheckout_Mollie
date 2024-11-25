@@ -20,6 +20,7 @@ if (false === $magewire->isComponentsEnabled()) {
                     testmode: <?= $magewire->isTestMode() ? 'true' : 'false' ?>,
                 });
 
+                // @todo:
                 let cardComponent = mollie.createComponent('card', {
                     styles: {
                         base: {
@@ -39,6 +40,7 @@ if (false === $magewire->isComponentsEnabled()) {
                     return;
                 }
 
+                // @todo: Save cart_token in payment additional information and send with quote
                 let {token, error} = mollie.createToken();
                 if (error) {
                     // @todo: Add validation based on "error"
