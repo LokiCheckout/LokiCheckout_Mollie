@@ -7,7 +7,7 @@ use Magento\Checkout\Model\Session;
 use Magento\Framework\UrlInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Mollie\Payment\Config;
+use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Model\Adminhtml\Source\ApplePayIntegrationType;
 use Mollie\Payment\Service\Mollie\ApplePay\SupportedNetworks;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
@@ -30,7 +30,7 @@ class ApplePay extends FieldComponent
 
     private SupportedNetworks $supportedNetworks;
 
-    private Config $config;
+    private MollieConfig $mollieConfig;
 
     public string $amount = '';
 
@@ -47,14 +47,14 @@ class ApplePay extends FieldComponent
         Session $checkoutSession,
         StoreManagerInterface $storeManager,
         CartRepositoryInterface $cartRepository,
-        Config $config,
+        MollieConfig $mollieConfig,
         SupportedNetworks $supportedNetworks
     ) {
         $this->url = $url;
         $this->checkoutSession = $checkoutSession;
         $this->storeManager = $storeManager;
         $this->cartRepository = $cartRepository;
-        $this->config = $config;
+        $this->mollieConfig = $mollieConfig;
         $this->supportedNetworks = $supportedNetworks;
     }
 
@@ -73,7 +73,7 @@ class ApplePay extends FieldComponent
 
     public function directIntegrationIsEnabled(): bool
     {
-        return $this->config->applePayIntegrationType() == ApplePayIntegrationType::DIRECT;
+        return $this->mollieConfig->applePayIntegrationType() == ApplePayIntegrationType::DIRECT;
     }
 
     public function getApplePayValidationUrl(): string
@@ -98,12 +98,12 @@ class ApplePay extends FieldComponent
 
     public function getFieldName(): string
     {
-        // TODO: Implement getFieldName() method.
+        return 'mollie_applepay';
     }
 
     public function getFieldLabel(): string
     {
-        // TODO: Implement getFieldLabel() method.
+        return 'ApplePay';
     }
 
     public function save($value): void

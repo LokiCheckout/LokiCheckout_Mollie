@@ -6,7 +6,7 @@ namespace Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method;
 use Magento\Checkout\Model\Session as SessionCheckout;
 use Magento\Framework\Locale\ResolverInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
-use Mollie\Payment\Config;
+use Mollie\Payment\Config as MollieConfig;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
 
 class Creditcard extends FieldComponent
@@ -21,7 +21,7 @@ class Creditcard extends FieldComponent
 
     private ResolverInterface $localeResolver;
 
-    private Config $config;
+    private MollieConfig $mollieConfig;
 
     public string $profileId = '';
 
@@ -35,27 +35,27 @@ class Creditcard extends FieldComponent
         SessionCheckout $sessionCheckout,
         CartRepositoryInterface $quoteRepository,
         ResolverInterface $localeResolver,
-        Config $config
+        MollieConfig $mollieConfig
     ) {
         $this->sessionCheckout = $sessionCheckout;
         $this->quoteRepository = $quoteRepository;
         $this->localeResolver = $localeResolver;
-        $this->config = $config;
+        $this->mollieConfig = $mollieConfig;
     }
 
     public function getProfileId(): string
     {
-        return (string)$this->config->getProfileId();
+        return (string)$this->mollieConfig->getProfileId();
     }
 
     public function isTestMode(): bool
     {
-        return $this->config->isTestMode();
+        return $this->mollieConfig->isTestMode();
     }
 
     public function isComponentsEnabled(): bool
     {
-        return $this->config->creditcardUseComponents() && $this->config->getProfileId();
+        return $this->mollieConfig->creditcardUseComponents() && $this->mollieConfig->getProfileId();
     }
 
     /**
@@ -63,7 +63,7 @@ class Creditcard extends FieldComponent
      */
     public function getLocale(): string
     {
-        $locale = $this->config->getLocale();
+        $locale = $this->mollieConfig->getLocale();
 
         // Empty == autodetect, so use the store.
         if (!$locale || $locale == 'store') {
@@ -75,12 +75,12 @@ class Creditcard extends FieldComponent
 
     public function getFieldName(): string
     {
-        return 'mollie_creditcard'; // @todo
+        return 'mollie_creditcard';
     }
 
     public function getFieldLabel(): string
     {
-        return (string)__('Creditcard'); // @todo
+        return (string)__('Creditcard');
     }
 
     public function save($value): void
