@@ -15,9 +15,9 @@ use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
 class ApplePay extends FieldComponent
 {
     protected $listeners = [
-        'shipping_method_selected' => 'refresh', // @todo
-        'coupon_code_applied' => 'refresh',
-        'coupon_code_revoked' => 'refresh'
+        'afterSaveShippingMethod' => 'refresh',
+        'afterApplyCouponCode' => 'refresh',
+        'afterRemoveCouponCode' => 'refresh'
     ];
 
     private UrlInterface $url;
