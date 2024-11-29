@@ -11,21 +11,12 @@ use Magento\Vault\Api\PaymentTokenRepositoryInterface;
 
 class GetSavedCards
 {
-    private SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory;
-    private PaymentTokenRepositoryInterface $paymentTokenRepository;
-    private SerializerInterface $serializer;
-    private Session $customerSession;
-
     public function __construct(
-        SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory,
-        PaymentTokenRepositoryInterface $paymentTokenRepository,
-        SerializerInterface $serializer,
-        Session $customerSession
+        private SearchCriteriaBuilderFactory    $searchCriteriaBuilderFactory,
+        private PaymentTokenRepositoryInterface $paymentTokenRepository,
+        private SerializerInterface             $serializer,
+        private Session                         $customerSession
     ) {
-        $this->searchCriteriaBuilderFactory = $searchCriteriaBuilderFactory;
-        $this->paymentTokenRepository = $paymentTokenRepository;
-        $this->serializer = $serializer;
-        $this->customerSession = $customerSession;
     }
 
     /**

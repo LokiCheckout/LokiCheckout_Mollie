@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method;
 
 use Magento\Checkout\Model\Session as SessionCheckout;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magewirephp\Magewire\Component;
@@ -11,47 +13,49 @@ use Yireo\LokiCheckoutMollie\Service\Vault\GetSavedCards;
 
 class CreditcardVault extends Component
 {
-    private SessionCheckout $sessionCheckout;
-    private CartRepositoryInterface $quoteRepository;
-
-    public ?string $public_hash = '';
-    private GetSavedCards $getSavedCards;
+    public string $hash = '';
 
     public function __construct(
-        SessionCheckout $sessionCheckout,
-        CartRepositoryInterface $quoteRepository,
-        GetSavedCards $getSavedCards
+        private SessionCheckout         $sessionCheckout,
+        private CartRepositoryInterface $quoteRepository,
+        private GetSavedCards           $getSavedCards
     ) {
-        $this->sessionCheckout = $sessionCheckout;
-        $this->quoteRepository = $quoteRepository;
-        $this->getSavedCards = $getSavedCards;
     }
 
+    /**
+     * @return void
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
     public function mount(): void
     {
         $quote = $this->sessionCheckout->getQuote();
-        $this->public_hash = $quote->getPayment()->getAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH);
+        $this->hash = $quote->getPayment()->getAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH);
     }
 
+    /**
+     * @return array
+     */
     public function getSavedCards(): array
     {
         return $this->getSavedCards->execute();
     }
 
     /**
-     * @param mixed $value
+     * @param string $value
+     *
      * @return mixed
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
-    public function updated($value)
+    public function updatedHash(string $hash): string
     {
         $quote = $this->sessionCheckout->getQuote();
-        $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $this->public_hash);
+        $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $hash);
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::CUSTOMER_ID, $quote->getCustomerId());
 
         $this->quoteRepository->save($quote);
 
-        return $value;
+        return $hash;
     }
 }

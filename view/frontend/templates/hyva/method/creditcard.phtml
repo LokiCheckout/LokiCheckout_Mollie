@@ -1,14 +1,19 @@
 <?php
 declare(strict_types=1);
 
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckout\Util\Block\CssClass;
 use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
 
 /** @var Creditcard $magewire */
+/** @var Template $block */
+/** @var CssClass $css */
+
 if (false === $magewire->isVisible()) {
     return '<div></div>';
 }
 ?>
-<div>
+<div class="<?= $css('') ?>">
     <div id="<?= $magewire->getJsName() ?>"></div>
     <script>
         (function () {

@@ -20,58 +20,39 @@ class ApplePay extends FieldComponent
         'afterRemoveCouponCode' => 'refresh'
     ];
 
-    private UrlInterface $url;
-
-    private Session $checkoutSession;
-
-    private StoreManagerInterface $storeManager;
-
-    private CartRepositoryInterface $cartRepository;
-
-    private SupportedNetworks $supportedNetworks;
-
-    private MollieConfig $mollieConfig;
-
-    public string $amount = '';
-
-    public string $countryId = '';
-
-    public string $currencyCode = '';
-
-    public string $storeName = '';
-
-    public string $time = '';
-
     public function __construct(
-        UrlInterface $url,
-        Session $checkoutSession,
-        StoreManagerInterface $storeManager,
-        CartRepositoryInterface $cartRepository,
-        MollieConfig $mollieConfig,
-        SupportedNetworks $supportedNetworks
+        private UrlInterface            $url,
+        private Session                 $checkoutSession,
+        private StoreManagerInterface   $storeManager,
+        private CartRepositoryInterface $cartRepository,
+        private MollieConfig            $mollieConfig,
+        private SupportedNetworks       $supportedNetworks
     ) {
-        $this->url = $url;
-        $this->checkoutSession = $checkoutSession;
-        $this->storeManager = $storeManager;
-        $this->cartRepository = $cartRepository;
-        $this->mollieConfig = $mollieConfig;
-        $this->supportedNetworks = $supportedNetworks;
     }
 
-    public function mount(): void
+    public function getCountryId(): string
     {
         $cart = $this->checkoutSession->getQuote();
-        $this->countryId = $cart->getBillingAddress()->getCountryId();
-        $this->currencyCode = $cart->getQuoteCurrencyCode();
-        $this->storeName = $this->storeManager->getStore()->getName();
+        return $cart->getBillingAddress()->getCountryId();
     }
 
-    public function boot(): void
+    public function getCurrencyCode(): string
     {
-        $this->amount = (string)$this->checkoutSession->getQuote()->getGrandTotal();
+        $cart = $this->checkoutSession->getQuote();
+        return $cart->getQuoteCurrencyCode();
     }
 
-    public function directIntegrationIsEnabled(): bool
+    public function getAmount(): string
+    {
+        return (string)$this->checkoutSession->getQuote()->getGrandTotal();
+    }
+
+    public function getStoreName(): string
+    {
+        return $this->storeManager->getStore()->getName();
+    }
+
+    public function isVisible(): bool
     {
         return $this->mollieConfig->applePayIntegrationType() == ApplePayIntegrationType::DIRECT;
     }
