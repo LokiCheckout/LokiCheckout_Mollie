@@ -9,11 +9,12 @@ if (false === $magewire->isVisible()) {
 }
 ?>
 <div>
-    <div>Card token: <?= $magewire->value ?></div>
     <div id="<?= $magewire->getJsName() ?>"></div>
     <script>
-        (function() {
+        (function () {
             window.mollie = null;
+            window.mollieCardComponent = null;
+
             function mollieRenderComponents() {
                 window.mollie = Mollie('<?= $magewire->getProfileId() ?>', {
                     locale: '<?= $magewire->getLocale() ?>',
@@ -21,7 +22,7 @@ if (false === $magewire->isVisible()) {
                 });
 
                 // @todo: Allow for styling this properly
-                let cardComponent = window.mollie.createComponent('card', {
+                window.mollieCardComponent = window.mollie.createComponent('card', {
                     styles: {
                         base: {
                             lineHeight: '30px',
@@ -33,7 +34,7 @@ if (false === $magewire->isVisible()) {
                     }
                 });
 
-                cardComponent.mount('#<?= $magewire->getJsName() ?>');
+                window.mollieCardComponent.mount('#<?= $magewire->getJsName() ?>');
             }
 
             const script = document.createElement('script');
@@ -42,20 +43,13 @@ if (false === $magewire->isVisible()) {
             document.head.append(script);
         })();
 
-        LokiCheckoutValidator.rules.mollie_methods_creditcard = function (component) {
+        LokiCheckoutValidator.rules.mollie_methods_creditcard = async function (component) {
             if (!window.mollie) {
                 LokiCheckoutMessenger.error('<?= __('Mollie object unavailable') ?>', component);
                 return false;
             }
 
-            let token = null;
-            let error = null;
-            (async function() {
-                const result = await window.mollie.createToken();
-                console.log('createToken result', result);
-                token = result.token;
-                error = result.error;
-            })();
+            const {token, error} = await window.mollie.createToken();
 
             if (error) {
                 LokiCheckoutMessenger.error('<?= __('Mollie Error') ?>', component, error);
@@ -67,7 +61,7 @@ if (false === $magewire->isVisible()) {
                 return false;
             }
 
-            (async function() {
+            (async function () {
                 await Magewire.find('<?= $magewire->id ?>').call('setValue', token);
             })();
 
