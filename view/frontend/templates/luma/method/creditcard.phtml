@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
 
 /** @var Creditcard $magewire */
-if (false === $magewire->isComponentsEnabled()) {
+if (false === $magewire->isVisible()) {
     return '<div></div>';
 }
 ?>

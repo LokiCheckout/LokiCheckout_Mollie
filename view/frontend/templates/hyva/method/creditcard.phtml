@@ -4,26 +4,27 @@ declare(strict_types=1);
 use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
 
 /** @var Creditcard $magewire */
-if (false === $magewire->isComponentsEnabled()) {
+if (false === $magewire->isVisible()) {
     return '<div></div>';
 }
 ?>
 <div>
+    <div>Card token: <?= $magewire->value ?></div>
     <div id="<?= $magewire->getJsName() ?>"></div>
     <script>
-        (() => {
-            let mollie;
-
-            async function renderMollieComponents() {
-                mollie = await Mollie('<?= $magewire->getProfileId() ?>', {
+        (function() {
+            window.mollie = null;
+            function mollieRenderComponents() {
+                window.mollie = Mollie('<?= $magewire->getProfileId() ?>', {
                     locale: '<?= $magewire->getLocale() ?>',
                     testmode: <?= $magewire->isTestMode() ? 'true' : 'false' ?>,
                 });
 
-                // @todo:
-                let cardComponent = mollie.createComponent('card', {
+                // @todo: Allow for styling this properly
+                let cardComponent = window.mollie.createComponent('card', {
                     styles: {
                         base: {
+                            lineHeight: '30px',
                             border: '1px solid #000',
                         },
                         invalid: {
@@ -35,24 +36,49 @@ if (false === $magewire->isComponentsEnabled()) {
                 cardComponent.mount('#<?= $magewire->getJsName() ?>');
             }
 
-            window.addEventListener('checkout:payment:method-activate', event => {
-                if (event.detail.method !== 'mollie_methods_creditcard') {
-                    return;
-                }
-
-                // @todo: Save cart_token in payment additional information and send with quote
-                let {token, error} = mollie.createToken();
-                if (error) {
-                    // @todo: Add validation based on "error"
-                    console.log('<error>@todo: error</error>', error, token);
-                    return;
-                }
-            });
-
             const script = document.createElement('script');
             script.src = 'https://js.mollie.com/v1/mollie.js';
-            script.onload = () => renderMollieComponents();
+            script.onload = () => mollieRenderComponents();
             document.head.append(script);
         })();
+
+        LokiCheckoutValidator.rules.mollie_methods_creditcard = function (component) {
+            if (!window.mollie) {
+                LokiCheckoutMessenger.error('<?= __('Mollie object unavailable') ?>', component);
+                return false;
+            }
+
+            let token = null;
+            let error = null;
+            (async function() {
+                const result = await window.mollie.createToken();
+                console.log('createToken result', result);
+                token = result.token;
+                error = result.error;
+            })();
+
+            if (error) {
+                LokiCheckoutMessenger.error('<?= __('Mollie Error') ?>', component, error);
+                return false;
+            }
+
+            if (!token) {
+                LokiCheckoutMessenger.error('<?= __('Empty Mollie token') ?>', component);
+                return false;
+            }
+
+            (async function() {
+                await Magewire.find('<?= $magewire->id ?>').call('setValue', token);
+            })();
+
+            return true;
+        }
     </script>
+
+    <style>
+        .mollie-component {
+            height: auto !important;
+            padding: 3px 5px 3px 8px;
+        }
+    </style>
 </div>

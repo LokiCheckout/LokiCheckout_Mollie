@@ -11,36 +11,12 @@ use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
 
 class Creditcard extends FieldComponent
 {
-    protected $rules = [
-        'cardToken' => 'required',
-    ];
-
-    private CartRepositoryInterface $quoteRepository;
-
-    private SessionCheckout $sessionCheckout;
-
-    private ResolverInterface $localeResolver;
-
-    private MollieConfig $mollieConfig;
-
-    public string $profileId = '';
-
-    public bool $isTestMode = false;
-
-    public string $locale = '';
-
-    public string $cardToken = '';
-
     public function __construct(
-        SessionCheckout $sessionCheckout,
-        CartRepositoryInterface $quoteRepository,
-        ResolverInterface $localeResolver,
-        MollieConfig $mollieConfig
+        private SessionCheckout $sessionCheckout,
+        private CartRepositoryInterface $quoteRepository,
+        private ResolverInterface $localeResolver,
+        private MollieConfig $mollieConfig
     ) {
-        $this->sessionCheckout = $sessionCheckout;
-        $this->quoteRepository = $quoteRepository;
-        $this->localeResolver = $localeResolver;
-        $this->mollieConfig = $mollieConfig;
     }
 
     public function getProfileId(): string
@@ -50,23 +26,19 @@ class Creditcard extends FieldComponent
 
     public function isTestMode(): bool
     {
-        return $this->mollieConfig->isTestMode();
+        return (bool)$this->mollieConfig->isTestMode();
     }
 
-    public function isComponentsEnabled(): bool
+    public function isVisible(): bool
     {
-        return $this->mollieConfig->creditcardUseComponents() && $this->mollieConfig->getProfileId();
+        return (bool)$this->mollieConfig->creditcardUseComponents() && $this->mollieConfig->getProfileId();
     }
 
-    /**
-     * @return string
-     */
     public function getLocale(): string
     {
         $locale = $this->mollieConfig->getLocale();
 
-        // Empty == autodetect, so use the store.
-        if (!$locale || $locale == 'store') {
+        if (empty($locale) || $locale == 'store') {
             return $this->localeResolver->getLocale();
         }
 
@@ -81,6 +53,11 @@ class Creditcard extends FieldComponent
     public function getFieldLabel(): string
     {
         return (string)__('Creditcard');
+    }
+
+    public function isRequired(): bool
+    {
+        return true;
     }
 
     public function save($value): void
