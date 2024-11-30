@@ -2,10 +2,16 @@
 
 namespace Yireo\LokiCheckoutMollie\Plugin;
 
+use Magento\Framework\Component\ComponentRegistrar;
 use Yireo\LokiCheckout\ViewModel\PaymentMethodIcon;
 
 class PaymentMethodIconPlugin
 {
+    public function __construct(
+        private ComponentRegistrar $componentRegistrar
+    ) {
+    }
+
     public function afterGetIcon(
         PaymentMethodIcon $paymentMethodIcon,
         string $result,
@@ -19,9 +25,12 @@ class PaymentMethodIconPlugin
             return $result;
         }
 
-        $iconFileId = 'Mollie_Payment::images/methods/'.$match[1].'.svg';
-        $iconUrl = $paymentMethodIcon->getAssetRepository()->getUrl($iconFileId);
+        $modulePath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Mollie_Payment');
+        $iconFilePath = $modulePath . '/view/frontend/web/images/methods/'.$match[1].'.svg';
+        if (false === file_exists($iconFilePath)) {
+            return $result;
+        }
 
-        return '<img src="'.$iconUrl.'" />';
+        return file_get_contents($iconFilePath);
     }
 }
