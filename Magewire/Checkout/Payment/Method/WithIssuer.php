@@ -9,13 +9,15 @@ use Magewirephp\Magewire\Component;
 use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\GetIssuers;
 use Mollie\Payment\Service\Mollie\MollieApiClient;
+use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponentBehaviour\StepBehaviour;
 use Yireo\LokiCheckout\Util\CurrentTheme;
 
 class WithIssuer extends Component
 {
-    public array $issuers = [];
+    use StepBehaviour;
 
-    public string $selectedIssuer = '';
+    public array $issuers = [];
+    public string $issuer = '';
 
     public function __construct(
         private CheckoutSession $checkoutSession,
@@ -30,33 +32,41 @@ class WithIssuer extends Component
     public function boot(): void
     {
         $mollieApiClient = $this->mollieApiClient->loadByStore();
-        $method = str_replace('mollie_methods_', '', (string)$this->getParent()->getMethod());
+        $method = $this->getPaymentMethod();
         $this->issuers = $this->getIssuers->execute($mollieApiClient, $method, 'list');
 
         $quote = $this->checkoutSession->getQuote();
         if ($selectedIssuer = $quote->getPayment()->getAdditionalInformation('selected_issuer')) {
-            $this->selectedIssuer = $selectedIssuer;
+            $this->issuer = $selectedIssuer;
         }
+    }
 
+    public function getPaymentMethod(): string
+    {
+        return str_replace('mollie_methods_', '', (string)$this->getParent()->getMethod());
+    }
+
+    public function getChildTemplate(): string
+    {
+        $method = $this->getPaymentMethod();
         $listType = $this->mollieConfig->getIssuerListType($method);
         if ($listType == 'none') {
-            $this->switchTemplate($this->getTemplatePrefix() . '/none.phtml');
+            return $this->getTemplatePrefix().'/none.phtml';
         }
 
         if ($listType == 'dropdown') {
-            $this->switchTemplate( $this->getTemplatePrefix() . '/dropdown.phtml');
+            return $this->getTemplatePrefix().'/dropdown.phtml';
         }
 
-        $this->switchTemplate($this->getTemplatePrefix() . '/list.phtml');
+        return $this->getTemplatePrefix().'/list.phtml';
     }
 
-    public function updatedSelectedIssuer(string $value): ?string
+    public function saveIssuer(string $issuer): void
     {
+        $this->issuer = $issuer;
         $quote = $this->checkoutSession->getQuote();
-        $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
+        $quote->getPayment()->setAdditionalInformation('selected_issuer', $issuer);
         $this->quoteRepository->save($quote);
-
-        return $value;
     }
 
     private function getTemplatePrefix(): string

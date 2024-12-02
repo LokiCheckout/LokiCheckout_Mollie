@@ -14,7 +14,7 @@
 
         <block
             name="loki-checkout.billing.payment-methods.mollie_methods_ideal.form"
-            template="Yireo_LokiCheckoutMollie::luma/method/issuer/none.phtml">
+            template="Yireo_LokiCheckoutMollie::luma/method/issuer.phtml">
             <arguments>
                 <argument name="magewire" xsi:type="object">
                     Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer

@@ -7,6 +7,6 @@
 
         <referenceBlock
             name="loki-checkout.billing.payment-methods.mollie_methods_ideal.form"
-            template="Yireo_LokiCheckoutMollie::hyva/method/issuer/none.phtml"/>
+            template="Yireo_LokiCheckoutMollie::hyva/method/issuer.phtml"/>
     </body>
 </page>
