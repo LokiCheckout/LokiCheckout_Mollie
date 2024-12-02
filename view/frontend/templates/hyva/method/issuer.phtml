@@ -10,9 +10,8 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer;
 /** @var BlockRenderer $blockRenderer */
 $magewire = $block->getMagewire();
 ?>
-<div x-data="<?= $block->getComponentName() ?>">
+<div x-data="LokiCheckoutMollieIssuer" data-component='<?= $magewire->getComponentDataAsJson() ?>'>
     CURRENT: <?= $magewire->issuer ?><br/>
-
     <?php if ($magewire->issuers): ?>
         <?= $blockRenderer->getBlockTemplate($magewire->getChildTemplate(), $block, [
             'issuers' => $magewire->issuers
@@ -20,30 +19,4 @@ $magewire = $block->getMagewire();
     <?php else: ?>
         <span><?= __('No issuers found') ?></span>
     <?php endif; ?>
-
-    <script>
-        LokiCheckoutAlpineCall(() => {
-            Alpine.data('<?= $block->getComponentName() ?>', () => {
-                return {
-                    name: '<?= $block->getComponentName() ?>',
-                    wireId: '<?= $magewire->id ?>',
-                    step: 'billing',
-                    //step: '<?= $magewire->getStep() ?>', // @todo: Don't do this hard-coded
-                    issuer: '<?= $magewire->issuer ?>',
-                    valid: <?= $magewire->issuer ? 'true' : 'false' ?>,
-                    required: <?= count($magewire->issuers) > 0 ? 'true' : 'false' ?>,
-                    init() {
-                        Alpine.store('components').add(this);
-
-                        this.$watch('issuer', (issuer) => {
-                            if (issuer) {
-                                this.valid = true;
-                                Magewire.find('<?= $magewire->id ?>').saveIssuer(this.issuer);
-                            }
-                        });
-                    }
-                }
-            });
-        });
-    </script>
 </div>

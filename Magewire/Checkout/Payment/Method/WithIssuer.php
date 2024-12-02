@@ -10,14 +10,17 @@ use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\GetIssuers;
 use Mollie\Payment\Service\Mollie\MollieApiClient;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponentBehaviour\StepBehaviour;
+use Yireo\LokiCheckout\Magewire\Generic\Behaviour\AlpineDataBehaviour;
 use Yireo\LokiCheckout\Util\CurrentTheme;
 
 class WithIssuer extends Component
 {
     use StepBehaviour;
+    use AlpineDataBehaviour;
 
     public array $issuers = [];
-    public string $issuer = '';
+    public string $value = '';
+    public bool $valid = false;
 
     public function __construct(
         private CheckoutSession $checkoutSession,
@@ -37,7 +40,11 @@ class WithIssuer extends Component
 
         $quote = $this->checkoutSession->getQuote();
         if ($selectedIssuer = $quote->getPayment()->getAdditionalInformation('selected_issuer')) {
-            $this->issuer = $selectedIssuer;
+            $this->value = $selectedIssuer;
+        }
+
+        if (!empty($this->value)) {
+            $this->valid = true;
         }
     }
 
@@ -63,7 +70,9 @@ class WithIssuer extends Component
 
     public function saveIssuer(string $issuer): void
     {
-        $this->issuer = $issuer;
+        $this->value = $issuer;
+        $this->valid = true;
+
         $quote = $this->checkoutSession->getQuote();
         $quote->getPayment()->setAdditionalInformation('selected_issuer', $issuer);
         $this->quoteRepository->save($quote);
@@ -76,5 +85,15 @@ class WithIssuer extends Component
         }
 
         return 'Yireo_LokiCheckoutMollie::luma/method/issuer/';
+    }
+
+    public function getJsValue(): string
+    {
+        return $this->value;
+    }
+
+    public function isRequired(): bool
+    {
+        return count($this->issuers) > 0;
     }
 }
