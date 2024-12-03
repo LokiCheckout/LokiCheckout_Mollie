@@ -10,9 +10,9 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer;
 /** @var CssClass $css */
 $issuers = $block->getIssuers();
 ?>
-<ul class="mollie-issuer-list <?= $css('ml-4') ?>">
+<ul class="<?= $css('ml-4') ?>">
     <?php foreach ($issuers as $issuer): ?>
-        <li class="mollie-issuer <?= $css('my-3', 'item') ?>">
+        <li class="<?= $css('my-3', 'item') ?>">
             <label>
                 <input
                     type="radio"

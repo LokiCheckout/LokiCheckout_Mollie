@@ -3,14 +3,17 @@ declare(strict_types=1);
 
 use Magento\Framework\View\Element\Template;
 use Yireo\LokiCheckout\Util\Block\BlockRenderer;
+use Yireo\LokiCheckout\Util\Block\CssClass;
 use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer;
 
 /** @var Template $block */
 /** @var WithIssuer $magewire */
 /** @var BlockRenderer $blockRenderer */
+/** @var CssClass $css */
+
 $magewire = $block->getMagewire();
 ?>
-<div x-data="LokiCheckoutMollieIssuer" data-loki-component='<?= $magewire->getComponentDataAsJson() ?>'>
+<div x-data="LokiCheckoutMollieIssuer" data-loki-component='<?= $magewire->getComponentDataAsJson() ?>' class="<?= $css('') ?>">
     <?php if ($magewire->issuers): ?>
         <?= $blockRenderer->getBlockTemplate($magewire->getChildTemplate(), $block, [
             'issuers' => $magewire->issuers,

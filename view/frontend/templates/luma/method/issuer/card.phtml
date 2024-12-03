@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer;
+
+/** @var Template $block */
+/** @var WithIssuer $withIssuer */
+$magewire = $block->getMagewire();
+?>
+<div>
+    <?php if ($magewire->issuers): ?>
+        <ul class="ml-4 mollie-issuer-list">
+            <?php foreach ($magewire->issuers as $issuer): ?>
+                <li class="my-3 mollie-issuer">
+                    <label>
+                        <input type="radio" name="selectedIssuer" wire:model="selectedIssuer" value="<?= $issuer['id'] ?>">
+                        <img class="mx-2 inline" src="<?= $issuer['image']['svg'] ?>" alt="<?= $issuer['name'] ?>">
+                        <?= $issuer['name'] ?>
+                    </label>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <span><?= __('No issuers found') ?></span>
+    <?php endif; ?>
+</div>
