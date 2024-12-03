@@ -1,0 +1,18 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckout\Factory\ViewModelFactory;
+use Yireo\LokiCheckoutMollie\ViewModel\AdditionalPaymentDetails;
+
+/** @var Template $block */
+/** @var ViewModelFactory $viewModelFactory */
+/** @var AdditionalPaymentDetails $additionalPaymentDetails */
+$additionalPaymentDetails = $viewModelFactory->create(AdditionalPaymentDetails::class);
+$issuerLabel = $additionalPaymentDetails->getIssuerLabel();
+
+if (empty($issuerLabel)) {
+    return;
+}
+?>
+<span>(<?= $issuerLabel ?>)</span>

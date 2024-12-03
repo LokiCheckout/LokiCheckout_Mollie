@@ -13,9 +13,10 @@ $magewire = $block->getMagewire();
 <div x-data="LokiCheckoutMollieIssuer" data-loki-component='<?= $magewire->getComponentDataAsJson() ?>'>
     <?php if ($magewire->issuers): ?>
         <?= $blockRenderer->getBlockTemplate($magewire->getChildTemplate(), $block, [
-            'issuers' => $magewire->issuers
+            'issuers' => $magewire->issuers,
         ]) ?>
     <?php else: ?>
         <span><?= __('No issuers found') ?></span>
+        <!-- <?= $magewire->getPaymentMethod() ?> -->
     <?php endif; ?>
 </div>

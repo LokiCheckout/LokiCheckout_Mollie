@@ -5,7 +5,7 @@ namespace Yireo\LokiCheckoutMollie\Plugin;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Yireo\LokiCheckout\Magewire\Checkout\Billing\PaymentMethods;
 
-class OverrideDefaultPayment
+class OverrideDefaultPaymentPlugin
 {
     public function __construct(
         private ScopeConfigInterface $scopeConfig
