@@ -10,8 +10,7 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer;
 /** @var BlockRenderer $blockRenderer */
 $magewire = $block->getMagewire();
 ?>
-<div x-data="LokiCheckoutMollieIssuer" data-component='<?= $magewire->getComponentDataAsJson() ?>'>
-    CURRENT: <?= $magewire->issuer ?><br/>
+<div x-data="LokiCheckoutMollieIssuer" data-loki-component='<?= $magewire->getComponentDataAsJson() ?>'>
     <?php if ($magewire->issuers): ?>
         <?= $blockRenderer->getBlockTemplate($magewire->getChildTemplate(), $block, [
             'issuers' => $magewire->issuers

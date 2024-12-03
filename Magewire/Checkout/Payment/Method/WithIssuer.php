@@ -5,22 +5,20 @@ namespace Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Quote\Api\CartRepositoryInterface;
-use Magewirephp\Magewire\Component;
 use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\GetIssuers;
 use Mollie\Payment\Service\Mollie\MollieApiClient;
+use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponentBehaviour\StepBehaviour;
 use Yireo\LokiCheckout\Magewire\Generic\Behaviour\AlpineDataBehaviour;
 use Yireo\LokiCheckout\Util\CurrentTheme;
 
-class WithIssuer extends Component
+class WithIssuer extends FieldComponent
 {
     use StepBehaviour;
     use AlpineDataBehaviour;
 
     public array $issuers = [];
-    public string $value = '';
-    public bool $valid = false;
 
     public function __construct(
         private CheckoutSession $checkoutSession,
@@ -34,9 +32,7 @@ class WithIssuer extends Component
 
     public function boot(): void
     {
-        $mollieApiClient = $this->mollieApiClient->loadByStore();
-        $method = $this->getPaymentMethod();
-        $this->issuers = $this->getIssuers->execute($mollieApiClient, $method, 'list');
+        $this->issuers = $this->getIssuers();
 
         $quote = $this->checkoutSession->getQuote();
         if ($selectedIssuer = $quote->getPayment()->getAdditionalInformation('selected_issuer')) {
@@ -48,9 +44,16 @@ class WithIssuer extends Component
         }
     }
 
+    private function getIssuers(): array
+    {
+        $mollieApiClient = $this->mollieApiClient->loadByStore();
+        $method = 'mollie_methods_'.$this->getPaymentMethod();
+        return (array) $this->getIssuers->execute($mollieApiClient, $method, 'list');
+    }
+
     public function getPaymentMethod(): string
     {
-        return str_replace('mollie_methods_', '', (string)$this->getParent()->getMethod());
+        return (string) $this->checkoutSession->getQuote()->getPayment()->getMethod();
     }
 
     public function getChildTemplate(): string
@@ -68,16 +71,6 @@ class WithIssuer extends Component
         return $this->getTemplatePrefix().'/list.phtml';
     }
 
-    public function saveIssuer(string $issuer): void
-    {
-        $this->value = $issuer;
-        $this->valid = true;
-
-        $quote = $this->checkoutSession->getQuote();
-        $quote->getPayment()->setAdditionalInformation('selected_issuer', $issuer);
-        $this->quoteRepository->save($quote);
-    }
-
     private function getTemplatePrefix(): string
     {
         if ($this->currentTheme->isHyva()) {
@@ -87,13 +80,21 @@ class WithIssuer extends Component
         return 'Yireo_LokiCheckoutMollie::luma/method/issuer/';
     }
 
-    public function getJsValue(): string
-    {
-        return $this->value;
-    }
-
     public function isRequired(): bool
     {
         return count($this->issuers) > 0;
+    }
+
+    public function getFieldLabel(): string
+    {
+        return (string)__('Issuer');
+    }
+
+    public function save($value): void
+    {
+        $this->valid = true;
+        $quote = $this->checkoutSession->getQuote();
+        $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
+        $this->quoteRepository->save($quote);
     }
 }

@@ -16,7 +16,8 @@ $issuers = $block->getIssuers();
             <label>
                 <input
                     type="radio"
-                    x-model="issuer"
+                    x-model="value"
+                    name="issuer"
                     value="<?= $issuer['id'] ?>"
                 >
                 <img class="<?= $css('mx-2 inline', 'image') ?>"

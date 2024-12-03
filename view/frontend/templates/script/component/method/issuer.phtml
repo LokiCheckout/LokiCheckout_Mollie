@@ -9,7 +9,7 @@
                 valid: false,
                 required: false,
                 init() {
-                    const componentData = JSON.parse(this.$el.dataset.component);
+                    const componentData = JSON.parse(this.$el.dataset.lokiComponent);
                     for (const [key, value] of Object.entries(componentData)) {
                         this[key] = value;
                     }
@@ -19,7 +19,7 @@
                     this.$watch('value', (value) => {
                         if (value) {
                             this.valid = true;
-                            Magewire.find(this.wireId).saveIssuer(this.value);
+                            Magewire.find(this.wireId).setValue(this.value);
                         }
                     });
                 }
