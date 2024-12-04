@@ -26,5 +26,15 @@
         <referenceContainer name="loki-checkout.script.alpine-components">
             <block name="loki-checkout-mollie.script.components.step-component" template="Yireo_LokiCheckoutMollie::script/component/method/issuer.phtml" />
         </referenceContainer>
+
+        <referenceBlock name="loki-checkout.css_classes">
+            <arguments>
+                <argument name="loki-checkout.billing.payment-methods.mollie_methods_ideal.form.issuers" xsi:type="array">
+                    <item name="block" xsi:type="array">
+                        <item name="grid" xsi:type="string">grid grid-cols-3</item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>
