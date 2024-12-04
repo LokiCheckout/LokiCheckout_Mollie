@@ -6,7 +6,6 @@ namespace Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Mollie\Payment\Config as MollieConfig;
-use Mollie\Payment\Service\Mollie\MollieApiClient;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponentBehaviour\StepBehaviour;
 use Yireo\LokiCheckout\Magewire\Generic\Behaviour\AlpineDataBehaviour;

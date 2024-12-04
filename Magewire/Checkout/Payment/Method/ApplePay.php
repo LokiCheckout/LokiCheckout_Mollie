@@ -30,6 +30,15 @@ class ApplePay extends FieldComponent
     ) {
     }
 
+    public function boot(): void
+    {
+        if ($this->mollieConfig->applePayIntegrationType() !== ApplePayIntegrationType::DIRECT) {
+            $this->visible = false;
+        }
+
+        parent::boot();
+    }
+
     public function getCountryId(): string
     {
         $cart = $this->checkoutSession->getQuote();
@@ -50,11 +59,6 @@ class ApplePay extends FieldComponent
     public function getStoreName(): string
     {
         return $this->storeManager->getStore()->getName();
-    }
-
-    public function isVisible(): bool
-    {
-        return $this->mollieConfig->applePayIntegrationType() == ApplePayIntegrationType::DIRECT;
     }
 
     public function getApplePayValidationUrl(): string

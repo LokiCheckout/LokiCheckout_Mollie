@@ -19,6 +19,15 @@ class Creditcard extends FieldComponent
     ) {
     }
 
+    public function boot(): void
+    {
+        if (false === $this->mollieConfig->creditcardUseComponents() || false === $this->mollieConfig->getProfileId()) {
+            $this->visible = false;
+        }
+
+        parent::boot();
+    }
+
     public function getProfileId(): string
     {
         return (string)$this->mollieConfig->getProfileId();
@@ -27,11 +36,6 @@ class Creditcard extends FieldComponent
     public function isTestMode(): bool
     {
         return (bool)$this->mollieConfig->isTestMode();
-    }
-
-    public function isVisible(): bool
-    {
-        return (bool)$this->mollieConfig->creditcardUseComponents() && $this->mollieConfig->getProfileId();
     }
 
     public function getLocale(): string
