@@ -3,12 +3,14 @@
 namespace Yireo\LokiCheckoutMollie\Plugin;
 
 use Magento\Framework\Component\ComponentRegistrar;
+use Mollie\Payment\Helper\General as GeneralHelper;
 use Yireo\LokiCheckout\ViewModel\PaymentMethodIcon;
 
 class PaymentMethodIconPlugin
 {
     public function __construct(
-        private ComponentRegistrar $componentRegistrar
+        private ComponentRegistrar $componentRegistrar,
+        private GeneralHelper $mollieGeneralHelper
     ) {
     }
 
@@ -17,6 +19,10 @@ class PaymentMethodIconPlugin
         string $result,
         string $paymentMethodCode
     ): string {
+        if (false === (bool)$this->mollieGeneralHelper->useImage()) {
+            return $result;
+        }
+
         if (false === preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
             return $result;
         };
