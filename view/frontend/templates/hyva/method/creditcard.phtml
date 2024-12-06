@@ -14,7 +14,7 @@ if (false === $magewire->isVisible()) {
 }
 ?>
 <div class="<?= $css('') ?>">
-    <div id="<?= $magewire->getJsName() ?>"></div>
+    <div id="<?= $magewire->getAlpineComponentName() ?>"></div>
     <script>
         (function () {
             window.mollie = null;
@@ -39,7 +39,7 @@ if (false === $magewire->isVisible()) {
                     }
                 });
 
-                window.mollieCardComponent.mount('#<?= $magewire->getJsName() ?>');
+                window.mollieCardComponent.mount('#<?= $magewire->getAlpineComponentName() ?>');
             }
 
             const script = document.createElement('script');

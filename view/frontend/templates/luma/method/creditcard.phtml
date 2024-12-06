@@ -9,7 +9,7 @@ if (false === $magewire->isVisible()) {
 }
 ?>
 <div>
-    <div id="<?= $magewire->getJsName() ?>"></div>
+    <div id="<?= $magewire->getAlpineComponentName() ?>"></div>
     <script>
         require([
             'mollie'
@@ -30,7 +30,7 @@ if (false === $magewire->isVisible()) {
                 }
             });
 
-            cardComponent.mount('#<?= $magewire->getJsName() ?>');
+            cardComponent.mount('#<?= $magewire->getAlpineComponentName() ?>');
         });
     </script>
     <script>
