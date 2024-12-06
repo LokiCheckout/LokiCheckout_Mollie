@@ -16,7 +16,11 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer;
 $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
 $magewire = $block->getMagewire();
 ?>
-<div x-data="LokiCheckoutMollieIssuer" data-loki-component='<?= $magewire->getComponentDataAsJson() ?>' class="<?= $css('') ?>">
+<div
+    x-data="LokiCheckoutMollieIssuer"
+    x-title="<?= $magewire->getAlpineComponentName() ?>"
+    data-loki-component='<?= $magewire->getAlpineDataAsJson() ?>'
+    class="<?= $css('') ?>">
     <?php if ($magewire->issuers): ?>
         <?= $templateRenderer->html($magewire->getChildTemplate(), $block, [
             'alias' => 'issuers',
