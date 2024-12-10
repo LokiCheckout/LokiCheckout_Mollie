@@ -19,7 +19,7 @@ $magewire = $block->getMagewire();
 <div
     x-data="LokiCheckoutMollieIssuer"
     x-title="<?= $magewire->getAlpineComponentName() ?>"
-    data-loki-component='<?= $magewire->getAlpineDataAsJson() ?>'
+    x-init-data='<?= $magewire->getAlpineDataAsJson() ?>'
     class="<?= $css('') ?>">
     <?php if ($magewire->issuers): ?>
         <?= $templateRenderer->html($magewire->getChildTemplate(), $block, [
