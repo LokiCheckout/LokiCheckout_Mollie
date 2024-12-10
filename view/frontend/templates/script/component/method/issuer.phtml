@@ -2,26 +2,17 @@
     document.addEventListener('alpine:init', () => {
         Alpine.data('LokiCheckoutMollieIssuer', () => {
             return {
-                name: 'LokiCheckoutMollieIssuer',
-                wireId: '',
-                step: '',
-                value: '',
-                valid: false,
-                required: false,
-                init() {
-                    const componentData = JSON.parse(this.$el.getAttribute('x-init-data'));
-                    for (const [key, value] of Object.entries(componentData)) {
-                        this[key] = value;
-                    }
-
-                    Alpine.store('components').add(this);
-
-                    this.$watch('value', (value) => {
-                        if (value) {
-                            this.valid = true;
-                            Magewire.find(this.wireId).setValue(this.value);
-                        }
-                    });
+                ...LokiGenericComponentType,
+                initActions: {
+                    ...LokiGenericComponentType.initActions,
+                    watchValue() {
+                        this.$watch('value', (value) => {
+                            if (value) {
+                                this.valid = true;
+                                Magewire.find(this.wireId).setValue(this.value);
+                            }
+                        });
+                    },
                 }
             }
         });
