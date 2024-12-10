@@ -33,7 +33,7 @@ class ApplePay extends FieldComponent
     public function boot(): void
     {
         if ($this->mollieConfig->applePayIntegrationType() !== ApplePayIntegrationType::DIRECT) {
-            $this->visible = false;
+            $this->allowRendering = false;
         }
 
         parent::boot();

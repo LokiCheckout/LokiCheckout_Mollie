@@ -22,7 +22,7 @@ class Creditcard extends FieldComponent
     public function boot(): void
     {
         if (false === $this->mollieConfig->creditcardUseComponents() || false === $this->mollieConfig->getProfileId()) {
-            $this->visible = false;
+            $this->allowRendering = false;
         }
 
         parent::boot();
