@@ -1,20 +1,15 @@
 <script>
     document.addEventListener('alpine:init', () => {
-        Alpine.data('LokiCheckoutMollieIssuer', () => {
-            return {
-                ...LokiGenericComponentType,
-                initActions: {
-                    ...LokiGenericComponentType.initActions,
-                    watchValue() {
-                        this.$watch('value', (value) => {
-                            if (value) {
-                                this.valid = true;
-                                Magewire.find(this.wireId).setValue(this.value);
-                            }
-                        });
-                    },
-                }
+        Alpine.data('LokiCheckoutMollieIssuer', () => ({
+            ...Object.assign({}, LokiGenericComponentType),
+            afterInit() {
+                this.$watch('value', (value) => {
+                    if (value) {
+                        this.valid = true;
+                        Magewire.find(this.wireId).setValue(this.value);
+                    }
+                });
             }
-        });
+        }));
     });
 </script>
