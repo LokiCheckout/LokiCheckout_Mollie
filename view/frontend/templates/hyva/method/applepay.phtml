@@ -13,7 +13,7 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\ApplePay;
 ?>
 <div class="<?= $css('') ?>">
     <script>
-        LokiCheckoutValidator.rules.mollie_methods_applepay = async function (component) {
+        LokiCheckoutValidator.validators.mollie_methods_applepay = async function (component) {
 
             const amount = '<?= $magewire->getAmount() ?>';
 

@@ -44,7 +44,7 @@ use Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard;
             document.head.append(script);
         })();
 
-        LokiCheckoutValidator.rules.mollie_methods_creditcard = async function (component) {
+        LokiCheckoutValidator.validators.mollie_methods_creditcard = async function (component) {
             if (!window.mollie) {
                 LokiCheckoutMessenger.error('<?= __('Mollie object unavailable') ?>', component);
                 return false;
