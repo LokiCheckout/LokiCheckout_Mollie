@@ -2,11 +2,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
     <body>
         <referenceBlock
-            name="loki-checkout.billing.payment-methods.mollie_methods_creditcard.form"
+            name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
             template="Yireo_LokiCheckoutMollie::hyva/method/creditcard.phtml"/>
 
         <referenceBlock
-            name="loki-checkout.billing.payment-methods.mollie_methods_ideal.form"
+            name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
             template="Yireo_LokiCheckoutMollie::hyva/method/issuer.phtml"/>
     </body>
 </page>
