@@ -4,19 +4,20 @@ namespace Yireo\LokiCheckoutMollie\ViewModel;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Yireo\LokiCheckout\ViewModel\CheckoutState;
 use Yireo\LokiCheckoutMollie\Provider\IssuerProvider;
 
 class AdditionalPaymentDetails implements ArgumentInterface
 {
     public function __construct(
-        private readonly CheckoutSession $checkoutSession,
+        private readonly CheckoutState $checkoutState,
         private IssuerProvider $issuerProvider
     ) {
     }
 
     public function getIssuerLabel(): string
     {
-        $quote = $this->checkoutSession->getQuote();
+        $quote = $this->checkoutState->getQuote();
         $paymentMethodCode = $quote->getPayment()->getMethod();
         if (false === preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
             return '';

@@ -10,6 +10,7 @@ use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponentBehaviour\StepBehaviour;
 use Yireo\LokiCheckout\Magewire\Generic\Behaviour\AlpineDataBehaviour;
 use Yireo\LokiCheckout\Util\CurrentTheme;
+use Yireo\LokiCheckout\ViewModel\CheckoutState;
 use Yireo\LokiCheckoutMollie\Provider\IssuerProvider;
 
 class WithIssuer extends FieldComponent
@@ -20,7 +21,7 @@ class WithIssuer extends FieldComponent
     public array $issuers = [];
 
     public function __construct(
-        private CheckoutSession $checkoutSession,
+        private CheckoutState $checkoutState,
         private CartRepositoryInterface $quoteRepository,
         private IssuerProvider $issuerProvider,
         private MollieConfig $mollieConfig,
@@ -32,7 +33,7 @@ class WithIssuer extends FieldComponent
     {
         $this->issuers = $this->issuerProvider->getIssuers($this->getPaymentMethod());
 
-        $quote = $this->checkoutSession->getQuote();
+        $quote = $this->checkoutState->getQuote();
         if ($selectedIssuer = $quote->getPayment()->getAdditionalInformation('selected_issuer')) {
             $this->value = $selectedIssuer;
         }
@@ -44,7 +45,7 @@ class WithIssuer extends FieldComponent
 
     public function getPaymentMethod(): string
     {
-        return (string) $this->checkoutSession->getQuote()->getPayment()->getMethod();
+        return (string) $this->checkoutState->getQuote()->getPayment()->getMethod();
     }
 
     public function getChildTemplate(): string
@@ -85,7 +86,7 @@ class WithIssuer extends FieldComponent
     public function save($value): void
     {
         $this->valid = true;
-        $quote = $this->checkoutSession->getQuote();
+        $quote = $this->checkoutState->getQuote();
         $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
         $this->quoteRepository->save($quote);
     }

@@ -11,6 +11,7 @@ use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Model\Adminhtml\Source\ApplePayIntegrationType;
 use Mollie\Payment\Service\Mollie\ApplePay\SupportedNetworks;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
+use Yireo\LokiCheckout\ViewModel\CheckoutState;
 
 class ApplePay extends FieldComponent
 {
@@ -22,7 +23,7 @@ class ApplePay extends FieldComponent
 
     public function __construct(
         private UrlInterface            $url,
-        private Session                 $checkoutSession,
+        private CheckoutState           $checkoutState,
         private StoreManagerInterface   $storeManager,
         private CartRepositoryInterface $cartRepository,
         private MollieConfig            $mollieConfig,
@@ -41,19 +42,19 @@ class ApplePay extends FieldComponent
 
     public function getCountryId(): string
     {
-        $cart = $this->checkoutSession->getQuote();
+        $cart = $this->checkoutState->getQuote();
         return $cart->getBillingAddress()->getCountryId();
     }
 
     public function getCurrencyCode(): string
     {
-        $cart = $this->checkoutSession->getQuote();
+        $cart = $this->checkoutState->getQuote();
         return $cart->getQuoteCurrencyCode();
     }
 
     public function getAmount(): string
     {
-        return (string)$this->checkoutSession->getQuote()->getGrandTotal();
+        return (string)$this->checkoutState->getQuote()->getGrandTotal();
     }
 
     public function getStoreName(): string
@@ -68,7 +69,7 @@ class ApplePay extends FieldComponent
 
     public function setApplePayPaymentToken(string $token): string
     {
-        $quote = $this->checkoutSession->getQuote();
+        $quote = $this->checkoutState->getQuote();
         $quote->getPayment()->setAdditionalInformation('applepay_payment_token', $token);
 
         $this->cartRepository->save($quote);
@@ -93,7 +94,7 @@ class ApplePay extends FieldComponent
 
     public function save($value): void
     {
-        $quote = $this->checkoutSession->getQuote();
+        $quote = $this->checkoutState->getQuote();
         $quote->getPayment()->setAdditionalInformation('applepay_payment_token', $value);
         $this->cartRepository->save($quote);
     }

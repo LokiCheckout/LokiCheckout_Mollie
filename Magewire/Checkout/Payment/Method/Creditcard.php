@@ -8,11 +8,12 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Mollie\Payment\Config as MollieConfig;
 use Yireo\LokiCheckout\Magewire\Form\Field\FieldComponent;
+use Yireo\LokiCheckout\ViewModel\CheckoutState;
 
 class Creditcard extends FieldComponent
 {
     public function __construct(
-        private SessionCheckout $sessionCheckout,
+        private CheckoutState $checkoutState,
         private CartRepositoryInterface $quoteRepository,
         private ResolverInterface $localeResolver,
         private MollieConfig $mollieConfig
@@ -66,7 +67,7 @@ class Creditcard extends FieldComponent
 
     public function save($value): void
     {
-        $quote = $this->sessionCheckout->getQuote();
+        $quote = $this->checkoutState->getQuote();
         $quote->getPayment()->setAdditionalInformation('card_token', $value);
         $quote->getPayment()->setAdditionalInformation('is_active_payment_token_enabler', true);
 
