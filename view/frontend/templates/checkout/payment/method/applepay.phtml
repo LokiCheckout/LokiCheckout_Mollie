@@ -1,0 +1,108 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckout\Util\Block\CssClass;
+use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewModel;
+
+/** @var ApplePayViewModel $viewModel */
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var CssClass $css */
+?>
+<div class="<?= $css('') ?>">
+    <script>
+        LokiCheckoutValidator.validators.mollie_methods_applepay = async function (component) {
+
+            const amount = '<?= $viewModel->getAmount() ?>';
+
+            let request = {
+                countryCode: "<?= $escaper->escapeJs($viewModel->getCountryId()); ?>",
+                currencyCode: "<?= $escaper->escapeJs($viewModel->getCurrencyCode()); ?>",
+                supportedNetworks: <?= json_encode($viewModel->getSupportedNetworks()); ?>,
+                merchantCapabilities: ['supports3DS'],
+                total: {
+                    label: "<?= $escaper->escapeJs($viewModel->getStoreName()); ?>",
+                    amount: amount
+                },
+            }
+
+            let applePaySession;
+            if (!applePaySession) {
+                applePaySession = new ApplePaySession(3, request);
+            }
+
+            applePaySession.onpaymentmethodselected = () => {
+                applePaySession.completePaymentMethodSelection({
+                    label: 'Total',
+                    type: 'final',
+                    amount: amount
+                }, []);
+            };
+
+            applePaySession.onpaymentauthorized = (event) => {
+                try {
+                    // @todo: Rewrite this to Loki Components
+                    //const component = null;
+                    //component.setApplePayPaymentToken(JSON.stringify(event.payment.token)).then(() => {
+                        //resolve(true);
+                    //});
+                } catch {
+                    applePaySession.completePayment(ApplePaySession.STATUS_ERROR);
+                    resolve(false);
+                }
+            };
+
+            applePaySession.onvalidatemerchant = (event) => {
+                window.fetch(
+                    '<?= $viewModel->getApplePayValidationUrl(); ?>',
+                    {
+                        method: 'POST',
+                        mode: 'cors',
+                        credentials: 'include',
+                        headers: {
+                            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                        },
+                        body: 'validationURL=' + event.validationURL + '&form_key=' + hyva.getFormKey(),
+                    }
+                )
+                    .then(response => response.json())
+                    .then(response => applePaySession.completeMerchantValidation(response))
+                    .catch(error => {
+                        LokiCheckoutMessenger.error('<?= __('Something went wrong, please check the logs for more information.') ?>', component, error);
+
+                        applePaySession.abort();
+                        applePaySession = null;
+
+                        resolve(false);
+                    });
+            };
+
+            applePaySession.oncancel = () => {
+                applePaySession = null;
+                resolve(false);
+            };
+
+            applePaySession.begin();
+
+            return true;
+        }
+
+        window.addEventListener('checkout:payment:method-activate', (event) => {
+            document.querySelectorAll('.btn.btn-primary').forEach(element => {
+                if (event.detail.method === 'mollie_methods_applepay') {
+                    element.classList.add('apple-pay-button');
+                    element.classList.add('apple-pay-button-with-text');
+                    element.classList.add('apple-pay-button-black-with-text');
+                    return;
+                }
+
+                element.classList.remove('apple-pay-button');
+                element.classList.remove('apple-pay-button-with-text');
+                element.classList.remove('apple-pay-button-black-with-text');
+            });
+        });
+
+    </script>
+</div>

@@ -3,28 +3,27 @@
     <body>
         <block
             name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
-            template="Yireo_LokiCheckoutMollie::luma/method/creditcard.phtml">
+            template="Yireo_LokiCheckoutMollie::checkout/payment/method/creditcard.phtml">
             <arguments>
-                <argument name="magewire" xsi:type="object">
-                    Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\Creditcard
-                </argument>
                 <argument name="additional_css" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</argument>
             </arguments>
         </block>
 
         <block
             name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
-            template="Yireo_LokiCheckoutMollie::luma/method/issuer.phtml">
+            template="Yireo_LokiCheckoutMollie::checkout/payment/method/issuer.phtml">
             <arguments>
-                <argument name="magewire" xsi:type="object">
-                    Yireo\LokiCheckoutMollie\Magewire\Checkout\Payment\Method\WithIssuer
-                </argument>
                 <argument name="additional_css" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</argument>
+                <argument name="child_template" xsi:type="array">
+                    <item name="none" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/none.phtml</item>
+                    <item name="dropdown" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/dropdown.phtml</item>
+                    <item name="list" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/list.phtml</item>
+                </argument>
             </arguments>
         </block>
 
-        <referenceContainer name="loki-checkout.script.alpine-components">
-            <block name="loki-checkout-mollie.script.components.step-component" template="Yireo_LokiCheckoutMollie::script/component/method/issuer.phtml" />
+        <referenceContainer name="loki-components">
+            <block name="loki-checkout-mollie.script.components.creditcard" template="Yireo_LokiCheckoutMollie::script/component/creditcard-component.phtml" />
         </referenceContainer>
 
         <referenceBlock name="loki-checkout.css_classes">

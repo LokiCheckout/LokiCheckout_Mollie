@@ -3,7 +3,7 @@
 namespace Yireo\LokiCheckoutMollie\Plugin;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Yireo\LokiCheckout\Magewire\Checkout\Billing\PaymentMethods;
+use Yireo\LokiCheckout\Component\Checkout\Billing\PaymentMethods\PaymentMethodsRepository;
 
 class OverrideDefaultPaymentPlugin
 {
@@ -12,7 +12,7 @@ class OverrideDefaultPaymentPlugin
     ) {
     }
 
-    public function afterGetDefaultPayment(PaymentMethods $subject, string $result): string
+    public function afterGetDefaultPayment(PaymentMethodsRepository $subject, string $result): string
     {
         $defaultMethod = $this->scopeConfig->getValue('payment/mollie_general/default_selected_method');
         $defaultMethod = trim((string)$defaultMethod);

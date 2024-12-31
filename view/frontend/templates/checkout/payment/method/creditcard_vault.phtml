@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultViewModel;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var CreditcardVaultViewModel $viewModel */
+?>
+<div>
+    <ul>
+        <?php foreach ($viewModel->getSavedCards() as $card): ?>
+            <li>
+                <label>
+                    <input type="radio"
+                           name="mollie_vault_public_hash"
+                           x-model="value"
+                           @change="submit"
+                           value="<?= $escaper->escapeHtmlAttr($card['public_hash']); ?>"
+                    />
+                    <img class="inline-block"
+                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mollie_Payment::images/creditcard-issuers/' . $card['type'] . '.svg')) ?>" />
+                    <?= __('ending %1', $card['maskedCC']); ?>
+                </label>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

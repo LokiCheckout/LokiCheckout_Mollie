@@ -2,7 +2,6 @@
 
 namespace Yireo\LokiCheckoutMollie\ViewModel;
 
-use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Yireo\LokiCheckout\ViewModel\CheckoutState;
 use Yireo\LokiCheckoutMollie\Provider\IssuerProvider;

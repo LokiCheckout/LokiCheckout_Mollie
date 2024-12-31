@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel;
+use Yireo\LokiComponents\Factory\ViewModelFactory;
+use Yireo\LokiCheckout\Util\Block\CssClass;
+use Yireo\LokiCheckout\Util\Block\TemplateRenderer;
+
+/** @var Template $block */
+/** @var WithIssuerViewModel $viewModel */
+/** @var ViewModelFactory $viewModelFactory */
+/** @var TemplateRenderer $templateRenderer */
+/** @var CssClass $css */
+
+$templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
+?>
+<div class="<?= $css('') ?>">
+    <?php if ($viewModel->hasIssuers()): ?>
+        <?= $templateRenderer->html($viewModel->getChildTemplate(), $block, [
+            'alias' => 'issuers',
+            'issuers' => $viewModel->getIssuers(),
+        ]) ?>
+    <?php else: ?>
+        <span><?= __('No issuers found') ?></span>
+        <!-- <?= $viewModel->getPaymentMethod() ?> -->
+    <?php endif; ?>
+</div>

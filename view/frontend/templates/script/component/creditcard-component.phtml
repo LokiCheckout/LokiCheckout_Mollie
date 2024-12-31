@@ -1,0 +1,63 @@
+<script>
+    document.addEventListener('alpine:init', () => {
+        window.mollie = null;
+        window.mollieCardComponent = null;
+
+        Alpine.data('LokiCheckoutMollieCreditcard', () => ({
+            ...LokiCheckoutBaseComponentType,
+            profileId: '',
+            locale: '',
+            testMode: true,
+            initActions: {
+                ...LokiCheckoutBaseComponentType.initActions,
+                loadMollieScript() {
+                    const script = document.createElement('script');
+                    script.src = 'https://js.mollie.com/v1/mollie.js';
+                    script.onload = () => mollieRenderComponents();
+                    document.head.append(script);
+                },
+                renderMollieComponents() {
+                    window.mollie = Mollie(this.profileId, {
+                        locale: this.locale,
+                        testmode: this.testMode,
+                    });
+
+                    // @todo: Allow for styling this properly
+                    window.mollieCardComponent = window.mollie.createComponent('card', {
+                        styles: {
+                            base: {
+                                lineHeight: '30px',
+                                border: '1px solid #000',
+                            },
+                            invalid: {
+                                color: '#dc2626',
+                            }
+                        }
+                    });
+
+                    window.mollieCardComponent.mount('#' + this.elementId + '_components');
+                }
+            },
+            async submit() {
+                if (!window.mollie) {
+                    LokiCheckoutMessenger.error('<?= __('Mollie object unavailable') ?>', component);
+                    return false;
+                }
+
+                const {token, error} = await window.mollie.createToken();
+
+                if (error) {
+                    LokiCheckoutMessenger.error('<?= __('Mollie Error') ?>', component, error);
+                    return false;
+                }
+
+                if (!token) {
+                    LokiCheckoutMessenger.error('<?= __('Empty Mollie token') ?>', component);
+                    return false;
+                }
+
+                this.post();
+            }
+        }));
+    });
+</script>

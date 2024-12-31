@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckout\Util\Block\CssClass;
+use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var WithIssuerViewModel $viewModel */
+/** @var CssClass $css */
+
+$viewModel = $block->getViewModel();
+?>
+<div class="<?= $css('') ?>">
+    <select x-model="value" @change="submit">
+        <option value=""><?= $escaper->escapeHtml(__('Please select')); ?></option>
+        <?php foreach ($viewModel->getIssuers() as $issuer): ?>
+            <option value="<?= $issuer['id'] ?>"><?= $issuer['name']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>

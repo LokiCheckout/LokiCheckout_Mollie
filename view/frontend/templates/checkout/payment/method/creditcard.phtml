@@ -1,0 +1,22 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Yireo\LokiCheckout\Util\Block\CssClass;
+use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardViewModel;
+
+/** @var CreditcardViewModel $viewModel */
+/** @var Template $block */
+/** @var CssClass $css */
+
+?>
+<div class="<?= $css('') ?>">
+    <div id="<?= $viewModel->getElementId() ?>_components"></div>
+
+    <style>
+        .mollie-component {
+            height: auto !important;
+            padding: 3px 5px 3px 8px;
+        }
+    </style>
+</div>
