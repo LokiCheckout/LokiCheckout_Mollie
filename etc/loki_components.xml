@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Yireo_LokiComponents:etc/loki_components.xsd">
+    <component
+        name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
+        context="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardContext"
+        viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardViewModel"
+        repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardRepository"
+    />
 </components>
