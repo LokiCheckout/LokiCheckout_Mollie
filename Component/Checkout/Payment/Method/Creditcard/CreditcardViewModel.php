@@ -19,7 +19,7 @@ class CreditcardViewModel extends FieldViewModel
         return true;
     }
 
-    public function getJsData(): ?array
+    public function getJsData(): array
     {
         return [
             'profileId' => $this->getProfileId(),
