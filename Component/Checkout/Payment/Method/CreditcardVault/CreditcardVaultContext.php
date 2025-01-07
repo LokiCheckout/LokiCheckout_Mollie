@@ -3,25 +3,23 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault;
 
-use Magento\Framework\Locale\ResolverInterface as LocaleResolver;
-use Mollie\Payment\Config as MollieConfig;
-use Yireo\LokiCheckout\Component\Base\Generic\GenericContext;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 use Yireo\LokiCheckoutMollie\Service\Vault\GetSavedCards;
+use Yireo\LokiComponents\Component\Behaviour\InheritFromParentContext;
+use Yireo\LokiComponents\Component\ComponentContextInterface;
 
-class CreditcardVaultContext extends GenericContext
+class CreditcardVaultContext implements ComponentContextInterface
 {
-    public function getMollieConfig(): MollieConfig
-    {
-        return $this->get(MollieConfig::class);
-    }
+    use InheritFromParentContext;
 
-    public function getLocaleResolver(): LocaleResolver
-    {
-        return $this->get(LocaleResolver::class);
+    public function __construct(
+        private readonly MollieContext $parentContext,
+        private readonly GetSavedCards $getSavedCards
+    ) {
     }
 
     public function getSavedCards(): GetSavedCards
     {
-        return $this->get(GetSavedCards::class);
+        return $this->getSavedCards;
     }
 }

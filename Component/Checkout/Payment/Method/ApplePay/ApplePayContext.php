@@ -3,32 +3,23 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay;
 
-use Magento\Framework\Url;
-use Magento\Framework\UrlFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\ApplePay\SupportedNetworks;
-use Yireo\LokiCheckout\Component\Base\Generic\GenericContext;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
+use Yireo\LokiComponents\Component\Behaviour\InheritFromParentContext;
+use Yireo\LokiComponents\Component\ComponentContextInterface;
 
-class ApplePayContext extends GenericContext
+class ApplePayContext implements ComponentContextInterface
 {
-    public function getStoreManager(): StoreManagerInterface
-    {
-        return $this->get(StoreManagerInterface::class);
-    }
+    use InheritFromParentContext;
 
-    public function getMollieConfig(): MollieConfig
-    {
-        return $this->get(MollieConfig::class);
+    public function __construct(
+        private readonly MollieContext $parentContext,
+        private readonly SupportedNetworks $supportedNetworks,
+    ) {
     }
 
     public function getSupportedNetworks(): SupportedNetworks
     {
-        return $this->get(SupportedNetworks::class);
-    }
-
-    public function createUrl(): Url
-    {
-        return $this->get(UrlFactory::class)->create();
+        return $this->supportedNetworks;
     }
 }
