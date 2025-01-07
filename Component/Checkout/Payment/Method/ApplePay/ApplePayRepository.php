@@ -18,12 +18,12 @@ use Yireo\LokiCheckout\ViewModel\CheckoutState;
  */
 class ApplePayRepository extends FieldRepository
 {
-    protected function getValue(): mixed
+    public function getValue(): mixed
     {
         return null;
     }
 
-    protected function saveValue(mixed $data): void
+    public function saveValue(mixed $data): void
     {
         $value = (string)$data;
         $quote = $this->getContext()->getQuote();

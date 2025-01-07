@@ -11,13 +11,13 @@ use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
  */
 class CreditcardVaultRepository extends FieldRepository
 {
-    protected function getValue(): mixed
+    public function getValue(): mixed
     {
         $quote = $this->getContext()->getQuote();
         return $quote->getPayment()->getAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH);
     }
 
-    protected function saveValue(mixed $data): void
+    public function saveValue(mixed $data): void
     {
         $hash = (string)$data;
         $quote = $this->getContext()->getQuote();
