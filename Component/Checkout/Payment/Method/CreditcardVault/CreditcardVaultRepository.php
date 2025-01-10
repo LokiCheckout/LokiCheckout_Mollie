@@ -19,7 +19,7 @@ class CreditcardVaultRepository extends FieldRepository
 
     public function saveValue(mixed $value): void
     {
-        $hash = (string)$data;
+        $hash = (string)$value;
         $quote = $this->getContext()->getQuote();
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $hash);
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::CUSTOMER_ID, $quote->getCustomerId());

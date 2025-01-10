@@ -25,7 +25,7 @@ class ApplePayRepository extends FieldRepository
 
     public function saveValue(mixed $value): void
     {
-        $value = (string)$data;
+        $value = (string)$value;
         $quote = $this->getContext()->getQuote();
         $quote->getPayment()->setAdditionalInformation('applepay_payment_token', $value);
         $this->getContext()->getCartRepository()->save($quote);

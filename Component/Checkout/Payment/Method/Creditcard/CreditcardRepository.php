@@ -17,7 +17,7 @@ class CreditcardRepository extends FieldRepository
 
     public function saveValue(mixed $value): void
     {
-        $value = (string)$data;
+        $value = (string)$value;
         $quote = $this->getContext()->getQuote();
         $quote->getPayment()->setAdditionalInformation('card_token', $value);
         $quote->getPayment()->setAdditionalInformation('is_active_payment_token_enabler', true);

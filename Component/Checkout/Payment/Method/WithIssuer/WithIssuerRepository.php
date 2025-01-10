@@ -28,7 +28,7 @@ class WithIssuerRepository extends FieldRepository
 
     public function saveValue(mixed $value): void
     {
-        $value = (string)$data;
+        $value = (string)$value;
         $quote = $this->getContext()->getQuote();
         $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
         $this->getContext()->getCartRepository()->save($quote);
