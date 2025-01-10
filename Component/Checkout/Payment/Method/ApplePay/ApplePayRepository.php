@@ -23,7 +23,7 @@ class ApplePayRepository extends FieldRepository
         return null;
     }
 
-    public function saveValue(mixed $data): void
+    public function saveValue(mixed $value): void
     {
         $value = (string)$data;
         $quote = $this->getContext()->getQuote();
