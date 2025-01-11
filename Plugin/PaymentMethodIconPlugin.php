@@ -19,6 +19,8 @@ class PaymentMethodIconPlugin
         string $result,
         string $paymentMethodCode
     ): string {
+        // @todo: Make sure Mollie_Payment is enabled
+
         if (false === (bool)$this->mollieGeneralHelper->useImage()) {
             return $result;
         }
