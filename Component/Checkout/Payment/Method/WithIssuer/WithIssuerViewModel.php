@@ -27,7 +27,11 @@ class WithIssuerViewModel extends FieldViewModel
         $method = $this->getPaymentMethod();
         $listType = $this->getContext()->getMollieConfig()->getIssuerListType($method);
 
-        $childTemplates = $this->getBlock()->getChildTemplates();
+        $childTemplates = $this->getBlock()->getChildTemplate();
+        if ($listType === 'radio') {
+            $listType = 'list';
+        }
+
         if (isset($childTemplates[$listType])) {
             return $childTemplates[$listType];
         }
