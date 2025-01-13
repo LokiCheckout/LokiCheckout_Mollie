@@ -8,7 +8,7 @@ use Magento\Framework\UrlFactory;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mollie\Payment\Config as MollieConfig;
-use Yireo\LokiCheckout\Component\Base\Generic\GenericContext;
+use Yireo\LokiCheckout\Component\Base\Generic\CheckoutContext;
 use Yireo\LokiComponents\Component\Behaviour\InheritFromParentContext;
 use Yireo\LokiComponents\Component\ComponentContextInterface;
 
@@ -17,7 +17,7 @@ class MollieContext implements ComponentContextInterface
     use InheritFromParentContext;
 
     public function __construct(
-        private readonly GenericContext $parentContext,
+        private readonly CheckoutContext $parentContext,
         private readonly StoreManagerInterface $storeManager,
         private readonly MollieConfig $mollieConfig,
         private readonly UrlFactory $urlFactory,
