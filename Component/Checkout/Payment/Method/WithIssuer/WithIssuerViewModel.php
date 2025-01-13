@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer;
 
 use Yireo\LokiCheckout\Component\Base\Field\FieldViewModel;
+use Yireo\LokiCheckout\Exception\TemplateNotFoundException;
 
 /**
  * @method WithIssuerContext getContext()
@@ -27,7 +28,11 @@ class WithIssuerViewModel extends FieldViewModel
         $listType = $this->getContext()->getMollieConfig()->getIssuerListType($method);
 
         $childTemplates = $this->getBlock()->getChildTemplates();
-        return $childTemplates[$listType];
+        if (isset($childTemplates[$listType])) {
+            return $childTemplates[$listType];
+        }
+
+        throw new TemplateNotFoundException('No child template "'.$listType.'" found for block "'.$this->getComponentName().'"');
     }
 
     public function isRequired(): bool
