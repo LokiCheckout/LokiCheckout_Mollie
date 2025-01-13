@@ -6,4 +6,11 @@
         viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardViewModel"
         repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardRepository"
     />
+
+    <component
+        name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
+        context="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerContext"
+        viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel"
+        repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerRepository"
+    />
 </components>
