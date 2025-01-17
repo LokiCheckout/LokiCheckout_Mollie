@@ -12,11 +12,17 @@ class CreditcardViewModel extends FieldViewModel
 {
     public function isAllowRendering(): bool
     {
-        if (false === $this->getContext()->getMollieConfig()->creditcardUseComponents() || false === $this->getContext()->getMollieConfig()->getProfileId()) {
+        if (false === $this->getContext()->getMollieConfig()->creditcardUseComponents()
+            || false === $this->getContext()->getMollieConfig()->getProfileId()) {
             return false;
         }
 
         return true;
+    }
+
+    public function getJsComponentName(): ?string
+    {
+        return 'LokiCheckoutMollieCreditcard';
     }
 
     public function getJsData(): array

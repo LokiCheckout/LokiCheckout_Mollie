@@ -13,31 +13,32 @@
                 loadMollieScript() {
                     const script = document.createElement('script');
                     script.src = 'https://js.mollie.com/v1/mollie.js';
-                    script.onload = () => mollieRenderComponents();
+                    script.onload = () => this.renderMollieComponents();
                     document.head.append(script);
                 },
-                renderMollieComponents() {
-                    window.mollie = Mollie(this.profileId, {
-                        locale: this.locale,
-                        testmode: this.testMode,
-                    });
 
-                    // @todo: Allow for styling this properly
-                    window.mollieCardComponent = window.mollie.createComponent('card', {
-                        styles: {
-                            base: {
-                                lineHeight: '30px',
-                                border: '1px solid #000',
-                            },
-                            invalid: {
-                                color: '#dc2626',
-                            }
+            },
+            renderMollieComponents() {
+                window.mollie = Mollie(this.profileId, {
+                    locale: this.locale,
+                    testmode: this.testMode,
+                });
+
+                // @todo: Allow for styling this properly
+                window.mollieCardComponent = window.mollie.createComponent('card', {
+                    styles: {
+                        base: {
+                            lineHeight: '30px',
+                            border: '1px solid #000',
+                        },
+                        invalid: {
+                            color: '#dc2626',
                         }
-                    });
+                    }
+                });
 
-                    // @todo: Add this element as a configuration of this component (this.mountElementId)
-                    window.mollieCardComponent.mount('#' + this.elementId + '_components');
-                }
+                // @todo: Add this element as a configuration of this component (this.mountElementId)
+                window.mollieCardComponent.mount('#' + this.elementId + '_components');
             },
             async submit() {
                 if (!window.mollie) {
