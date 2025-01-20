@@ -17,7 +17,7 @@ $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
 ?>
 <div class="<?= $css('') ?>">
     <?php if ($viewModel->hasIssuers()): ?>
-        <?= $templateRenderer->html($viewModel->getChildTemplate(), $block, [
+        <?= $templateRenderer->html($viewModel->getChildTemplate(), [
             'alias' => 'issuers',
             'issuers' => $viewModel->getIssuers(),
         ]) ?>
