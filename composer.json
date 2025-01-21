@@ -1,6 +1,6 @@
 {
     "name": "yireo/magento2-loki-checkout-mollie",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Mollie compatibility for Loki Checkout",
     "homepage": "https://loki-checkout.com/",
     "authors": [
@@ -12,8 +12,8 @@
     "type": "magento2-module",
     "require": {
         "mollie/magento2": "^2.0",
-        "yireo/magento2-loki-checkout": "~0.0,5",
-        "yireo/magento2-loki-components": "~0.0,1",
+        "yireo/magento2-loki-checkout": "~0.0.5",
+        "yireo/magento2-loki-components": "~0.0.1",
         "magento/framework": "^103.0",
         "magento/module-customer": "^103.0",
         "magento/module-payment": "^100.0",
