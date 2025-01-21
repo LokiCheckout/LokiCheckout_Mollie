@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.1] - 21 January 2025
 - Typo in version strings
+- Remove unneeded SearchCriteriaBuilderFactory
 
 ## [0.0.1] - 21 January 2025
 - Add proper deps
