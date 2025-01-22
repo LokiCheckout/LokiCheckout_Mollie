@@ -29,10 +29,6 @@ class PaymentMethodIconPlugin
             return $result;
         };
 
-        if (empty($match)) {
-            return $result;
-        }
-
         $modulePath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Mollie_Payment');
         $iconFilePath = $modulePath . '/view/frontend/web/images/methods/'.$match[1].'.svg';
         if (false === file_exists($iconFilePath)) {
