@@ -11,10 +11,10 @@ use Mollie\Payment\Model\Adminhtml\Source\ApplePayIntegrationType;
 use Mollie\Payment\Service\Mollie\ApplePay\SupportedNetworks;
 use Yireo\LokiCheckout\Component\Base\Field\FieldComponent;
 use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
-use Yireo\LokiCheckout\ViewModel\CheckoutState;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
- * @method ApplePayContext getContext()
+ * @method MollieContext getContext()
  */
 class ApplePayRepository extends FieldRepository
 {
@@ -26,7 +26,7 @@ class ApplePayRepository extends FieldRepository
     public function saveValue(mixed $value): void
     {
         $value = (string)$value;
-        $quote = $this->getContext()->getQuote();
+        $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation('applepay_payment_token', $value);
         $this->getContext()->getCartRepository()->save($quote);
     }

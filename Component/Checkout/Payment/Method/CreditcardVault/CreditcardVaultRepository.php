@@ -5,22 +5,23 @@ namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardV
 
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
- * @method CreditcardVaultContext getContext()
+ * @method MollieContext getContext()
  */
 class CreditcardVaultRepository extends FieldRepository
 {
     public function getValue(): mixed
     {
-        $quote = $this->getContext()->getQuote();
+        $quote = $this->getContext()->getCheckoutState()->getQuote();
         return $quote->getPayment()->getAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH);
     }
 
     public function saveValue(mixed $value): void
     {
         $hash = (string)$value;
-        $quote = $this->getContext()->getQuote();
+        $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $hash);
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::CUSTOMER_ID, $quote->getCustomerId());
 

@@ -5,9 +5,10 @@ namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay;
 
 use Mollie\Payment\Model\Adminhtml\Source\ApplePayIntegrationType;
 use Yireo\LokiCheckout\Component\Base\Field\FieldViewModel;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
- * @method ApplePayContext getContext()
+ * @method MollieContext getContext()
  */
 class ApplePayViewModel extends FieldViewModel
 {
@@ -22,19 +23,19 @@ class ApplePayViewModel extends FieldViewModel
 
     public function getCountryId(): string
     {
-        $cart = $this->getContext()->getQuote();
+        $cart = $this->getContext()->getCheckoutState()->getQuote();
         return $cart->getBillingAddress()->getCountryId();
     }
 
     public function getCurrencyCode(): string
     {
-        $cart = $this->getContext()->getQuote();
+        $cart = $this->getContext()->getCheckoutState()->getQuote();
         return $cart->getQuoteCurrencyCode();
     }
 
     public function getAmount(): string
     {
-        return (string)$this->getContext()->getQuote()->getGrandTotal();
+        return (string)$this->getContext()->getCheckoutState()->getQuote()->getGrandTotal();
     }
 
     public function getStoreName(): string

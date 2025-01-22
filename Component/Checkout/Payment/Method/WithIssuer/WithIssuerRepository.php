@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer;
 
 use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
- * @method WithIssuerContext getContext()
+ * @method MollieContext getContext()
  */
 class WithIssuerRepository extends FieldRepository
 {
@@ -17,19 +18,19 @@ class WithIssuerRepository extends FieldRepository
 
     public function getPaymentMethod(): string
     {
-        return (string) $this->getContext()->getQuote()->getPayment()->getMethod();
+        return (string) $this->getContext()->getCheckoutState()->getQuote()->getPayment()->getMethod();
     }
 
     public function getValue(): mixed
     {
-        $quote = $this->getContext()->getQuote();
+        $quote = $this->getContext()->getCheckoutState()->getQuote();
         return (string)$quote->getPayment()->getAdditionalInformation('selected_issuer');
     }
 
     public function saveValue(mixed $value): void
     {
         $value = (string)$value;
-        $quote = $this->getContext()->getQuote();
+        $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
         $this->getContext()->getCartRepository()->save($quote);
     }

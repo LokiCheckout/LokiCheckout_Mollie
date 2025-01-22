@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault;
 
 use Yireo\LokiCheckout\Component\Base\Field\FieldViewModel;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
- * @method CreditcardVaultContext getContext()
+ * @method MollieContext getContext()
  */
 class CreditcardVaultViewModel extends FieldViewModel
 {

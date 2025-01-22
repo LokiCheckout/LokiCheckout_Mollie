@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard;
 
 use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
+use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
- * @method CreditcardContext getContext()
+ * @method MollieContext getContext()
  */
 class CreditcardRepository extends FieldRepository
 {
@@ -18,7 +19,7 @@ class CreditcardRepository extends FieldRepository
     public function saveValue(mixed $value): void
     {
         $value = (string)$value;
-        $quote = $this->getContext()->getQuote();
+        $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation('card_token', $value);
         $quote->getPayment()->setAdditionalInformation('is_active_payment_token_enabler', true);
 
