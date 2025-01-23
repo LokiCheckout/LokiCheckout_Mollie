@@ -1,0 +1,43 @@
+{
+  "module": {
+    "Module Setup": "complete"
+  },
+  "payment_methods": {
+    "iDEAL": "complete",
+    "Credit and debit card Vault": "complete",
+    "Credit and debit card": "complete",
+    "Mastercard": "complete",
+    "Maestro": "complete",
+    "Visa": "complete",
+    "American Express": "complete",
+    "Cartes Bancaires": "complete",
+    "Klarna": "complete",
+    "SEPA Direct Debit / Bank Transfer": "complete",
+    "PayPal": "complete",
+    "Riverty": "complete",
+    "in3 Business": "complete",
+    "Billie": "complete",
+    "Bancontact": "complete",
+    "Satispay": "complete",
+    "PostePay": "complete",
+    "BANCOMAT Pay": "complete",
+    "Bacs": "complete",
+    "paysafecard": "complete",
+    "TWINT": "complete",
+    "Gift cards": "complete",
+    "Alma": "complete",
+    "Edenred": "complete",
+    "Belfius": "complete",
+    "KBC": "complete",
+    "EPS": "complete",
+    "Przelewy24": "complete",
+    "BLIK": "complete",
+    "Trustly": "complete",
+    "Swish": "complete",
+    "Pay by Bank": "complete",
+    "iDEAL in3": "processing",
+    "Google Pay": "processing",
+    "ApplePay (portal)": "complete",
+    "ApplePay": "pending"
+  }
+}
