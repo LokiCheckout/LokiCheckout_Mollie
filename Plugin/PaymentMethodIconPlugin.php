@@ -34,10 +34,6 @@ class PaymentMethodIconPlugin
             'view/frontend/web/images/methods/'.$match[1].'.svg'
         );
 
-        if (false === $iconFilePath) {
-            return $result;
-        }
-
         return $paymentMethodIcon->getIconOutput($iconFilePath, 'svg');
     }
 }
