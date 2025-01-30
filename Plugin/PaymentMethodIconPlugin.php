@@ -25,9 +25,9 @@ class PaymentMethodIconPlugin
             return $result;
         }
 
-        if (preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
+        if (!preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
             return $result;
-        };
+        }
 
         $modulePath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Mollie_Payment');
         $iconFilePath = $modulePath . '/view/frontend/web/images/methods/'.$match[1].'.svg';
