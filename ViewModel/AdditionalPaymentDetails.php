@@ -18,7 +18,7 @@ class AdditionalPaymentDetails implements ArgumentInterface
     {
         $quote = $this->checkoutState->getQuote();
         $paymentMethodCode = $quote->getPayment()->getMethod();
-        if (false === preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
+        if (!preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
             return '';
         };
 

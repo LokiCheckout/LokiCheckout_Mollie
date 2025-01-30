@@ -25,7 +25,7 @@ class PaymentMethodIconPlugin
             return $result;
         }
 
-        if (false === preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
+        if (preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
             return $result;
         };
 
