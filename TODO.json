@@ -1,6 +1,7 @@
 {
   "module": {
-    "Module Setup": "complete"
+    "Module Setup": "complete",
+    "Payment logos": "complete"
   },
   "payment_methods": {
     "iDEAL": "complete",
