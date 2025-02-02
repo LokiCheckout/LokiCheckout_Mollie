@@ -13,7 +13,12 @@
             name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
             template="Yireo_LokiCheckoutMollie::checkout/payment/method/issuer.phtml">
             <arguments>
-                <argument name="additional_css" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</argument>
+                <argument name="css" xsi:type="array">
+                    <item name="block" xsi:type="array">
+                        <item name="custom" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</item>
+                    </item>
+                </argument>
+
                 <argument name="child_template" xsi:type="array">
                     <item name="none" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/none.phtml</item>
                     <item name="dropdown" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/dropdown.phtml</item>

@@ -15,7 +15,7 @@ use Yireo\LokiCheckout\Util\Block\TemplateRenderer;
 
 $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
 ?>
-<div class="<?= $css('') ?>">
+<div class="<?= $css('p-2 border border-zinc-200 bg-zinc-100') ?>">
     <?php if ($viewModel->hasIssuers()): ?>
         <?= $templateRenderer->html(
             $block,
@@ -24,7 +24,7 @@ $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
             'issuers' => $viewModel->getIssuers(),
         ]) ?>
     <?php else: ?>
-        <span><?= __('No issuers found') ?></span>
+        <span class="not-found"><?= __('No issuers found') ?></span>
         <!-- <?= $viewModel->getPaymentMethod() ?> -->
     <?php endif; ?>
 </div>
