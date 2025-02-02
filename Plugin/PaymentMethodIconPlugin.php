@@ -2,14 +2,12 @@
 
 namespace Yireo\LokiCheckoutMollie\Plugin;
 
-use Magento\Framework\Component\ComponentRegistrar;
 use Mollie\Payment\Helper\General as GeneralHelper;
 use Yireo\LokiCheckout\ViewModel\PaymentMethodIcon;
 
 class PaymentMethodIconPlugin
 {
     public function __construct(
-        private ComponentRegistrar $componentRegistrar,
         private GeneralHelper $mollieGeneralHelper
     ) {
     }
@@ -19,22 +17,23 @@ class PaymentMethodIconPlugin
         string $result,
         string $paymentMethodCode
     ): string {
-        // @todo: Make sure Mollie_Payment is enabled
+        if (false === $paymentMethodIcon->isModuleEnabled('Mollie_Payment')) {
+            return $result;
+        }
 
         if (false === (bool)$this->mollieGeneralHelper->useImage()) {
             return $result;
         }
 
-        if (false === preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
-            return $result;
-        };
-
-        $modulePath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Mollie_Payment');
-        $iconFilePath = $modulePath . '/view/frontend/web/images/methods/'.$match[1].'.svg';
-        if (false === file_exists($iconFilePath)) {
+        if (!preg_match('/^mollie_methods_(.*)$/', $paymentMethodCode, $match)) {
             return $result;
         }
 
-        return file_get_contents($iconFilePath);
+        $iconFilePath = $paymentMethodIcon->getIconPath(
+            'Mollie_Payment',
+            'view/frontend/web/images/methods/'.$match[1].'.svg'
+        );
+
+        return $paymentMethodIcon->getIconOutput($iconFilePath, 'svg');
     }
 }

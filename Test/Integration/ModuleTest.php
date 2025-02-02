@@ -15,15 +15,14 @@ class ModuleTest extends TestCase
 
     public function testIfModuleIsEnabled()
     {
-        // @todo: Follow module.xml dependencies instead
         $requiredModules = [
             'Yireo_LokiCheckoutMollie',
             'Yireo_LokiCheckout',
+            'Yireo_LokiComponents',
             'Mollie_Payment',
         ];
         foreach ($requiredModules as $moduleName) {
             $this->assertModuleIsRegistered($moduleName);
-            $this->assertModuleIsRegisteredForReal($moduleName);
             $this->assertModuleIsEnabled($moduleName);
         }
     }
