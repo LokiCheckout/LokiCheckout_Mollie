@@ -19,7 +19,9 @@
         context="Yireo\LokiCheckoutMollie\Component\MollieContext"
         viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel"
         repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerRepository"
-    />
+    >
+        <target name="loki-checkout.sidebar.preview.payment_details"/>
+    </component>
 
     <component
         name="loki-checkout.payment.payment-methods.mollie_methods_applepay.form"
