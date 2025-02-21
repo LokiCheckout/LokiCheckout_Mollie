@@ -13,8 +13,11 @@ class CreditcardViewModel extends FieldViewModel
 {
     public function isAllowRendering(): bool
     {
-        if (false === $this->getContext()->getMollieConfig()->creditcardUseComponents()
-            || false === $this->getContext()->getMollieConfig()->getProfileId()) {
+        if (false === $this->getContext()->getMollieConfig()->creditcardUseComponents()) {
+            return false;
+        }
+
+        if (false === $this->getContext()->getMollieConfig()->getProfileId()) {
             return false;
         }
 
