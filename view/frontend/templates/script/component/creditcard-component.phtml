@@ -8,6 +8,7 @@
                 profileId: '',
                 locale: '',
                 testMode: true,
+                mollieComponents: [],
                 initActions: {
                     ...LokiCheckoutBaseComponentType.initActions,
                     loadMollieScript() {
@@ -15,12 +16,13 @@
                         script.src = 'https://js.mollie.com/v1/mollie.js';
                         script.onload = () => this.renderMollieComponents();
                         document.head.append(script);
-                    },
-                    addSubmitEventListener() {
-
                     }
                 },
                 createComponent(componentType, domId) {
+                    if (this.mollieComponents[domId]) {
+                        return;
+                    }
+
                     const component = window.mollie.createComponent(componentType);
                     const errorElement = document.getElementById(this.elementId + '-' + domId + '-error');
 
@@ -38,12 +40,16 @@
                         errorElement.textContent = '';
                         this.submit();
                     });
+
+                    this.mollieComponents[domId] = component;
                 },
                 renderMollieComponents() {
-                    window.mollie = Mollie(this.profileId, {
-                        locale: this.locale,
-                        testmode: this.testMode,
-                    });
+                    if (!window.mollie) {
+                        window.mollie = Mollie(this.profileId, {
+                            locale: this.locale,
+                            testmode: this.testMode,
+                        });
+                    }
 
                     this.createComponent('cardNumber', 'card-number');
                     this.createComponent('cardHolder', 'card-holder');
@@ -70,6 +76,17 @@
                     }
 
                     this.post(token);
+                },
+                destroyActions: {
+                    ...LokiCheckoutBaseComponentType.destroyActions,
+                    unmountMollieComponents() {
+                        Object.keys(this.mollieComponents).forEach((domId, component) => {
+                            if (document.getElementById(domId)) {
+                                component.unmount();
+                            }
+                        })
+                        this.mollieComponents = {};
+                    }
                 }
             })
         );
