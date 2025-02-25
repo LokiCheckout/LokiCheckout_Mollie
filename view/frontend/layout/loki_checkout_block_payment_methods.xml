@@ -31,7 +31,7 @@
             <block name="loki-checkout-mollie.script.components.creditcard" template="Yireo_LokiCheckoutMollie::script/component/creditcard-component.phtml" />
         </referenceContainer>
 
-        <referenceBlock name="loki-checkout.css_classes">
+        <referenceBlock name="loki-components.css_classes">
             <arguments>
                 <argument name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form.issuers" xsi:type="array">
                     <item name="block" xsi:type="array">
