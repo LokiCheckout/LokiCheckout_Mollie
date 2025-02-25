@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 25 February 2025
+### Fixed
+- Rename checkout:payment:method-activate to loki-checkout prefix
+- StepForwardButton not activated after component updates
+- Destroy components before updating their HTML
+- Attempt to remove Mollie CSS
+
 ## [0.0.3] - 21 January 2025
 - Finalize Mollie Components
 
