@@ -91,7 +91,7 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay\ApplePay
             return true;
         }
 
-        document.addEventListener('checkout:payment:method-activate', (event) => {
+        document.addEventListener('loki-checkout:payment:method-activate', (event) => {
             document.querySelectorAll('.btn.btn-primary').forEach(element => {
                 if (event.detail.method === 'mollie_methods_applepay') {
                     element.classList.add('apple-pay-button');
