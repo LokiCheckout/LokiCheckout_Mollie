@@ -2,6 +2,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
     <head>
         <!-- @todo This is currently not working yet -->
-        <remove src="Mollie_Payments::css/styles.css"/>
+        <remove src="Mollie_Payment::css/styles.css"/>
     </head>
 </page>
