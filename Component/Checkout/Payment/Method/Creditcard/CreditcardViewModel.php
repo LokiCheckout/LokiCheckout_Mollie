@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard;
 
-use Yireo\LokiCheckout\Component\Base\Field\FieldViewModel;
+use Yireo\LokiCheckout\Component\Base\Generic\CheckoutViewModel;
 use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
  * @method MollieContext getContext()
  */
-class CreditcardViewModel extends FieldViewModel
+class CreditcardViewModel extends CheckoutViewModel
 {
     public function isAllowRendering(): bool
     {

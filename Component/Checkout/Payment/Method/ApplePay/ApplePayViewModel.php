@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay;
 
 use Mollie\Payment\Model\Adminhtml\Source\ApplePayIntegrationType;
-use Yireo\LokiCheckout\Component\Base\Field\FieldViewModel;
+use Yireo\LokiCheckout\Component\Base\Generic\CheckoutViewModel;
 use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
  * @method MollieContext getContext()
  */
-class ApplePayViewModel extends FieldViewModel
+class ApplePayViewModel extends CheckoutViewModel
 {
     public function isAllowRendering(): bool
     {

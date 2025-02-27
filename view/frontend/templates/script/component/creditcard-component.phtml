@@ -4,13 +4,13 @@
         window.mollieCardComponent = null;
 
         Alpine.data('LokiCheckoutMollieCreditcard', () => ({
-                ...LokiCheckoutBaseComponentType,
+                ...LokiCheckoutComponentType,
                 profileId: '',
                 locale: '',
                 testMode: true,
                 mollieComponents: [],
                 initActions: {
-                    ...LokiCheckoutBaseComponentType.initActions,
+                    ...LokiCheckoutComponentType.initActions,
                     loadMollieScript() {
                         const script = document.createElement('script');
                         script.src = 'https://js.mollie.com/v1/mollie.js';
@@ -78,7 +78,7 @@
                     this.post(token);
                 },
                 destroyActions: {
-                    ...LokiCheckoutBaseComponentType.destroyActions,
+                    ...LokiCheckoutComponentType.destroyActions,
                     unmountMollieComponents() {
                         Object.keys(this.mollieComponents).forEach((domId, component) => {
                             if (document.getElementById(domId)) {

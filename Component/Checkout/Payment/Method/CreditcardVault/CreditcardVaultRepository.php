@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault;
 
 use Magento\Vault\Api\Data\PaymentTokenInterface;
-use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
+use Yireo\LokiFieldComponents\Component\Base\Field\FieldRepository;
 use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**

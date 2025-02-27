@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer;
 
-use Yireo\LokiCheckout\Component\Base\Field\FieldViewModel;
+use Yireo\LokiCheckout\Component\Base\Generic\CheckoutViewModel;
 use Yireo\LokiCheckout\Exception\TemplateNotFoundException;
 use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
@@ -11,7 +11,7 @@ use Yireo\LokiCheckoutMollie\Component\MollieContext;
  * @method MollieContext getContext()
  * @method WithIssuerRepository getRepository()
  */
-class WithIssuerViewModel extends FieldViewModel
+class WithIssuerViewModel extends CheckoutViewModel
 {
     public function getIssuers(): array
     {

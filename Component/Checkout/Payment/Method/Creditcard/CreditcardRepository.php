@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard;
 
-use Yireo\LokiCheckout\Component\Base\Field\FieldRepository;
+use Yireo\LokiFieldComponents\Component\Base\Field\FieldRepository;
 use Yireo\LokiCheckoutMollie\Component\MollieContext;
 
 /**
