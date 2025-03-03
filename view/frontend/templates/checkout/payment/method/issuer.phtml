@@ -15,7 +15,7 @@ use Yireo\LokiComponents\Util\Block\TemplateRenderer;
 
 $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
 ?>
-<div class="<?= $css('p-2 border border-zinc-200 bg-zinc-100') ?>">
+<div class="<?= $css('p-2 border border-zinc-200 bg-zinc-100', 'block') ?>">
     <?php if ($viewModel->hasIssuers()): ?>
         <?= $templateRenderer->html(
             $block,
@@ -24,7 +24,7 @@ $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
             'issuers' => $viewModel->getIssuers(),
         ]) ?>
     <?php else: ?>
-        <span class="not-found"><?= __('No issuers found') ?></span>
+        <span class="<?= $css('not-found', 'span' ) ?>"><?= __('No issuers found') ?></span>
         <!-- <?= $viewModel->getPaymentMethod() ?> -->
     <?php endif; ?>
 </div>
