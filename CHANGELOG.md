@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] - 11 March 2025
+### Fixed
+- Add module dependencies
+- Huge refactoring to move logic into new LokiFieldComponents
+- Rename `loki-checkout.css_classes` to `loki-components.css_classes`
+
 ## [0.0.4] - 25 February 2025
 ### Fixed
 - Rename checkout:payment:method-activate to loki-checkout prefix
