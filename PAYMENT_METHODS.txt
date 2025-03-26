@@ -1,0 +1,37 @@
+Alma
+American Express
+ApplePay (checkout)
+ApplePay (portal)
+BANCOMAT Pay
+BLIK
+Bacs
+Bancontact
+Belfius
+Billie
+Cartes Bancaires
+Credit and debit card
+Credit and debit card Vault
+EPS
+Edenred
+Gift cards
+Google Pay
+KBC
+Klarna
+Maestro
+Mastercard
+Pay by Bank
+PayPal
+PostePay
+Przelewy24
+Riverty
+SEPA Direct Debit
+Bank Transfer
+Satispay
+Swish
+TWINT
+Trustly
+Visa
+iDEAL
+iDEAL in3
+in3 Business
+paysafecard
