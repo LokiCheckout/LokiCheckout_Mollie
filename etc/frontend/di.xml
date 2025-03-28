@@ -5,15 +5,18 @@
                 type="Yireo\LokiCheckoutMollie\Plugin\OverrideDefaultPaymentPlugin"/>
     </type>
 
-    <type name="Yireo\LokiCheckout\Step\FinalStep\RedirectUrl">
-        <plugin name="Yireo_LokiCheckoutMollie::mollieRedirectUrl"
-                type="Yireo\LokiCheckoutMollie\Plugin\MollieRedirectUrlPlugin"/>
-    </type>
-
     <type name="Yireo\LokiCheckout\Payment\Icon\IconResolverListing">
         <arguments>
             <argument name="iconResolvers" xsi:type="array">
                 <item name="mollie" xsi:type="object">Yireo\LokiCheckoutMollie\Payment\Icon\IconResolver</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Yireo\LokiCheckout\Payment\Redirect\RedirectResolverListing">
+        <arguments>
+            <argument name="redirectResolvers" xsi:type="array">
+                <item name="mollie" xsi:type="object">Yireo\LokiCheckoutMollie\Payment\Redirect\RedirectResolver</item>
             </argument>
         </arguments>
     </type>
