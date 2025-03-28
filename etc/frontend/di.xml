@@ -10,8 +10,11 @@
                 type="Yireo\LokiCheckoutMollie\Plugin\MollieRedirectUrlPlugin"/>
     </type>
 
-    <type name="Yireo\LokiCheckout\ViewModel\PaymentMethodIcon">
-        <plugin name="Yireo_LokiCheckoutMollie::paymentMethodIcon"
-                type="Yireo\LokiCheckoutMollie\Plugin\PaymentMethodIconPlugin"/>
+    <type name="Yireo\LokiCheckout\Payment\Icon\IconResolverListing">
+        <arguments>
+            <argument name="iconResolvers" xsi:type="array">
+                <item name="mollie" xsi:type="object">Yireo\LokiCheckoutMollie\Payment\Icon\IconResolver</item>
+            </argument>
+        </arguments>
     </type>
 </config>
