@@ -15,7 +15,7 @@ use Yireo\LokiComponents\Util\Block\TemplateRenderer;
 
 $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
 ?>
-<div class="<?= $css('p-2 border border-zinc-200 bg-zinc-100', 'block') ?>">
+<div class="<?= $css('p-2', 'block') ?>">
     <?php if ($viewModel->hasIssuers()): ?>
         <?= $templateRenderer->html(
             $block,
