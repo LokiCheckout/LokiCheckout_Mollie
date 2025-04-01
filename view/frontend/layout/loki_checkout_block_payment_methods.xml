@@ -13,14 +13,6 @@
             name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
             template="Yireo_LokiCheckoutMollie::checkout/payment/method/issuer.phtml">
             <arguments>
-                <!--
-                <argument name="css" xsi:type="array">
-                    <item name="block" xsi:type="array">
-                        <item name="default" xsi:type="string">p-4 border border-zinc-200 bg-zinc-100</item>
-                    </item>
-                </argument>
-                -->
-
                 <argument name="child_template" xsi:type="array">
                     <item name="none" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/none.phtml</item>
                     <item name="dropdown" xsi:type="string">Yireo_LokiCheckoutMollie::checkout/payment/method/issuer/dropdown.phtml</item>
@@ -30,7 +22,7 @@
         </block>
 
         <referenceContainer name="loki-components">
-            <block name="loki-checkout-mollie.script.components.creditcard" template="Yireo_LokiCheckoutMollie::script/component/creditcard-component.phtml" />
+            <block name="loki-checkout-mollie.script.components.creditcard"  ifconfig="payment/mollie_methods_creditcard/use_components" template="Yireo_LokiCheckoutMollie::script/component/creditcard-component.phtml" />
         </referenceContainer>
 
         <referenceBlock name="loki-components.css_classes">
