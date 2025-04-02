@@ -1,0 +1,29 @@
+const {PaymentMethod, PlaceOrderButton} = require(process.cwd() + '/helpers/checkout-objects');
+const {saveCheckoutConfig} = require(process.cwd() + '/helpers/save-checkout-config');
+const {test} = require(process.cwd() + '/fixtures/checkout-page');
+
+import {MolliePortal} from './helpers/mollie-objects';
+import mollieConfig from './config/config';
+
+test.describe('mybank payment test', () => {
+    test('should allow me to go to the checkout', async ({page, context}) => {
+        await saveCheckoutConfig(context, {
+            ...mollieConfig,
+            config: {
+                'payment/mollie_methods_mybank/active': 1,
+            }
+        });
+
+        await page.goto('/checkout');
+        return; // @todo: Unknown payment method?
+
+        const paymentMethod = new PaymentMethod(page, 'mollie_methods_mybank');
+        await paymentMethod.select();
+
+        const placeOrderButton = new PlaceOrderButton(page);
+        await placeOrderButton.click();
+
+        const molliePortal = new MolliePortal(page);
+        await molliePortal.expectIssuerPage();
+    });
+});
