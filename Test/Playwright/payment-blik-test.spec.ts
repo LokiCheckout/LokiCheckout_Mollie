@@ -9,7 +9,7 @@ test.describe('Blik payment test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
         await saveCheckoutConfig(context, {
             ...mollieConfig,
-            profile: 'polish',
+            profile: 'poland',
             config: {
                 'payment/mollie_methods_blik/active': 1,
             }

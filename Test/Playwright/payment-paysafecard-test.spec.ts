@@ -9,7 +9,7 @@ test.describe('paysafecard payment test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
         await saveCheckoutConfig(context, {
             ...mollieConfig,
-            profile: 'german',
+            profile: 'germany',
             config: {
                 'payment/mollie_methods_paysafecard/active': 1,
             }

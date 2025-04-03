@@ -3,7 +3,7 @@ export default {
     'Yireo_LokiCheckoutMollie',
     'Mollie_Payment',
   ],
-  profile: 'dutch',
+  profile: 'netherlands',
   config: {
     'currency/options/base': 'EUR',
     'currency/options/default': 'EUR',
