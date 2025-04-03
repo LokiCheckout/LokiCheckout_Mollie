@@ -9,21 +9,26 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\Credit
 /** @var Template $block */
 /** @var CssClass $css */
 $fields = [
-    'card-holder' => 'Card holder',
-    'card-number' => 'Card Number',
-    'expiry-date' => 'Expiry Date',
-    'verification-code' => 'Verification Code',
+    ['card-holder', 'Card Holder', 'col-span-2'],
+    ['card-number', 'Card Number', 'col-span-2'],
+    ['expiry-date', 'Expiry Date', ''],
+    ['verification-code', 'Verification Code', ''],
 ];
 ?>
-<div class="<?= $css('') ?>">
-    <?php foreach ($fields as $field => $fieldLabel): ?>
-        <label class="<?= $css('inline-block mb-1.5', 'label') ?>">
-            <?= __($fieldLabel) ?>
-        </label>
+<div class="<?= $css('grid grid-cols-2 gap-4') ?>">
+    <?php foreach ($fields as $field): ?>
+        <?php $fieldCode = $field[0]; ?>
+        <?php $fieldLabel = $field[1]; ?>
+        <?php $fieldClass = $field[2]; ?>
+        <div class="<?= $fieldClass ?>">
+            <label class="<?= $css('inline-block mb-1.5', 'label') ?>">
+                <?= __($fieldLabel) ?>
+            </label>
 
-        <div id="<?= $viewModel->getElementId() ?>-<?= $field ?>"></div>
-        <div class="loki-components-messages">
-            <div class="error" id="<?= $viewModel->getElementId() ?>-<?= $field ?>-error"></div>
+            <div id="<?= $viewModel->getElementId() ?>-<?= $fieldCode ?>"></div>
+            <div class="loki-components-messages">
+                <div class="error" id="<?= $viewModel->getElementId() ?>-<?= $fieldCode ?>-error"></div>
+            </div>
         </div>
     <?php endforeach; ?>
 
