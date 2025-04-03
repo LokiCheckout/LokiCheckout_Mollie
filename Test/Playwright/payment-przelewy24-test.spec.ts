@@ -1,13 +1,13 @@
 const {PaymentMethod, PlaceOrderButton} = require(process.cwd() + '/helpers/checkout-objects');
-const {saveCheckoutConfig} = require(process.cwd() + '/helpers/save-checkout-config');
-const {test} = require(process.cwd() + '/fixtures/checkout-page');
+const {setupCheckout} = require(process.cwd() + '/helpers/setup-checkout');
+const {test, expect} = require(process.cwd() + '/node_modules/@playwright/test');
 
 import {MolliePortal} from './helpers/mollie-objects';
 import mollieConfig from './config/config';
 
 test.describe('przelewy24 payment test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
-        await saveCheckoutConfig(context, {
+        await setupCheckout(page, context, {
             ...mollieConfig,
             profile: 'poland',
             config: {
@@ -15,7 +15,7 @@ test.describe('przelewy24 payment test', () => {
             }
         });
 
-        await page.goto('/checkout');
+
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_przelewy24');
         await paymentMethod.select();

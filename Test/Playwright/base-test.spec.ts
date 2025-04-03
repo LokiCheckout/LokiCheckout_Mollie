@@ -1,23 +1,13 @@
 const {Field} = require(process.cwd() + '/helpers/checkout-objects');
-const {saveCheckoutConfig} = require(process.cwd() + '/helpers/save-checkout-config');
-const {test} = require(process.cwd() + '/fixtures/checkout-page');
+const {setupCheckout} = require(process.cwd() + '/helpers/setup-checkout');
+const {test, expect} = require(process.cwd() + '/node_modules/@playwright/test');
+import mollieConfig from './config/config';
 
 test.describe('Yireo_LokiCheckoutMollie test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
-        await saveCheckoutConfig(context, {
-            modules: [
-                'Yireo_LokiCheckoutMollie',
-                'Mollie_Payment',
-            ],
-            config: {
-                'payment/mollie_general/enabled': 1,
-                'payment/mollie_general/type': 'test',
-                'payment/mollie_methods_ideal/active': 1,
-                'yireo_loki_checkout/general/theme': 'onestep'
-            }
+        await setupCheckout(page, context, {
+            ...mollieConfig,
         });
-
-        await page.goto('/checkout');
 
         const fields = {
             'shipping.country_id': 'NL',
