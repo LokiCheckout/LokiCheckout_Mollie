@@ -9,6 +9,7 @@
                 locale: '',
                 testMode: true,
                 mollieComponents: [],
+                mollieCompletedComponents: [],
                 initActions: {
                     ...LokiCheckoutComponentType.initActions,
                     loadMollieScript() {
@@ -29,16 +30,22 @@
                     component.mount('#' + this.elementId + '-' + domId);
                     component.addEventListener('change', event => {
                         if (event.error && !event.touched) {
+                            delete this.mollieCompletedComponents[componentType];
                             return;
                         }
 
                         if (event.error && event.touched) {
                             errorElement.textContent = event.error;
+                            delete this.mollieCompletedComponents[componentType];
                             return true;
                         }
 
                         errorElement.textContent = '';
-                        this.submit();
+
+                        this.mollieCompletedComponents[componentType] = true;
+                        if (Object.keys(this.mollieCompletedComponents).length === 4) {
+                            this.submit();
+                        }
                     });
 
                     this.mollieComponents[domId] = component;
@@ -75,7 +82,7 @@
                         return false;
                     }
 
-                    this.post(token);
+                    this.post({token: token, render: 0});
                 },
                 destroyActions: {
                     ...LokiCheckoutComponentType.destroyActions,
