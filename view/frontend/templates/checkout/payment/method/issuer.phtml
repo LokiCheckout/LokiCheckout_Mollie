@@ -13,6 +13,10 @@ use Yireo\LokiComponents\Util\Block\TemplateRenderer;
 /** @var TemplateRenderer $templateRenderer */
 /** @var CssClass $css */
 
+if (!isset($viewModel) || false === $viewModel instanceof WithIssuerViewModel) {
+    return;
+}
+
 $templateRenderer = $viewModelFactory->create(TemplateRenderer::class);
 ?>
 <div class="<?= $css('p-2', 'block') ?>">
