@@ -20,4 +20,12 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Yireo\LokiCheckout\Plugin\RedirectEmptyQuoteAfterRepositoryDispatchPlugin">
+        <arguments>
+            <argument name="allowedExceptionClasses" xsi:type="array">
+                <item name="mollie" xsi:type="string">Mollie\Api\Exceptions\ApiException</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
