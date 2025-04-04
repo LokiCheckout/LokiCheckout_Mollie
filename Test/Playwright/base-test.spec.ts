@@ -1,6 +1,6 @@
-const {Field} = require(process.cwd() + '/helpers/checkout-objects');
-const {setupCheckout} = require(process.cwd() + '/helpers/setup-checkout');
-const {test, expect} = require(process.cwd() + '/node_modules/@playwright/test');
+import {Field} from '@helpers/checkout-objects';
+import {setupCheckout} from '@helpers/setup-checkout';
+import {test, expect} from '@playwright/test';
 import mollieConfig from './config/config';
 
 test.describe('Yireo_LokiCheckoutMollie test', () => {

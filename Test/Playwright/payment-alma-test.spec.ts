@@ -1,6 +1,6 @@
-const {PaymentMethod, PlaceOrderButton} = require(process.cwd() + '/helpers/checkout-objects');
-const {setupCheckout} = require(process.cwd() + '/helpers/setup-checkout');
-const {test, expect} = require(process.cwd() + '/node_modules/@playwright/test');
+import {PaymentMethod, PlaceOrderButton} from '@helpers/checkout-objects';
+import {setupCheckout} from '@helpers/setup-checkout';
+import {test, expect} from '@playwright/test';
 
 import {MolliePortal} from './helpers/mollie-objects';
 import mollieConfig from './config/config';
