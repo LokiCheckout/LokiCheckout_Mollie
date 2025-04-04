@@ -12,6 +12,7 @@ test.describe('Blik payment test', () => {
             profile: 'poland',
             config: {
                 'payment/mollie_methods_blik/active': 1,
+                'currency/options/base': 'PLN',
             }
         });
 

@@ -7,6 +7,7 @@ export default {
   config: {
     'payment/mollie_general/enabled': 1,
     'payment/mollie_general/type': 'test',
-    'yireo_loki_checkout/general/theme': 'onestep'
+    'yireo_loki_checkout/general/theme': 'onestep',
+    'currency/options/base': 'EUR',
   }
 };

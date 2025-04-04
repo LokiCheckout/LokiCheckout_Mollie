@@ -12,10 +12,9 @@ test.describe('przelewy24 payment test', () => {
             profile: 'poland',
             config: {
                 'payment/mollie_methods_przelewy24/active': 1,
+                'currency/options/base': 'PLN',
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_przelewy24');
         await paymentMethod.select();
