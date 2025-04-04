@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 04 April 2025
+### Fixed
+- Move to Mollie-specific DI config to Mollie plugin
+- Refactor to new payment style
+- Failsafe for non-existing `$viewModel` variable
+- Prevent rerender of Mollie components form
+- Change creditcard fields layout
+- Add integration tests
+- Add Playwright tests
+- Only load Mollie components block if configured
+- Refactor PaymentRedirectUrl plugin to resolver
+- Refactor PaymentMethodIcon plugins into resolvers
+
 ## [0.0.5] - 11 March 2025
 ### Fixed
 - Add module dependencies
