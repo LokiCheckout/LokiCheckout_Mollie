@@ -7,6 +7,10 @@ test.describe('Yireo_LokiCheckoutMollie test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
         await setupCheckout(page, context, {
             ...mollieConfig,
+            config: {
+                ...mollieConfig.config,
+                'payment/mollie_methods_ideal/active': 1,
+            }
         });
 
         const fields = {
