@@ -10,11 +10,10 @@ test.describe('riverty payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_riverty/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_riverty');
         await paymentMethod.select();

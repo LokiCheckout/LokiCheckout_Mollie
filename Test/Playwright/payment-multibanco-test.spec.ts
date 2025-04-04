@@ -10,11 +10,10 @@ test.describe('multibanco payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_multibanco/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_multibanco');
         await paymentMethod.select();

@@ -10,11 +10,10 @@ test.describe('iDeal payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_ideal/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_ideal');
         await paymentMethod.select();

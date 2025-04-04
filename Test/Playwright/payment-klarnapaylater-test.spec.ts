@@ -10,10 +10,10 @@ test.describe('klarnapaylater payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_klarnapaylater/active': 1,
             }
         });
-
 
         return; // @todo: Not enabled in Mollie account
 

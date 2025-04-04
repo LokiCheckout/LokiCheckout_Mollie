@@ -11,12 +11,11 @@ test.describe('Blik payment test', () => {
             ...mollieConfig,
             profile: 'poland',
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_blik/active': 1,
                 'currency/options/base': 'PLN',
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_blik');
         await paymentMethod.select();

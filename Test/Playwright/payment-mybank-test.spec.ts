@@ -10,10 +10,10 @@ test.describe('mybank payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_mybank/active': 1,
             }
         });
-
 
         return; // @todo: Unknown payment method?
 

@@ -10,11 +10,10 @@ test.describe('kbc payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_kbc/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_kbc');
         await paymentMethod.select();

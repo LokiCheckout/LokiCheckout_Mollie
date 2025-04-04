@@ -10,10 +10,10 @@ test.describe('pointofsale payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_pointofsale/active': 1,
             }
         });
-
 
         return; // @todo: Unknown issues
 

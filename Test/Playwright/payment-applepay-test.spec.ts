@@ -10,11 +10,10 @@ test.describe('Applepay payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_applepay/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_applepay');
         await paymentMethod.select();

@@ -12,8 +12,8 @@ test.describe('Alma payment test', () => {
             ...mollieConfig,
             profile: 'belgium',
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_alma/active': 1,
-                'payment/mollie_general/enable_methods_api': 0,
             }
         });
 

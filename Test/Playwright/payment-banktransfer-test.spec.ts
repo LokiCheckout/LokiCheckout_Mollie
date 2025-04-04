@@ -10,11 +10,10 @@ test.describe('Banktransfer payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_banktransfer/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_banktransfer');
         await paymentMethod.select();

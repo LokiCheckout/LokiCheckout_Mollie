@@ -11,6 +11,7 @@ test.describe('przelewy24 payment test', () => {
             ...mollieConfig,
             profile: 'poland',
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_przelewy24/active': 1,
                 'currency/options/base': 'PLN',
             }

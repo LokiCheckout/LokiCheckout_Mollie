@@ -11,10 +11,10 @@ test.describe('paysafecard payment test', () => {
             ...mollieConfig,
             profile: 'germany',
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_paysafecard/active': 1,
             }
         });
-
 
         return; // @todo: Unknown issues
 

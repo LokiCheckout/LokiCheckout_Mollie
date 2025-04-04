@@ -10,11 +10,10 @@ test.describe('Bancontact payment test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_bancontact/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_bancontact');
         await paymentMethod.select();

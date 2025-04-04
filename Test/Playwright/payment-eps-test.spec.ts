@@ -11,11 +11,10 @@ test.describe('EPS payment test', () => {
             ...mollieConfig,
             profile: 'austria',
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_eps/active': 1,
             }
         });
-
-
 
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_eps');
         await paymentMethod.select();
