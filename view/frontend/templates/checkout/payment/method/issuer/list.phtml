@@ -13,7 +13,7 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIs
 
 $viewModel = $block->getViewModel();
 ?>
-<ul class="<?= $css('ml-4') ?>">
+<ul class="<?= $css('md:ml-4') ?>">
     <?php foreach ($viewModel->getIssuers() as $issuer): ?>
         <li class="<?= $css('my-3', 'item') ?>">
             <label>
