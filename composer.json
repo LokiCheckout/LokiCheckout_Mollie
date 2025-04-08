@@ -1,6 +1,6 @@
 {
     "name": "yireo/magento2-loki-checkout-mollie",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Mollie compatibility for Loki Checkout",
     "keywords": ["loki-payment"],
     "homepage": "https://loki-checkout.com/",

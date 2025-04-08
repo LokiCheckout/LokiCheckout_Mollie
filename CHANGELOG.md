@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 08 April 2025
+### Fixed
+- Mobile fix
+
 ## [0.0.6] - 04 April 2025
 ### Fixed
 - Move to Mollie-specific DI config to Mollie plugin
