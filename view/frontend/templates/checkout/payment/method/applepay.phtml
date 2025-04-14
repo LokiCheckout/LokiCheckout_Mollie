@@ -15,7 +15,7 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay\ApplePay
 ?>
 <div class="<?= $css('') ?>">
     <script>
-        LokiCheckoutValidator.validators.mollie_methods_applepay = async function (component) {
+        LokiComponentValidator.validators.mollie_methods_applepay = async function (component) {
 
             const amount = '<?= $viewModel->getAmount() ?>';
 
