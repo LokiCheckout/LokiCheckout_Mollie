@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 16 April 2025
+### Fixed
+- Rename LokiCheckoutValidator to LokiComponentValidator
+
 ## [0.0.7] - 08 April 2025
 ### Fixed
 - Mobile fix
