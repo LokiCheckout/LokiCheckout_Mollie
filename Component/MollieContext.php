@@ -30,7 +30,6 @@ use Yireo\LokiComponents\Messages\GlobalMessageRegistry;
 class MollieContext implements ComponentContextInterface
 {
     public function __construct(
-        private CheckoutSession $checkoutSession,
         private CheckoutState $checkoutState,
         private ShippingAddressState $shippingAddressState,
         private BillingAddressState $billingAddressState,
@@ -71,11 +70,6 @@ class MollieContext implements ComponentContextInterface
     public function getLocaleResolver(): LocaleResolver
     {
         return $this->localeResolver;
-    }
-
-    public function getCheckoutSession(): CheckoutSession
-    {
-        return $this->checkoutSession;
     }
 
     public function getCheckoutState(): CheckoutState
