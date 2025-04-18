@@ -32,6 +32,6 @@ class WithIssuerRepository extends FieldRepository
         $value = (string)$value;
         $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation('selected_issuer', $value);
-        $this->getContext()->getCartRepository()->save($quote);
+        $this->getContext()->getCheckoutState()->saveQuote($quote);
     }
 }

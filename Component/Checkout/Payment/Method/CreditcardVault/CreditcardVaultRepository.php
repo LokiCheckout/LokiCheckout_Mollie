@@ -25,6 +25,6 @@ class CreditcardVaultRepository extends FieldRepository
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH, $hash);
         $quote->getPayment()->setAdditionalInformation(PaymentTokenInterface::CUSTOMER_ID, $quote->getCustomerId());
 
-        $this->getContext()->getCartRepository()->save($quote);
+        $this->getContext()->getCheckoutState()->saveQuote($quote);
     }
 }

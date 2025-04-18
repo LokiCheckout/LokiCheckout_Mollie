@@ -21,6 +21,6 @@ class ApplePayRepository extends FieldRepository
         $value = (string)$value;
         $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation('applepay_payment_token', $value);
-        $this->getContext()->getCartRepository()->save($quote);
+        $this->getContext()->getCheckoutState()->saveQuote($quote);
     }
 }
