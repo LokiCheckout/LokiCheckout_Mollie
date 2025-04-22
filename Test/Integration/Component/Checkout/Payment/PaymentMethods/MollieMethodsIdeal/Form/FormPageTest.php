@@ -17,9 +17,9 @@ use Yireo\LokiCheckout\Test\Integration\LokiCheckoutPageTestCase;
 use Yireo\LokiCheckoutMollie\Test\Integration\Trait\AddPayentMethodManagementPluginStub;
 
 #[
-    DataFixture(ProductFixture::class, ['sku' => 'simple-product-001', 'price' => 100], as: 'product'),
+    DataFixture(ProductFixture::class, ['sku' => 'simple-product-001'], as: 'product'),
     DataFixture(GuestCartFixture::class, as: 'cart'),
-    DataFixture(AddProductToCartFixture::class, ['cart_id' => '$cart.id$', 'product_id' => '$product.id$', 'qty' => 1]),
+    DataFixture(AddProductToCartFixture::class, ['cart_id' => '$cart.id$', 'product_id' => '$product.id$']),
     DataFixture(ShippingAddressFixture::class, ['cart_id' => '$cart.id$']),
     AppArea('frontend')
 ]
@@ -55,7 +55,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         ConfigFixture('payment/mollie_general/profileid', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstrongofthirtychars', 'store', 'default'),
         ConfigFixture('payment/mollie_methods_ideal/active', '1', 'store', 'default'),
-        DataFixture(ProductFixture::class, ['sku' => 'simple-product-001', 'price' => 100], as: 'product'),
+        DataFixture(ProductFixture::class, ['sku' => 'simple-product-001'], as: 'product'),
         DataFixture(GuestCartFixture::class, as: 'cart'),
         DataFixture(AddProductToCartFixture::class, [
             'cart_id' => '$cart.id$',
