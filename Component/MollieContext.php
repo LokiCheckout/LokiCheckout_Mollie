@@ -3,18 +3,17 @@ declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Component;
 
-use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Locale\ResolverInterface as LocaleResolver;
 use Magento\Framework\Message\ManagerInterface as CoreMessageManager;
 use Magento\Framework\UrlFactory;
 use Magento\Framework\UrlInterface;
-use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mollie\Payment\Config as MollieConfig;
 use Mollie\Payment\Service\Mollie\ApplePay\SupportedNetworks;
 use Yireo\LokiCheckout\Config\Config as ModuleConfig;
+use Yireo\LokiCheckout\Payment\Vault\PaymentTokenProvider;
 use Yireo\LokiCheckout\Step\StepNavigator;
 use Yireo\LokiCheckout\Util\Component\AttributeProvider;
 use Yireo\LokiCheckout\Util\Component\StepProvider;
@@ -23,7 +22,6 @@ use Yireo\LokiCheckout\ViewModel\CheckoutState;
 use Yireo\LokiCheckout\ViewModel\State\BillingAddressState;
 use Yireo\LokiCheckout\ViewModel\State\ShippingAddressState;
 use Yireo\LokiCheckoutMollie\Provider\IssuerProvider;
-use Yireo\LokiCheckoutMollie\Service\Vault\GetSavedCards;
 use Yireo\LokiComponents\Component\ComponentContextInterface;
 use Yireo\LokiComponents\Messages\GlobalMessageRegistry;
 
@@ -46,7 +44,7 @@ class MollieContext implements ComponentContextInterface
         private readonly MollieConfig $mollieConfig,
         private readonly UrlFactory $urlFactory,
         private readonly LocaleResolver $localeResolver,
-        private readonly GetSavedCards $getSavedCards,
+        private readonly PaymentTokenProvider $paymentTokenProvider,
         private readonly IssuerProvider $issuerProvider,
         private readonly SupportedNetworks $supportedNetworks,
     ) {
@@ -137,9 +135,9 @@ class MollieContext implements ComponentContextInterface
         return $this->urlFactory;
     }
 
-    public function getSavedCards(): GetSavedCards
+    public function getPaymentTokenProvider(): PaymentTokenProvider
     {
-        return $this->getSavedCards;
+        return $this->paymentTokenProvider;
     }
 
     public function getIssuerProvider(): IssuerProvider

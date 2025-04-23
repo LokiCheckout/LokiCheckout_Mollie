@@ -14,9 +14,9 @@ class CreditcardVaultViewModel extends CheckoutViewModel
     /**
      * @return array
      */
-    public function getSavedCards(): array
+    public function getNormalizedPaymentTokens(): array
     {
-        return $this->getContext()->getSavedCards()->execute();
+        return $this->getContext()->getPaymentTokenProvider()->getAllNormalized();
     }
 
     public function getFieldLabel(): string

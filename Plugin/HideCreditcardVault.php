@@ -1,28 +1,18 @@
 <?php
-/*
- * Copyright Magmodules.eu. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 declare(strict_types=1);
 
 namespace Yireo\LokiCheckoutMollie\Plugin;
 
 use Magento\Customer\Model\Session;
 use Magento\Quote\Api\PaymentMethodManagementInterface;
-use Yireo\LokiCheckoutMollie\Service\Vault\GetSavedCards;
+use Yireo\LokiCheckout\Payment\Vault\PaymentTokenProvider;
 
 class HideCreditcardVault
 {
-    private Session $customerSession;
-    private GetSavedCards $getSavedCards;
-
     public function __construct(
-        Session $customerSession,
-        GetSavedCards $getSavedCards
+        private Session $customerSession,
+        private PaymentTokenProvider $paymentTokenProvider
     ) {
-        $this->customerSession = $customerSession;
-        $this->getSavedCards = $getSavedCards;
     }
 
     public function afterGetList(PaymentMethodManagementInterface $subject, $result, $cartId): array
@@ -42,8 +32,8 @@ class HideCreditcardVault
             return false;
         }
 
-        $savedCards = $this->getSavedCards->execute();
-        if (count($savedCards) === 0) {
+        $paymentTokens = $this->paymentTokenProvider->getAll();
+        if (empty($paymentTokens)) {
             return false;
         }
 

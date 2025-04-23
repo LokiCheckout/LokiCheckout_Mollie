@@ -9,10 +9,10 @@ use Yireo\LokiCheckoutMollie\ViewModel\AdditionalPaymentDetails;
 /** @var ViewModelFactory $viewModelFactory */
 /** @var AdditionalPaymentDetails $additionalPaymentDetails */
 $additionalPaymentDetails = $viewModelFactory->create(AdditionalPaymentDetails::class);
-$issuerLabel = $additionalPaymentDetails->getIssuerLabel();
+$html = $additionalPaymentDetails->getAdditionalHtml();
 
-if (empty($issuerLabel)) {
+if (empty($html)) {
     return;
 }
 ?>
-<span>(<?= $issuerLabel ?>)</span>
+<div>(<?= $html ?>)</div>

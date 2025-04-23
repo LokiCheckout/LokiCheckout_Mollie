@@ -6,6 +6,6 @@ class OverrideCreditcardVaultTitlePlugin
 {
     public function afterGetTitle(\Mollie\Payment\Model\Methods\CreditcardVault $subject, string $title): string
     {
-        return $title . ' (saved)';
+        return (string)__('Saved Credit Card');
     }
 }

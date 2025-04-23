@@ -11,18 +11,20 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault\C
 ?>
 <div>
     <ul>
-        <?php foreach ($viewModel->getSavedCards() as $card): ?>
+        <?php foreach ($viewModel->getNormalizedPaymentTokens() as $paymentToken): ?>
             <li>
                 <label>
                     <input type="radio"
                            name="mollie_vault_public_hash"
                            x-model="value"
                            @change="submit"
-                           value="<?= $escaper->escapeHtmlAttr($card['public_hash']); ?>"
+                           value="<?= $escaper->escapeHtmlAttr($paymentToken->getPublicHash()); ?>"
                     />
                     <img class="inline-block"
-                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mollie_Payment::images/creditcard-issuers/' . $card['type'] . '.svg')) ?>" />
-                    <?= __('ending %1', $card['maskedCC']); ?>
+                         loading="lazy"
+                         alt="<?= $paymentToken->getType() ?>"
+                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mollie_Payment::images/creditcard-issuers/' . $paymentToken->getType() . '.svg')) ?>" />
+                    <?= __('ending %1', $paymentToken->getHint()); ?>
                 </label>
             </li>
         <?php endforeach; ?>
