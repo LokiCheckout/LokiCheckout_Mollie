@@ -30,6 +30,10 @@ class IconResolver implements IconResolverInterface
             return false;
         }
 
+        if ($paymentMethodCode === 'mollie_methods_creditcard_vault') {
+            $paymentMethodCode = 'mollie_methods_creditcard';
+        }
+
         $iconFilePath = $iconResolverContext->getIconPath(
             'Mollie_Payment',
             'view/frontend/web/images/methods/'.$match[1].'.svg'
