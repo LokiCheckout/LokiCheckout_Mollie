@@ -10,6 +10,14 @@
         </block>
 
         <block
+            name="loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form"
+            template="Yireo_LokiCheckoutMollie::checkout/payment/method/creditcard_vault.phtml">
+            <arguments>
+                <argument name="additional_css" xsi:type="string">p-4</argument>
+            </arguments>
+        </block>
+
+        <block
             name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
             template="Yireo_LokiCheckoutMollie::checkout/payment/method/issuer.phtml">
             <arguments>
