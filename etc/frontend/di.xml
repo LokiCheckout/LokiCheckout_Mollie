@@ -28,4 +28,8 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Mollie\Payment\Model\Methods\CreditcardVault">
+        <plugin name="Yireo_LokiCheckoutMollie::overrideCreditcardVaultTitle" type="\Yireo\LokiCheckoutMollie\Plugin\OverrideCreditcardVaultTitlePlugin"/>
+    </type>
 </config>
