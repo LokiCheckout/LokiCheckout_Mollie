@@ -9,7 +9,6 @@ class PaymentMethodManagementPluginStub extends PaymentMethodManagementPlugin
 {
     public function afterGetList(PaymentMethodManagementInterface $subject, $result, $cartId)
     {
-        echo 'TEST2';
         return $result;
     }
 }
