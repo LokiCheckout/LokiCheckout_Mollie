@@ -16,8 +16,8 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault\C
                 <label>
                     <input type="radio"
                            name="mollie_vault_public_hash"
-                           x-model="value"
-                           @change="submit"
+                           :checked="isChecked"
+                           @change="submitValue"
                            value="<?= $escaper->escapeHtmlAttr($paymentToken->getPublicHash()); ?>"
                     />
                     <img class="inline-block"

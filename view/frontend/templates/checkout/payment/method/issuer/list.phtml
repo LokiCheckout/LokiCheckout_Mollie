@@ -19,8 +19,8 @@ $viewModel = $block->getViewModel();
             <label>
                 <input
                     type="radio"
-                    x-model="value"
-                    @change="submit"
+                    :checked="isChecked"
+                    @change="submitValue"
                     name="issuer"
                     value="<?= $issuer['id'] ?>"
                 >

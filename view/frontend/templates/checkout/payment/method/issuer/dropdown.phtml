@@ -14,7 +14,7 @@ use Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIs
 $viewModel = $block->getViewModel();
 ?>
 <div class="<?= $css('') ?>">
-    <select x-model="value" @change="submit">
+    <select :value="value" @change="submitValue">
         <option value=""><?= $escaper->escapeHtml(__('Please select')); ?></option>
         <?php foreach ($viewModel->getIssuers() as $issuer): ?>
             <option value="<?= $issuer['id'] ?>"><?= $issuer['name']; ?></option>
