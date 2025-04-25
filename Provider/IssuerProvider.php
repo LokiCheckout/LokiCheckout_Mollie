@@ -29,6 +29,14 @@ class IssuerProvider
 
     public function getIssuerLabel(string $issuer): string
     {
+        if (empty($issuer)) {
+            return '';
+        }
+
+        if (false === str_contains($issuer, '_')) {
+            return $issuer;
+        }
+
         list($method, $issuerCode) = explode('_', $issuer);
         $issuers = $this->getIssuers($method);
         foreach ($issuers as $issuerData) {
