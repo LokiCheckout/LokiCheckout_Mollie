@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.9] - 25 April 2025
+### Fixed
+- Allow upgrading to LokiFieldComponents and LokiCheckout 1.0
+- Remove `x-model` because of CSP compliance
+- Prevent error if payment method is unknown
+- Allow upgrade to LokiComponents 1.0
+- Add a DOB check for in3
+- Fixes for vault
+- Consolidate vault access in core module
+- Add "saved" to credit card vault title
+- Add helper comment in developer mode
+- Fix icon for creditcard vault
+- Move Mollie fixture from core to Mollie module
+- Remove default params
+- Remove CheckoutSession from context
+- Remove CartRepository from all contexts
+- Rewrite `getCartRepository()->save()` to `getCheckoutState()->saveQuote()`
+
 ## [0.0.8] - 16 April 2025
 ### Fixed
 - Rename LokiCheckoutValidator to LokiComponentValidator
