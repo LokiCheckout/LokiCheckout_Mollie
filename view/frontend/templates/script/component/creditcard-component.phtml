@@ -12,11 +12,10 @@
                 mollieCompletedComponents: [],
                 initActions: {
                     ...LokiCheckoutComponentType.initActions,
-                    loadMollieScript() {
-                        const script = document.createElement('script');
-                        script.src = 'https://js.mollie.com/v1/mollie.js';
-                        script.onload = () => this.renderMollieComponents();
-                        document.head.append(script);
+                    renderMollieComponentsAnyway() {
+                        setTimeout( () => {
+                            this.renderMollieComponents();
+                        }, 500);
                     }
                 },
                 createComponent(componentType, domId) {
@@ -24,7 +23,8 @@
                         return;
                     }
 
-                    const component = window.mollie.createComponent(componentType);
+                    const mollie = this.getMollie();
+                    const component = mollie.createComponent(componentType);
                     const errorElement = document.getElementById(this.elementId + '-' + domId + '-error');
 
                     component.mount('#' + this.elementId + '-' + domId);
@@ -50,7 +50,7 @@
 
                     this.mollieComponents[domId] = component;
                 },
-                renderMollieComponents() {
+                getMollie() {
                     if (!window.mollie) {
                         window.mollie = Mollie(this.profileId, {
                             locale: this.locale,
@@ -58,6 +58,10 @@
                         });
                     }
 
+                    return window.mollie;
+                },
+                renderMollieComponents() {
+                    this.getMollie();
                     this.createComponent('cardNumber', 'card-number');
                     this.createComponent('cardHolder', 'card-holder');
                     this.createComponent('expiryDate', 'expiry-date');
@@ -65,12 +69,14 @@
                 }
                 ,
                 async submit() {
-                    if (!window.mollie) {
+                    const mollie = this.getMollie();
+
+                    if (!mollie) {
                         console.log('<?= __('Mollie object unavailable') ?>');
                         return false;
                     }
 
-                    const {token, error} = await window.mollie.createToken();
+                    const {token, error} = await mollie.createToken();
 
                     if (error) {
                         console.log('<?= __('Mollie Error') ?>', error);
