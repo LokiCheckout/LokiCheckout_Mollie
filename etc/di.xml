@@ -11,4 +11,12 @@
     <type name="Magento\Quote\Api\PaymentMethodManagementInterface">
         <plugin name="loki_checkout_mollie_hide_creditcard_vault" type="Yireo\LokiCheckoutMollie\Plugin\HideCreditcardVault" />
     </type>
+
+    <type name="Yireo\LokiComponents\Validator\ValidatorRegistry">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="in3_dob_check" xsi:type="object">Yireo\LokiCheckoutMollie\Validator\Component\In3DobValidator</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
