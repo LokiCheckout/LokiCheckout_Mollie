@@ -31,7 +31,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     protected bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_ideal';
-    public const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_ideal.form';
+    const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_ideal.form';
 
     #[ConfigFixture('currency/options/allow', 'EUR', 'store', 'default')]
     #[ConfigFixture('currency/options/base', 'EUR', 'store', 'default')]

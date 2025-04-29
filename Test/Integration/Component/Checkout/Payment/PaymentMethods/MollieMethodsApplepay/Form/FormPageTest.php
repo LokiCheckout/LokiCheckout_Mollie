@@ -32,7 +32,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     protected bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_applepay';
-    public const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_applepay.form';
+    const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_applepay.form';
 
     #[
         ConfigFixture('yireo_loki_checkout/general/theme', 'onestep'),
