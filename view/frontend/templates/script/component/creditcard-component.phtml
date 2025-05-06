@@ -10,13 +10,10 @@
                 testMode: true,
                 mollieComponents: [],
                 mollieCompletedComponents: [],
-                initActions: {
-                    ...LokiCheckoutComponentType.initActions,
-                    renderMollieComponentsAnyway() {
-                        setTimeout( () => {
-                            this.renderMollieComponents();
-                        }, 500);
-                    }
+                initMollieComponents() {
+                    setTimeout(() => {
+                        this.renderMollieComponents();
+                    }, 500);
                 },
                 createComponent(componentType, domId) {
                     if (this.mollieComponents[domId]) {
