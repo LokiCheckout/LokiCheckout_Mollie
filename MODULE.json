@@ -13,6 +13,7 @@
         "Yireo_LokiFieldComponents"
     ],
     "components": [
+        "loki-checkout.payment.methods",
         "loki-checkout.payment.payment-methods.mollie_methods_creditcard.form",
         "loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form",
         "loki-checkout.payment.payment-methods.mollie_methods_ideal.form",
@@ -20,6 +21,8 @@
     ],
     "config": [],
     "tests": {
+        "unit": 0,
+        "integration": 6,
         "functional": 33
     }
 }
