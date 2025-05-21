@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 21 May 2025
+### Fixed
+- Generate new MODULE.json with simple test count
+- Rewrite Alpine from initActions object to methods starting with init
+- Allow PHP 8.4 in CI
+- Fix issue with LokiCheckoutMollie DI type overriding core validators
+- Do not make BLOCK constant public
+- Rewrite integration test flag $skipDispatchToCheckout
+- Rewrite Mollie JS loading in Luma because of CSP
+- Add GitLab CI files
+
 ## [0.0.9] - 25 April 2025
 ### Fixed
 - Allow upgrading to LokiFieldComponents and LokiCheckout 1.0
