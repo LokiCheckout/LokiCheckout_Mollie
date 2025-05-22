@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 21 May 2025
+## [1.0.0] - 22 May 2025
 ### Fixed
 - Generate new MODULE.json with simple test count
 - Rewrite Alpine from initActions object to methods starting with init
