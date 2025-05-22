@@ -1,16 +1,15 @@
 {
     "modules": [
-        "Magento_Checkout",
         "Magento_Customer",
         "Magento_Payment",
-        "Magento_Sales",
         "Magento_Store",
         "Magento_Quote",
         "Magento_Vault",
         "Mollie_Payment",
         "Yireo_LokiCheckout",
         "Yireo_LokiComponents",
-        "Yireo_LokiFieldComponents"
+        "Yireo_LokiFieldComponents",
+        "Yireo_IntegrationTestHelper"
     ],
     "components": [
         "loki-checkout.payment.methods",
