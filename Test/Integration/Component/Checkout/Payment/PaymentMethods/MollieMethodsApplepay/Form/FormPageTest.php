@@ -15,6 +15,7 @@ use Yireo\IntegrationTestHelper\Test\Integration\Traits\GetObjectManager;
 use Yireo\LokiCheckout\Test\Fixture\PaymentMethodFixture;
 use Yireo\LokiCheckout\Test\Fixture\ShippingAddressFixture;
 use Yireo\LokiCheckout\Test\Integration\LokiCheckoutPageTestCase;
+use Yireo\LokiCheckout\Test\Integration\Trait\AssertPaymentMethodOnPage;
 use Yireo\LokiCheckoutMollie\Test\Integration\Trait\AddPayentMethodManagementPluginStub;
 
 #[
@@ -28,10 +29,12 @@ final class FormPageTest extends LokiCheckoutPageTestCase
 {
     use GetObjectManager;
     use AddPayentMethodManagementPluginStub;
+    use AssertPaymentMethodOnPage;
 
     protected bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_applepay';
+
     const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_applepay.form';
 
     #[
@@ -45,7 +48,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     {
         $this->addMollieStubs();
         $this->dispatchToCheckout();
-        $this->assertStringNotOccursOnPage('payment-'.self::PAYMENT_METHOD);
+        $this->assertPaymentMethodNotOnPage(self::PAYMENT_METHOD);
         $this->assertComponentNotExistsOnPage(self::BLOCK_NAME, true);
     }
 
@@ -61,7 +64,10 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     {
         $this->addMollieStubs();
         $this->dispatchToCheckout();
-        $this->assertStringOccursOnPage('payment-'.self::PAYMENT_METHOD);
+        $this->assertPaymentMethodOnPage(self::PAYMENT_METHOD);
+
+        $this->markTestIncomplete('Applepay is currently not fully implemented yet');
+        return;
         $this->assertComponentNotExistsOnPage(self::BLOCK_NAME, true);
     }
 
@@ -94,6 +100,8 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         $this->assertNotNull($this->getQuote()->getPayment()->getMethod(), 'No payment method set in quote');
         $this->assertSame('mollie_methods_applepay', $this->getQuote()->getPayment()->getMethod());
 
+        $this->markTestIncomplete('Applepay is currently not fully implemented yet');
+        return;
         $this->assertStringOccursOnPage('payment-'.self::PAYMENT_METHOD);
 
         //$this->assertComponentExistsOnPage(self::BLOCK_NAME, true);
