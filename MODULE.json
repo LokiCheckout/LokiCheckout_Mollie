@@ -22,7 +22,7 @@
     "config": [],
     "tests": {
         "unit": 0,
-        "integration": 6,
-        "functional": 33
+        "integration": 12,
+        "functional": 34
     }
 }
