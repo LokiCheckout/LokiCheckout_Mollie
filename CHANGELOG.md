@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 26 May 2025
+### Fixed
+- Remove iDeal issuers
+- Skip tests not available in account
+- Increase timeouts for tests
+- Alma test: Set french and minimum amount
+
 ## [1.0.0] - 22 May 2025
 ### Fixed
 - Generate new MODULE.json with simple test count
