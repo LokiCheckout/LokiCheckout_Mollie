@@ -1,29 +1,8 @@
-import {PaymentMethod, PlaceOrderButton} from '@helpers/checkout-objects';
-import {setupCheckout} from '@helpers/setup-checkout';
-import {test, expect} from '@playwright/test';
-
-import {MolliePortal} from './helpers/mollie-objects';
-import mollieConfig from './config/config';
+import {test} from '@playwright/test';
 
 test.describe('payconiq payment test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
-        await setupCheckout(page, context, {
-            ...mollieConfig,
-            config: {
-                ...mollieConfig.config,
-                'payment/mollie_methods_payconiq/active': 1,
-            }
-        });
+        test.skip('Not enabled in Mollie account');
 
-        return; // @todo: Not enabled in Mollie account
-
-        const paymentMethod = new PaymentMethod(page, 'mollie_methods_payconiq');
-        await paymentMethod.select();
-
-        const placeOrderButton = new PlaceOrderButton(page);
-        await placeOrderButton.click();
-
-        const molliePortal = new MolliePortal(page);
-        await molliePortal.expectIssuerPage();
     });
 });
