@@ -30,7 +30,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     use AddPayentMethodManagementPluginStub;
     use AssertPaymentMethodOnPage;
 
-    protected bool $skipDispatchToCheckout = true;
+    protected ?bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_creditcard';
     const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_creditcard.form';
