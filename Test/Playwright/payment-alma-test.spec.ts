@@ -10,7 +10,8 @@ test.describe('Alma payment test', () => {
 
         await setupCheckout(page, context, {
             ...mollieConfig,
-            profile: 'belgium',
+            qty: 10,
+            profile: 'france',
             config: {
                 ...mollieConfig.config,
                 'payment/mollie_methods_alma/active': 1,
