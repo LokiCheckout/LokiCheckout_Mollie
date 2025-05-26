@@ -31,7 +31,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     use AddPayentMethodManagementPluginStub;
     use AssertPaymentMethodOnPage;
 
-    protected bool $skipDispatchToCheckout = true;
+    protected ?bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_applepay';
 
