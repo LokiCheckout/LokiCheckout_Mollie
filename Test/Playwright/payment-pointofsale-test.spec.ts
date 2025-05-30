@@ -1,4 +1,4 @@
-import {test} from '@playwright/test';
+import {test} from '@loki/test';
 
 test.describe('pointofsale payment test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {

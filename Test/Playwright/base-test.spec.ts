@@ -1,6 +1,6 @@
 import {Field} from '@loki/checkout-objects';
 import {setupCheckout} from '@loki/setup-checkout';
-import {test, expect} from '@playwright/test';
+import {test, expect} from '@loki/test';
 import mollieConfig from './config/config';
 
 test.describe('Yireo_LokiCheckoutMollie test', () => {
