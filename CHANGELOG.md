@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 08 July 2025
+### Fixed
+- Add CSS util
+- Remove backslash
+- Use Loki test-case in Playwright to detect JS errors automatically
+- Rewrite @helpers to @loki in Playwright tests
+
 ## [1.0.1] - 26 May 2025
 ### Fixed
 - Remove iDeal issuers
