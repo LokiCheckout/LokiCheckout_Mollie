@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Test\Integration\Component\Checkout\Payment\PaymentMethods\MollieMethodsApplepay\Form;
+namespace LokiCheckout\Mollie\Test\Integration\Component\Checkout\Payment\PaymentMethods\MollieMethodsApplepay\Form;
 
 use Magento\Catalog\Test\Fixture\Product as ProductFixture;
 use Magento\Quote\Test\Fixture\AddProductToCart as AddProductToCartFixture;
@@ -12,11 +12,11 @@ use Magento\TestFramework\Fixture\Config as ConfigFixture;
 use Magento\TestFramework\Fixture\DataFixture;
 use PHPUnit\Framework\TestCase;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\GetObjectManager;
-use Yireo\LokiCheckout\Test\Fixture\PaymentMethodFixture;
-use Yireo\LokiCheckout\Test\Fixture\ShippingAddressFixture;
-use Yireo\LokiCheckout\Test\Integration\LokiCheckoutPageTestCase;
-use Yireo\LokiCheckout\Test\Integration\Trait\AssertPaymentMethodOnPage;
-use Yireo\LokiCheckoutMollie\Test\Integration\Trait\AddPayentMethodManagementPluginStub;
+use LokiCheckout\Core\Test\Fixture\PaymentMethodFixture;
+use LokiCheckout\Core\Test\Fixture\ShippingAddressFixture;
+use LokiCheckout\Core\Test\Integration\LokiCheckoutPageTestCase;
+use LokiCheckout\Core\Test\Integration\Trait\AssertPaymentMethodOnPage;
+use LokiCheckout\Mollie\Test\Integration\Trait\AddPayentMethodManagementPluginStub;
 
 #[
     DataFixture(ProductFixture::class, ['sku' => 'simple-product-001'], as: 'product'),
@@ -38,7 +38,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_applepay.form';
 
     #[
-        ConfigFixture('yireo_loki_checkout/general/theme', 'onestep'),
+        ConfigFixture('loki_checkout/general/theme', 'onestep'),
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstringofthirtychars', 'store', 'default'),
@@ -53,7 +53,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     }
 
     #[
-        ConfigFixture('yireo_loki_checkout/general/theme', 'onestep'),
+        ConfigFixture('loki_checkout/general/theme', 'onestep'),
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstrongofthirtychars', 'store', 'default'),
@@ -72,7 +72,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     }
 
     #[
-        ConfigFixture('yireo_loki_checkout/general/theme', 'onestep'),
+        ConfigFixture('loki_checkout/general/theme', 'onestep'),
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/profileid', 'test', 'store', 'default'),

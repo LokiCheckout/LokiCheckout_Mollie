@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Yireo\LokiCheckout\Component\Checkout\Billing\PaymentMethods\PaymentMethodsRepository">
-        <plugin name="Yireo_LokiCheckoutMollie::overrideDefaultPayment"
-                type="Yireo\LokiCheckoutMollie\Plugin\OverrideDefaultPaymentPlugin"/>
+    <type name="LokiCheckout\Core\Component\Checkout\Billing\PaymentMethods\PaymentMethodsRepository">
+        <plugin name="LokiCheckout_Mollie::overrideDefaultPayment"
+                type="LokiCheckout\Mollie\Plugin\OverrideDefaultPaymentPlugin"/>
     </type>
 
-    <type name="Yireo\LokiCheckout\Payment\Icon\IconResolverListing">
+    <type name="LokiCheckout\Core\Payment\Icon\IconResolverListing">
         <arguments>
             <argument name="iconResolvers" xsi:type="array">
-                <item name="mollie" xsi:type="object">Yireo\LokiCheckoutMollie\Payment\Icon\IconResolver</item>
+                <item name="mollie" xsi:type="object">LokiCheckout\Mollie\Payment\Icon\IconResolver</item>
             </argument>
         </arguments>
     </type>
 
-    <type name="Yireo\LokiCheckout\Payment\Redirect\RedirectResolverListing">
+    <type name="LokiCheckout\Core\Payment\Redirect\RedirectResolverListing">
         <arguments>
             <argument name="redirectResolvers" xsi:type="array">
-                <item name="mollie" xsi:type="object">Yireo\LokiCheckoutMollie\Payment\Redirect\RedirectResolver</item>
+                <item name="mollie" xsi:type="object">LokiCheckout\Mollie\Payment\Redirect\RedirectResolver</item>
             </argument>
         </arguments>
     </type>
 
-    <type name="Yireo\LokiCheckout\Plugin\RedirectEmptyQuoteAfterRepositoryDispatchPlugin">
+    <type name="LokiCheckout\Core\Plugin\RedirectEmptyQuoteAfterRepositoryDispatchPlugin">
         <arguments>
             <argument name="allowedExceptionClasses" xsi:type="array">
                 <item name="mollie" xsi:type="string">Mollie\Api\Exceptions\ApiException</item>
@@ -30,6 +30,6 @@
     </type>
 
     <type name="Mollie\Payment\Model\Methods\CreditcardVault">
-        <plugin name="Yireo_LokiCheckoutMollie::overrideCreditcardVaultTitle" type="Yireo\LokiCheckoutMollie\Plugin\OverrideCreditcardVaultTitlePlugin"/>
+        <plugin name="LokiCheckout_Mollie::overrideCreditcardVaultTitle" type="LokiCheckout\Mollie\Plugin\OverrideCreditcardVaultTitlePlugin"/>
     </type>
 </config>

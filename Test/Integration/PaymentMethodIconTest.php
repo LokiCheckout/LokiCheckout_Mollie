@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Test\Integration;
+namespace LokiCheckout\Mollie\Test\Integration;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\TestFramework\Fixture\AppArea;
 use Magento\TestFramework\Fixture\Config;
 use PHPUnit\Framework\TestCase;
-use Yireo\LokiCheckout\ViewModel\PaymentMethodIcon;
+use LokiCheckout\Core\ViewModel\PaymentMethodIcon;
 
 class PaymentMethodIconTest extends TestCase
 {

@@ -3,7 +3,7 @@
     <body>
         <block
             name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
-            template="Yireo_LokiCheckoutMollie::checkout/payment/method/creditcard.phtml">
+            template="LokiCheckout_Mollie::checkout/payment/method/creditcard.phtml">
             <arguments>
                 <argument name="additional_css" xsi:type="string">p-4</argument>
             </arguments>
@@ -11,14 +11,14 @@
 
         <block
             name="loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form"
-            template="Yireo_LokiCheckoutMollie::checkout/payment/method/creditcard_vault.phtml">
+            template="LokiCheckout_Mollie::checkout/payment/method/creditcard_vault.phtml">
             <arguments>
                 <argument name="additional_css" xsi:type="string">p-4</argument>
             </arguments>
         </block>
 
         <referenceContainer name="loki-components">
-            <block name="loki-checkout-mollie.script.components.creditcard"  ifconfig="payment/mollie_methods_creditcard/use_components" template="Yireo_LokiCheckoutMollie::script/component/creditcard-component.phtml" />
+            <block name="loki-checkout-mollie.script.components.creditcard"  ifconfig="payment/mollie_methods_creditcard/use_components" template="LokiCheckout_Mollie::script/component/creditcard-component.phtml" />
         </referenceContainer>
     </body>
 </page>

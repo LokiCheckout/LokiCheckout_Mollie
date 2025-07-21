@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay;
+namespace LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay;
 
 use Mollie\Payment\Model\Adminhtml\Source\ApplePayIntegrationType;
-use Yireo\LokiCheckout\Component\Base\Generic\CheckoutViewModel;
-use Yireo\LokiCheckoutMollie\Component\MollieContext;
+use LokiCheckout\Core\Component\Base\Generic\CheckoutViewModel;
+use LokiCheckout\Mollie\Component\MollieContext;
 
 /**
  * @method MollieContext getContext()

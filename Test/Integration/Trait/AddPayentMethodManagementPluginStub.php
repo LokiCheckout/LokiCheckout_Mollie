@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Test\Integration\Trait;
+namespace LokiCheckout\Mollie\Test\Integration\Trait;
 
 use Magento\TestFramework\Helper\Bootstrap;
 use Mollie\Payment\Plugin\Quote\Api\PaymentMethodManagementPlugin;
-use Yireo\LokiCheckoutMollie\Test\Integration\Stub\PaymentMethodManagementPluginStub;
+use LokiCheckout\Mollie\Test\Integration\Stub\PaymentMethodManagementPluginStub;
 
 trait AddPayentMethodManagementPluginStub
 {

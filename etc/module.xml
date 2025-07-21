@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Yireo_LokiCheckoutMollie">
+    <module name="LokiCheckout_Mollie">
         <sequence>
             <module name="Magento_Customer"/>
             <module name="Magento_Payment"/>
@@ -8,9 +8,9 @@
             <module name="Magento_Quote"/>
             <module name="Magento_Vault"/>
             <module name="Mollie_Payment"/>
-            <module name="Yireo_LokiCheckout"/>
-            <module name="Yireo_LokiComponents"/>
-            <module name="Yireo_LokiFieldComponents"/>
+            <module name="LokiCheckout_Core"/>
+            <module name="Loki_Components"/>
+            <module name="Loki_FieldComponents"/>
             <module name="Yireo_IntegrationTestHelper"/>
         </sequence>
     </module>

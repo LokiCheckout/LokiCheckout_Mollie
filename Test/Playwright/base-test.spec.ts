@@ -3,7 +3,7 @@ import {setupCheckout} from '@loki/setup-checkout';
 import {test, expect} from '@loki/test';
 import mollieConfig from './config/config';
 
-test.describe('Yireo_LokiCheckoutMollie test', () => {
+test.describe('LokiCheckout_Mollie test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
         await setupCheckout(page, context, {
             ...mollieConfig,

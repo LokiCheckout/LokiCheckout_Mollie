@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Plugin;
+namespace LokiCheckout\Mollie\Plugin;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Yireo\LokiCheckout\Component\Checkout\Billing\PaymentMethods\PaymentMethodsRepository;
+use LokiCheckout\Core\Component\Checkout\Billing\PaymentMethods\PaymentMethodsRepository;
 
 class OverrideDefaultPaymentPlugin
 {

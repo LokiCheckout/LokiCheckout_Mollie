@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Plugin;
+namespace LokiCheckout\Mollie\Plugin;
 
 class OverrideCreditcardVaultTitlePlugin
 {

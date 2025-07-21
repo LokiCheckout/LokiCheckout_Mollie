@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Provider;
+namespace LokiCheckout\Mollie\Provider;
 
 use Mollie\Payment\Service\Mollie\GetIssuers;
 use Mollie\Payment\Service\Mollie\MollieApiClient;

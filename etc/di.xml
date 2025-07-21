@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Yireo\LokiCheckout\Config\LokiCheckoutModules">
+    <type name="LokiCheckout\Core\Config\LokiCheckoutModules">
         <arguments>
             <argument name="modules" xsi:type="array">
-                <item name="Yireo_LokiCheckoutMollie" xsi:type="string">Yireo_LokiCheckoutMollie</item>
+                <item name="LokiCheckout_Mollie" xsi:type="string">LokiCheckout_Mollie</item>
             </argument>
         </arguments>
     </type>
 
     <type name="Magento\Quote\Api\PaymentMethodManagementInterface">
-        <plugin name="loki_checkout_mollie_hide_creditcard_vault" type="Yireo\LokiCheckoutMollie\Plugin\HideCreditcardVault" />
+        <plugin name="loki_checkout_mollie_hide_creditcard_vault" type="LokiCheckout\Mollie\Plugin\HideCreditcardVault" />
     </type>
 
-    <type name="Yireo\LokiComponents\Validator\ValidatorRegistry">
+    <type name="Loki\Components\Validator\ValidatorRegistry">
         <arguments>
             <argument name="validators" xsi:type="array">
-                <item name="in3_dob_check" xsi:type="object">Yireo\LokiCheckoutMollie\Validator\Component\In3DobValidator</item>
+                <item name="in3_dob_check" xsi:type="object">LokiCheckout\Mollie\Validator\Component\In3DobValidator</item>
             </argument>
         </arguments>
     </type>

@@ -5,7 +5,7 @@
             <block
                 ifconfig="payment/mollie_methods_creditcard/use_components"
                 name="loki-checkout-mollie.script.mollie-js"
-                template="Yireo_LokiCheckoutMollie::script/mollie-js-loader.phtml"/>
+                template="LokiCheckout_Mollie::script/mollie-js-loader.phtml"/>
         </referenceContainer>
     </body>
 </page>

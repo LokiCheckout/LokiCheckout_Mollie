@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\ViewModel;
+namespace LokiCheckout\Mollie\ViewModel;
 
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
-use Yireo\LokiCheckout\Payment\Vault\PaymentTokenProvider;
-use Yireo\LokiCheckout\ViewModel\CheckoutState;
-use Yireo\LokiCheckoutMollie\Provider\IssuerProvider;
+use LokiCheckout\Core\Payment\Vault\PaymentTokenProvider;
+use LokiCheckout\Core\ViewModel\CheckoutState;
+use LokiCheckout\Mollie\Provider\IssuerProvider;
 
 class AdditionalPaymentDetails implements ArgumentInterface
 {

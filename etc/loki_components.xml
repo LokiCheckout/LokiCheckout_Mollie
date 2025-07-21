@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Yireo_LokiComponents:etc/loki_components.xsd">
+<components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Loki_Components:etc/loki_components.xsd">
     <component
         name="loki-checkout.payment.methods">
         <validator name="in3_dob_check"/>
@@ -7,31 +7,31 @@
 
     <component
         name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
-        context="Yireo\LokiCheckoutMollie\Component\MollieContext"
-        viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardViewModel"
-        repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\Creditcard\CreditcardRepository"
+        context="LokiCheckout\Mollie\Component\MollieContext"
+        viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\Creditcard\CreditcardViewModel"
+        repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\Creditcard\CreditcardRepository"
     />
 
     <component
         name="loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form"
-        context="Yireo\LokiCheckoutMollie\Component\MollieContext"
-        viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultViewModel"
-        repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultRepository"
+        context="LokiCheckout\Mollie\Component\MollieContext"
+        viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultViewModel"
+        repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultRepository"
     />
 
     <component
         name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
-        context="Yireo\LokiCheckoutMollie\Component\MollieContext"
-        viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel"
-        repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerRepository"
+        context="LokiCheckout\Mollie\Component\MollieContext"
+        viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel"
+        repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerRepository"
     >
         <target name="loki-checkout.sidebar.preview.payment_details"/>
     </component>
 
     <component
         name="loki-checkout.payment.payment-methods.mollie_methods_applepay.form"
-        context="Yireo\LokiCheckoutMollie\Component\MollieContext"
-        viewModel="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewModel"
-        repository="Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay\ApplePayRepository"
+        context="LokiCheckout\Mollie\Component\MollieContext"
+        viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewModel"
+        repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayRepository"
     />
 </components>

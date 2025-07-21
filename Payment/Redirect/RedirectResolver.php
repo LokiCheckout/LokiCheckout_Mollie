@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Payment\Redirect;
+namespace LokiCheckout\Mollie\Payment\Redirect;
 
 use Magento\Payment\Helper\Data;
 use Mollie\Payment\Model\Methods\CreditcardVault;
 use Mollie\Payment\Model\Mollie;
 use Mollie\Payment\Service\Mollie\Order\RedirectUrl as MollieRedirectUrl;
-use Yireo\LokiCheckout\Payment\Redirect\RedirectResolverInterface;
-use Yireo\LokiCheckout\Step\FinalStep\RedirectContext;
+use LokiCheckout\Core\Payment\Redirect\RedirectResolverInterface;
+use LokiCheckout\Core\Step\FinalStep\RedirectContext;
 
 class RedirectResolver implements RedirectResolverInterface
 {

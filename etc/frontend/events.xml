@@ -3,6 +3,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
 >
     <event name="view_block_abstract_to_html_after">
-        <observer name="Yireo_LokiCheckoutMollie::removeCheckoutConfig" instance="Yireo\LokiCheckoutMollie\Observer\RemoveCheckoutConfig"/>
+        <observer name="LokiCheckout_Mollie::removeCheckoutConfig" instance="LokiCheckout\Mollie\Observer\RemoveCheckoutConfig"/>
     </event>
 </config>

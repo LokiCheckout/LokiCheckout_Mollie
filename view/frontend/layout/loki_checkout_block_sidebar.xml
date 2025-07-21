@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
     <body>
         <referenceBlock name="loki-checkout.sidebar.preview.payment_details">
-            <block template="Yireo_LokiCheckoutMollie::checkout/sidebar/preview/payment_details/additional.phtml"/>
+            <block template="LokiCheckout_Mollie::checkout/sidebar/preview/payment_details/additional.phtml"/>
         </referenceBlock>
     </body>
 </page>

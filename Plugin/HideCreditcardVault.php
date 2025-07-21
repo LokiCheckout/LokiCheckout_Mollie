@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Plugin;
+namespace LokiCheckout\Mollie\Plugin;
 
 use Magento\Customer\Model\Session;
 use Magento\Quote\Api\PaymentMethodManagementInterface;
-use Yireo\LokiCheckout\Payment\Vault\PaymentTokenProvider;
+use LokiCheckout\Core\Payment\Vault\PaymentTokenProvider;
 
 class HideCreditcardVault
 {

@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Payment\Icon;
+namespace LokiCheckout\Mollie\Payment\Icon;
 
 use Magento\Framework\App\State;
 use Magento\Framework\Module\Manager as ModuleManager;
 use Mollie\Payment\Helper\General as GeneralHelper;
-use Yireo\LokiCheckout\Payment\Icon\IconResolverContext;
-use Yireo\LokiCheckout\Payment\Icon\IconResolverInterface;
+use LokiCheckout\Core\Payment\Icon\IconResolverContext;
+use LokiCheckout\Core\Payment\Icon\IconResolverInterface;
 
 class IconResolver implements IconResolverInterface
 {

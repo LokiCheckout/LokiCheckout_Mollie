@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Test\Integration\Stub;
+namespace LokiCheckout\Mollie\Test\Integration\Stub;
 
 use Magento\Quote\Api\PaymentMethodManagementInterface;
 use Mollie\Payment\Plugin\Quote\Api\PaymentMethodManagementPlugin;

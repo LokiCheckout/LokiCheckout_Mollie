@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Component\Checkout\Payment\Method\ApplePay;
+namespace LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay;
 
-use Yireo\LokiFieldComponents\Component\Base\Field\FieldRepository;
-use Yireo\LokiCheckoutMollie\Component\MollieContext;
+use Loki\Field\Component\Base\Field\FieldRepository;
+use LokiCheckout\Mollie\Component\MollieContext;
 
 /**
  * @method MollieContext getContext()

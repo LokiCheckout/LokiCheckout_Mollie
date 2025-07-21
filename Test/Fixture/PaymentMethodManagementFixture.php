@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Test\Fixture;
+namespace LokiCheckout\Mollie\Test\Fixture;
 
 use Magento\Framework\DataObject;
 use Magento\TestFramework\Fixture\DataFixtureInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use Mollie\Payment\Plugin\Quote\Api\PaymentMethodManagementPlugin;
-use Yireo\LokiCheckoutMollie\Test\Integration\Stub\PaymentMethodManagementPluginStub;
+use LokiCheckout\Mollie\Test\Integration\Stub\PaymentMethodManagementPluginStub;
 
 class PaymentMethodManagementFixture implements DataFixtureInterface
 {

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Validator\Component;
+namespace LokiCheckout\Mollie\Validator\Component;
 
-use Yireo\LokiCheckout\ViewModel\CheckoutState;
-use Yireo\LokiComponents\Component\ComponentInterface;
-use Yireo\LokiComponents\Validator\ValidatorInterface;
+use LokiCheckout\Core\ViewModel\CheckoutState;
+use Loki\Components\Component\ComponentInterface;
+use Loki\Components\Validator\ValidatorInterface;
 
 class In3DobValidator implements ValidatorInterface
 {

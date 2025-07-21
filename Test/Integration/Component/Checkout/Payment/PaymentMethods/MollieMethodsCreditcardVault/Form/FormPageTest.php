@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yireo\LokiCheckoutMollie\Test\Integration\Component\Checkout\Payment\PaymentMethods\MollieMethodsCreditcardVault\Form;
+namespace LokiCheckout\Mollie\Test\Integration\Component\Checkout\Payment\PaymentMethods\MollieMethodsCreditcardVault\Form;
 
 use PHPUnit\Framework\TestCase;
 
