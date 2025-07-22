@@ -42,7 +42,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstringofthirtychars', 'store', 'default'),
-        ConfigFixture('payment/mollie_methods_applepay/active', '0', 'store', 'default')
+        ConfigFixture('payment/mollie_methods_applepay/active', '0', 'store', 'default'),
     ]
     final public function testPaymentNotOnPage(): void
     {
@@ -58,7 +58,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstrongofthirtychars', 'store', 'default'),
         ConfigFixture('payment/mollie_methods_applepay/active', '1', 'store', 'default'),
-        ConfigFixture('payment/mollie_methods_creditcard/integration_type', 'direct', 'store', 'default')
+        ConfigFixture('payment/mollie_methods_creditcard/integration_type', 'direct', 'store', 'default'),
     ]
     final public function testPaymentOnPageButComponentNotOnPage(): void
     {
@@ -67,6 +67,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         $this->assertPaymentMethodOnPage(self::PAYMENT_METHOD);
 
         $this->markTestIncomplete('Applepay is currently not fully implemented yet');
+
         return;
         $this->assertComponentNotExistsOnPage(self::BLOCK_NAME, true);
     }
@@ -90,7 +91,8 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         DataFixture(PaymentMethodFixture::class, [
             'cart_id' => '$cart.id$',
             'payment_method' => 'mollie_methods_applepay',
-        ])
+        ]),
+        AppArea('frontend'),
     ]
     final public function testPaymentAndComponentOnPage(): void
     {
@@ -101,6 +103,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
         $this->assertSame('mollie_methods_applepay', $this->getQuote()->getPayment()->getMethod());
 
         $this->markTestIncomplete('Applepay is currently not fully implemented yet');
+
         return;
         $this->assertStringOccursOnPage('payment-'.self::PAYMENT_METHOD);
 
