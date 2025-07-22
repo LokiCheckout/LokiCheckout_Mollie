@@ -16,7 +16,6 @@
         "mollie/mollie-api-php": "^2.0",
         "loki-checkout/magento2-core": "^2.0",
         "loki/magento2-components": "^2.0",
-        "loki/magento2-field-components": "^2.0",
         "magento/framework": "^103.0",
         "magento/module-customer": "^103.0",
         "magento/module-payment": "^100.0",
