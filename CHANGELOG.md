@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 22 July 2025
+### Fixed
+- Rename PHP namespace from `Yireo_Loki*` to `Loki*`
+- Rename composer package from `yireo/magento2-loki*` to `loki/magento2*`
+- Bump loki/magento2-components to major 2.0
+- Bump loki/magento2-field-components to major 2.0
+- Bump `LokiCheckout_Core to 2.0.0`
+
 ## [1.0.2] - 08 July 2025
 ### Fixed
 - Add CSS util
