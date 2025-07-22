@@ -10,6 +10,7 @@
             <module name="Mollie_Payment"/>
             <module name="LokiCheckout_Core"/>
             <module name="Loki_Components"/>
+            <module name="Loki_FieldComponents"/>
             <module name="Yireo_IntegrationTestHelper"/>
         </sequence>
     </module>
