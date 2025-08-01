@@ -21,14 +21,14 @@ $fields = [
         <?php $fieldCode = $field[0]; ?>
         <?php $fieldLabel = $field[1]; ?>
         <?php $fieldClass = $field[2]; ?>
-        <div class="<?= $fieldClass ?>">
+        <div class="<?= $fieldClass ?><?= /* @noEscape */ $css('', 'field') ?>">
             <label class="<?= $css('inline-block mb-1.5', 'label') ?>">
                 <?= __($fieldLabel) ?>
             </label>
 
-            <div id="<?= $viewModel->getElementId() ?>-<?= $fieldCode ?>"></div>
-            <div class="loki-components-messages">
-                <div class="error" id="<?= $viewModel->getElementId() ?>-<?= $fieldCode ?>-error"></div>
+            <div id="<?= $viewModel->getElementId() ?>-<?= $fieldCode ?>" class="<?= /* @noEscape */ $css('', 'field-code') ?>"></div>
+            <div class="<?= /* @noEscape */ $css('', 'messages') ?>">
+                <div class="<?= /* @noEscape */ $css('error', 'message') ?>" id="<?= $viewModel->getElementId() ?>-<?= $fieldCode ?>-error"></div>
             </div>
         </div>
     <?php endforeach; ?>
