@@ -69,19 +69,19 @@
                     const mollie = this.getMollie();
 
                     if (!mollie) {
-                        console.log('<?= __('Mollie object unavailable') ?>');
+                        console.log('<?= $escaper->escapeHtml(__('Mollie object unavailable')) ?>');
                         return false;
                     }
 
                     const {token, error} = await mollie.createToken();
 
                     if (error) {
-                        console.log('<?= __('Mollie Error') ?>', error);
+                        console.log('<?= $escaper->escapeHtml(__('Mollie Error')) ?>', error);
                         return false;
                     }
 
                     if (!token) {
-                        console.log('<?= __('Empty Mollie token') ?>');
+                        console.log('<?= $escaper->escapeHtml(__('Empty Mollie token')) ?>');
                         return false;
                     }
 

@@ -13,19 +13,19 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewM
 
 // @todo: Move this to
 ?>
-<div class="<?= $css('') ?>">
+<div class="<?= /* @noEscape */ $css('') ?>">
     <script>
         LokiComponentValidator.validators.mollie_methods_applepay = async function (component) {
 
-            const amount = '<?= $viewModel->getAmount() ?>';
+            const amount = '<?= $escaper->escapeHtml($viewModel->getAmount()) ?>';
 
             let request = {
-                countryCode: "<?= $escaper->escapeJs($viewModel->getCountryId()); ?>",
-                currencyCode: "<?= $escaper->escapeJs($viewModel->getCurrencyCode()); ?>",
-                supportedNetworks: <?= json_encode($viewModel->getSupportedNetworks()); ?>,
+                countryCode: "<?= $escaper->escapeHtml($escaper->escapeJs($viewModel->getCountryId())); ?>",
+                currencyCode: "<?= $escaper->escapeHtml($escaper->escapeJs($viewModel->getCurrencyCode())); ?>",
+                supportedNetworks: <?= $escaper->escapeHtml(json_encode($viewModel->getSupportedNetworks())); ?>,
                 merchantCapabilities: ['supports3DS'],
                 total: {
-                    label: "<?= $escaper->escapeJs($viewModel->getStoreName()); ?>",
+                    label: "<?= $escaper->escapeHtml($escaper->escapeJs($viewModel->getStoreName())); ?>",
                     amount: amount
                 },
             }
@@ -58,7 +58,7 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewM
 
             applePaySession.onvalidatemerchant = (event) => {
                 window.fetch(
-                    '<?= $viewModel->getApplePayValidationUrl(); ?>',
+                    '<?= /* @noEscape */ $viewModel->getApplePayValidationUrl(); ?>',
                     {
                         method: 'POST',
                         mode: 'cors',
@@ -72,7 +72,7 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewM
                     .then(response => response.json())
                     .then(response => applePaySession.completeMerchantValidation(response))
                     .catch(error => {
-                        LokiCheckoutMessenger.error('<?= __('Something went wrong, please check the logs for more information.') ?>', component, error);
+                        LokiCheckoutMessenger.error('<?= $escaper->escapeHtml(__('Something went wrong, please check the logs for more information.')) ?>', component, error);
 
                         applePaySession.abort();
                         applePaySession = null;
