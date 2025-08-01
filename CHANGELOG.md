@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 01 August 2025
+### Fixed
+- Add escaping to templates
+
 ## [2.0.1] - 01 August 2025
 ### Fixed
 - Add missing `$css` wrapper
