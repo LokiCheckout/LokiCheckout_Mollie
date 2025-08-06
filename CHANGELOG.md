@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 06 August 2025
+### Fixed
+- Rewrite old destroy methods to new destroyMethods
+- Rewrite destroyActions to new destroyMethods
+- Lower PHP requirement to PHP 8.2+
+- Unmount Mollie components when needed
+
 ## [2.0.2] - 01 August 2025
 ### Fixed
 - Add escaping to templates
