@@ -92,16 +92,13 @@
 
                     this.post({token: token, render: 0});
                 },
-                destroyActions: {
-                    ...LokiCheckoutComponentType.destroyActions,
-                    unmountMollieComponents() {
-                        Object.keys(this.mollieComponents).forEach((domId, component) => {
-                            if (document.getElementById(domId)) {
-                                component.unmount();
-                            }
-                        })
-                        this.mollieComponents = {};
-                    }
+                destroyMollieComponents() {
+                    Object.keys(this.mollieComponents).forEach((domId, component) => {
+                        if (document.getElementById(domId)) {
+                            component.unmount();
+                        }
+                    })
+                    this.mollieComponents = {};
                 }
             })
         );
