@@ -36,7 +36,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_creditcard.form';
 
     #[
-        ConfigFixture('loki_checkout/general/theme', 'onestep'),
+        ConfigFixture('loki_checkout/general/theme', 'onestep', 'store', 'default'),
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstringofthirtychars', 'store', 'default'),
@@ -51,7 +51,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     }
 
     #[
-        ConfigFixture('loki_checkout/general/theme', 'onestep'),
+        ConfigFixture('loki_checkout/general/theme', 'onestep', 'store', 'default'),
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/apikey_test', 'test_thisisalongstrongofthirtychars', 'store', 'default'),
@@ -66,7 +66,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     }
 
     #[
-        ConfigFixture('loki_checkout/general/theme', 'onestep'),
+        ConfigFixture('loki_checkout/general/theme', 'onestep', 'store', 'default'),
         ConfigFixture('payment/mollie_general/enabled', '1', 'store', 'default'),
         ConfigFixture('payment/mollie_general/type', 'test', 'store', 'default'),
         ConfigFixture('payment/mollie_general/profileid', 'test', 'store', 'default'),
