@@ -14,7 +14,7 @@ class In3DobValidator implements ValidatorInterface
     ) {
     }
 
-    public function validate(mixed $value, ?ComponentInterface $component = null): true|array
+    public function validate(mixed $value, ?ComponentInterface $component = null): bool|array
     {
         if ($value !== 'mollie_methods_in3') {
             return true;
