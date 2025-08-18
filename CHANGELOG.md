@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 18 August 2025
+### Fixed
+- Allow for PHP 8.1 compatibility
+- Lower requirements to PHP 8.1
+- Fix integration tests with ConfigFixture scope
+
 ## [2.0.3] - 06 August 2025
 ### Fixed
 - Rewrite old destroy methods to new destroyMethods
