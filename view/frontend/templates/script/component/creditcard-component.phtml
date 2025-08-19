@@ -15,11 +15,6 @@
                         this.renderMollieComponents();
                     }, 500);
                 },
-                destroyMollieComponents() {
-                    this.mollieComponents.forEach(component => {
-                        component.unmount();
-                    });
-                },
                 createComponent(componentType, domId) {
                     if (this.mollieComponents[domId]) {
                         return;
