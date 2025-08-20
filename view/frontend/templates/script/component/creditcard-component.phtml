@@ -20,9 +20,13 @@ use Magento\Framework\Escaper;
                 mollieComponents: [],
                 mollieCompletedComponents: [],
                 initMollieComponents() {
-                    setTimeout(() => {
+                    var script = document.createElement('script');
+                    script.src = 'https://js.mollie.com/v1/mollie.js';
+                    script.onload = () => {
                         this.renderMollieComponents();
-                    }, 500);
+                    };
+
+                    document.head.append(script);
                 },
                 createComponent(componentType, domId) {
                     if (this.mollieComponents[domId]) {
