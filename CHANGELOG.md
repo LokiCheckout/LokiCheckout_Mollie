@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 21 August 2025
+### Fixed
+- Lazyload all Mollie Component JS code for better performance
+- Add dependency with `loki/magento2-css-utils`
+- Re-ordering blocks
+- Replace LokiComponentsUtilBlockCssClass with LokiCssUtilsUtilCssClass
+- Document latest version of template
+- Add missing `strict_types` declaration
+- Remove duplicate Alpine function
+
 ## [2.0.4] - 18 August 2025
 ### Fixed
 - Allow for PHP 8.1 compatibility
