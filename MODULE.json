@@ -8,6 +8,7 @@
         "Mollie_Payment",
         "LokiCheckout_Core",
         "Loki_Components",
+        "Loki_CssUtils",
         "Loki_FieldComponents",
         "Yireo_IntegrationTestHelper"
     ],
