@@ -35,7 +35,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
 
     public const PAYMENT_METHOD = 'mollie_methods_applepay';
 
-    const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_applepay.form';
+    const BLOCK_NAME = 'loki-checkout.payment.methods.mollie_methods_applepay.form';
 
     #[
         ConfigFixture('loki_checkout/general/theme', 'onestep', 'store', 'default'),

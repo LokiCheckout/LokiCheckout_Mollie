@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
     <body>
         <block
-            name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
+            name="loki-checkout.payment.methods.mollie_methods_creditcard.form"
             template="LokiCheckout_Mollie::checkout/payment/method/creditcard.phtml">
             <arguments>
                 <argument name="additional_css" xsi:type="string">p-4</argument>
@@ -10,7 +10,7 @@
         </block>
 
         <block
-            name="loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form"
+            name="loki-checkout.payment.methods.mollie_methods_creditcard_vault.form"
             template="LokiCheckout_Mollie::checkout/payment/method/creditcard_vault.phtml">
             <arguments>
                 <argument name="additional_css" xsi:type="string">p-4</argument>

@@ -6,21 +6,21 @@
     </component>
 
     <component
-        name="loki-checkout.payment.payment-methods.mollie_methods_creditcard.form"
+        name="loki-checkout.payment.methods.mollie_methods_creditcard.form"
         context="LokiCheckout\Mollie\Component\MollieContext"
         viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\Creditcard\CreditcardViewModel"
         repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\Creditcard\CreditcardRepository"
     />
 
     <component
-        name="loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form"
+        name="loki-checkout.payment.methods.mollie_methods_creditcard_vault.form"
         context="LokiCheckout\Mollie\Component\MollieContext"
         viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultViewModel"
         repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultRepository"
     />
 
     <component
-        name="loki-checkout.payment.payment-methods.mollie_methods_ideal.form"
+        name="loki-checkout.payment.methods.mollie_methods_ideal.form"
         context="LokiCheckout\Mollie\Component\MollieContext"
         viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerViewModel"
         repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\WithIssuer\WithIssuerRepository"
@@ -29,7 +29,7 @@
     </component>
 
     <component
-        name="loki-checkout.payment.payment-methods.mollie_methods_applepay.form"
+        name="loki-checkout.payment.methods.mollie_methods_applepay.form"
         context="LokiCheckout\Mollie\Component\MollieContext"
         viewModel="LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewModel"
         repository="LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayRepository"

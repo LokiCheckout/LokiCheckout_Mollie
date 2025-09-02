@@ -14,10 +14,10 @@
     ],
     "components": [
         "loki-checkout.payment.methods",
-        "loki-checkout.payment.payment-methods.mollie_methods_creditcard.form",
-        "loki-checkout.payment.payment-methods.mollie_methods_creditcard_vault.form",
-        "loki-checkout.payment.payment-methods.mollie_methods_ideal.form",
-        "loki-checkout.payment.payment-methods.mollie_methods_applepay.form"
+        "loki-checkout.payment.methods.mollie_methods_creditcard.form",
+        "loki-checkout.payment.methods.mollie_methods_creditcard_vault.form",
+        "loki-checkout.payment.methods.mollie_methods_ideal.form",
+        "loki-checkout.payment.methods.mollie_methods_applepay.form"
     ],
     "config": [],
     "tests": {

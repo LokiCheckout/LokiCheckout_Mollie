@@ -33,7 +33,7 @@ final class FormPageTest extends LokiCheckoutPageTestCase
     protected ?bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_creditcard';
-    const BLOCK_NAME = 'loki-checkout.payment.payment-methods.mollie_methods_creditcard.form';
+    const BLOCK_NAME = 'loki-checkout.payment.methods.mollie_methods_creditcard.form';
 
     #[
         ConfigFixture('loki_checkout/general/theme', 'onestep', 'store', 'default'),
