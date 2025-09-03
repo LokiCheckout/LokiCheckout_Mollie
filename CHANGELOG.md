@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.8] - 03 September 2025
+### Fixed
+- Copy generic CI/CD files
+
 ## [2.0.7] - 02 September 2025
 ### Fixed
 - Change loki-checkout.payment.payment-methods to loki-checkout.payment.methods
