@@ -1,23 +1,53 @@
 {
-    "modules": [
-        "Magento_Customer",
-        "Magento_Payment",
-        "Magento_Store",
-        "Magento_Quote",
-        "Magento_Vault",
-        "Mollie_Payment",
+    "sequence": [
         "LokiCheckout_Core",
         "Loki_Components",
         "Loki_CssUtils",
         "Loki_FieldComponents",
-        "Yireo_IntegrationTestHelper"
+        "Magento_Customer",
+        "Magento_Payment",
+        "Magento_Quote",
+        "Magento_Store",
+        "Magento_Vault",
+        "Mollie_Payment"
+    ],
+    "modules": [
+        "LokiCheckout_Core",
+        "Loki_Components",
+        "Loki_CssUtils",
+        "Loki_FieldComponents",
+        "Loki_MapComponents",
+        "Magento_Backend",
+        "Magento_Catalog",
+        "Magento_Checkout",
+        "Magento_CheckoutAgreements",
+        "Magento_Config",
+        "Magento_Customer",
+        "Magento_Directory",
+        "Magento_Eav",
+        "Magento_MediaStorage",
+        "Magento_MessageQueue",
+        "Magento_Newsletter",
+        "Magento_Payment",
+        "Magento_Quote",
+        "Magento_Sales",
+        "Magento_SalesRule",
+        "Magento_Shipping",
+        "Magento_Store",
+        "Magento_Tax",
+        "Magento_Theme",
+        "Magento_Ui",
+        "Magento_Vault",
+        "Mollie_Payment",
+        "Yireo_CspUtilities",
+        "Yireo_HyvaThemeAutoRegistration"
     ],
     "components": [
         "loki-checkout.payment.methods",
+        "loki-checkout.payment.methods.mollie_methods_applepay.form",
         "loki-checkout.payment.methods.mollie_methods_creditcard.form",
         "loki-checkout.payment.methods.mollie_methods_creditcard_vault.form",
-        "loki-checkout.payment.methods.mollie_methods_ideal.form",
-        "loki-checkout.payment.methods.mollie_methods_applepay.form"
+        "loki-checkout.payment.methods.mollie_methods_ideal.form"
     ],
     "config": [],
     "tests": {
