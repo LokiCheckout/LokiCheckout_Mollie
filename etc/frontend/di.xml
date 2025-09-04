@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
     <type name="LokiCheckout\Core\Component\Checkout\Billing\PaymentMethods\PaymentMethodsRepository">
         <plugin name="LokiCheckout_Mollie::overrideDefaultPayment"
                 type="LokiCheckout\Mollie\Plugin\OverrideDefaultPaymentPlugin"/>
@@ -13,11 +14,23 @@
         </arguments>
     </type>
 
+    <type name="LokiCheckout\Mollie\Payment\Icon\IconResolver">
+        <arguments>
+            <argument name="mollieGeneralHelper" xsi:type="object">Mollie\Payment\Helper\General\Proxy</argument>
+        </arguments>
+    </type>
+
     <type name="LokiCheckout\Core\Payment\Redirect\RedirectResolverListing">
         <arguments>
             <argument name="redirectResolvers" xsi:type="array">
                 <item name="mollie" xsi:type="object">LokiCheckout\Mollie\Payment\Redirect\RedirectResolver</item>
             </argument>
+        </arguments>
+    </type>
+
+    <type name="LokiCheckout\Mollie\Payment\Redirect\RedirectResolver">
+        <arguments>
+            <argument name="redirectUrl" xsi:type="object">Mollie\Payment\Service\Mollie\Order\RedirectUrl\Proxy</argument>
         </arguments>
     </type>
 

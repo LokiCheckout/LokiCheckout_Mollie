@@ -9,7 +9,7 @@
     </type>
 
     <type name="Magento\Quote\Api\PaymentMethodManagementInterface">
-        <plugin name="loki_checkout_mollie_hide_creditcard_vault" type="LokiCheckout\Mollie\Plugin\HideCreditcardVault" />
+        <plugin name="LokiCheckout_Mollie::hideCreditcardVault" type="LokiCheckout\Mollie\Plugin\HideCreditcardVault"/>
     </type>
 
     <type name="Loki\Components\Validator\ValidatorRegistry">
