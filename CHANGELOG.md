@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.9] - 04 September 2025
+### Fixed
+- Add both sequence and real (recursive) module list
+- Remove Yireo IntegrationTestHelper
+
 ## [2.0.8] - 03 September 2025
 ### Fixed
 - Copy generic CI/CD files
