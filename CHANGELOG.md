@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.10] - 16 September 2025
+### Fixed
+- Prevent throwing error when Mollie module is disabled
+
 ## [2.0.9] - 04 September 2025
 ### Fixed
 - Add both sequence and real (recursive) module list
