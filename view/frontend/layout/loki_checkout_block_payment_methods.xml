@@ -17,7 +17,7 @@
             </arguments>
         </block>
 
-        <referenceContainer name="loki-components">
+        <referenceContainer name="loki.script.component">
             <block name="loki-checkout-mollie.script.components.creditcard"  ifconfig="payment/mollie_methods_creditcard/use_components" template="LokiCheckout_Mollie::script/component/creditcard-component.phtml" />
         </referenceContainer>
     </body>
