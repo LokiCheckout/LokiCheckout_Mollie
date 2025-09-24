@@ -6,7 +6,7 @@ use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 use LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\CreditcardVaultViewModel;
 
-/** @version 2.0.10 */
+/** @version 2.0.11 */
 /** @var CssClass $css */
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -21,12 +21,12 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\Credit
                            name="mollie_vault_public_hash"
                            :checked="isChecked"
                            @change="submitValue"
-                           value="<?= /* @noEscape */ $escaper->escapeHtmlAttr($paymentToken->getPublicHash()); ?>"
+                           value="<?= $escaper->escapeHtmlAttr($paymentToken->getPublicHash()); ?>"
                     />
                     <img class="<?= /* @noEscape */ $css('inline-block', '@todo') ?>"
                          loading="lazy"
                          alt="<?= $escaper->escapeHtml($paymentToken->getType()) ?>"
-                         src="<?= /* @noEscape */ $escaper->escapeUrl($block->getViewFileUrl('Mollie_Payment::images/creditcard-issuers/' . $paymentToken->getType() . '.svg')) ?>" />
+                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mollie_Payment::images/creditcard-issuers/' . $paymentToken->getType() . '.svg')) ?>" />
                     <?= $escaper->escapeHtml(__('ending %1', $paymentToken->getHint())); ?>
                 </label>
             </li>
