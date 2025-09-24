@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.11] - 24 September 2025
+### Fixed
+- Change containers into blocks to allow for caching
+- Rename loki-components container to loki.components
+
 ## [2.0.10] - 16 September 2025
 ### Fixed
 - Prevent throwing error when Mollie module is disabled
