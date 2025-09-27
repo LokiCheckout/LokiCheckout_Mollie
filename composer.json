@@ -2,7 +2,9 @@
     "name": "loki-checkout/magento2-mollie",
     "version": "2.0.11",
     "description": "Mollie compatibility for Loki Checkout",
-    "keywords": ["loki-payment"],
+    "keywords": [
+        "loki-payment"
+    ],
     "homepage": "https://loki-checkout.com/",
     "authors": [
         {
@@ -12,8 +14,7 @@
     ],
     "type": "magento2-module",
     "require": {
-        "mollie/magento2": "^2.0",
-        "mollie/mollie-api-php": "^2.0",
+        "ext-pcre": "*",
         "loki-checkout/magento2-core": "^2.0",
         "loki/magento2-components": "^2.0",
         "loki/magento2-css-utils": "^1.0",
@@ -24,7 +25,8 @@
         "magento/module-quote": "^101.0",
         "magento/module-store": "^101.0",
         "magento/module-vault": "^101.0",
-        "ext-pcre": "*"
+        "mollie/magento2": "^2.0",
+        "mollie/mollie-api-php": "^2.0"
     },
     "require-dev": {
         "yireo/magento2-integration-test-helper": "~0.0"
