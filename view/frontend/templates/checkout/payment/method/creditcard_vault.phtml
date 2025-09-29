@@ -23,7 +23,7 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\CreditcardVault\Credit
                            @change="submitValue"
                            value="<?= $escaper->escapeHtmlAttr($paymentToken->getPublicHash()); ?>"
                     />
-                    <img class="<?= /* @noEscape */ $css('inline-block', '@todo') ?>"
+                    <img class="<?= $escaper->escapeHtmlAttr($css('inline-block', '@todo')) ?>"
                          loading="lazy"
                          alt="<?= $escaper->escapeHtml($paymentToken->getType()) ?>"
                          src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mollie_Payment::images/creditcard-issuers/' . $paymentToken->getType() . '.svg')) ?>" />

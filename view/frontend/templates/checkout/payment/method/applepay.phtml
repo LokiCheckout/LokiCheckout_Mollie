@@ -14,7 +14,7 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewM
 
 // @todo: Move this to
 ?>
-<div class="<?= /* @noEscape */ $css('') ?>">
+<div class="<?= $escaper->escapeHtmlAttr($css('')) ?>">
     <script>
         LokiComponentValidator.validators.mollie_methods_applepay = async function (component) {
 
@@ -59,7 +59,7 @@ use LokiCheckout\Mollie\Component\Checkout\Payment\Method\ApplePay\ApplePayViewM
 
             applePaySession.onvalidatemerchant = (event) => {
                 window.fetch(
-                    '<?= /* @noEscape */ $viewModel->getApplePayValidationUrl(); ?>',
+                    '<?= $escaper->escapeUrl($viewModel->getApplePayValidationUrl()); ?>',
                     {
                         method: 'POST',
                         mode: 'cors',
