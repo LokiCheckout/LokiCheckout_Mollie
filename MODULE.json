@@ -51,9 +51,5 @@
         "loki-checkout.payment.methods.mollie_methods_ideal.form"
     ],
     "config": [],
-    "tests": {
-        "unit": 0,
-        "integration": 10,
-        "functional": 34
-    }
+    "tests": []
 }
