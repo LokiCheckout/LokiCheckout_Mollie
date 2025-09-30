@@ -36,8 +36,6 @@ class IconResolver implements IconResolverInterface
             return false;
         }
 
-        //Mollie_Payment/images/creditcard-issuers/mastercard.svg
-
         $iconFilePath = $iconResolverContext->getIconPath(
             'Mollie_Payment',
             'view/frontend/web/images/methods/'.$match[1].'.svg'
