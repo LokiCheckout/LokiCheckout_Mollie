@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.13] - 30 September 2025
+### Fixed
+- Remove culprit line causing methods to cause error and disappear
+
 ## [2.0.12] - 29 September 2025
 ### Fixed
 - Sort entries of module.xml file
