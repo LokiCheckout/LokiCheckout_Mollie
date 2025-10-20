@@ -19,19 +19,19 @@ $fields = [
     ['verification-code', 'Verification Code', ''],
 ];
 ?>
-<div class="<?= $escaper->escapeHtmlAttr($css('grid grid-cols-2 gap-4')) ?>">
+<div class="<?= $escaper->escapeHtml($css('grid grid-cols-2 gap-4')) ?>">
     <?php foreach ($fields as $field): ?>
         <?php $fieldCode = $field[0]; ?>
         <?php $fieldLabel = $field[1]; ?>
         <?php $fieldClass = $field[2]; ?>
-        <div class="<?= $escaper->escapeHtml($fieldClass) ?><?= $escaper->escapeHtmlAttr($css('', 'field')) ?>">
-            <label class="<?= $escaper->escapeHtmlAttr($css('inline-block mb-1.5', 'label')) ?>">
+        <div class="<?= $escaper->escapeHtml($fieldClass) ?><?= $escaper->escapeHtml($css('', 'field')) ?>">
+            <label class="<?= $escaper->escapeHtml($css('inline-block mb-1.5', 'label')) ?>">
                 <?= $escaper->escapeHtml(__($fieldLabel)) ?>
             </label>
 
-            <div id="<?= $escaper->escapeHtml($viewModel->getElementId()) ?>-<?= $escaper->escapeHtml($fieldCode) ?>" class="<?= $escaper->escapeHtmlAttr($css('', 'field-code')) ?>"></div>
-            <div class="<?= $escaper->escapeHtmlAttr($css('', 'messages')) ?>">
-                <div class="<?= $escaper->escapeHtmlAttr($css('error', 'message')) ?>" id="<?= $escaper->escapeHtml($viewModel->getElementId()) ?>-<?= $escaper->escapeHtml($fieldCode) ?>-error"></div>
+            <div id="<?= $escaper->escapeHtml($viewModel->getElementId()) ?>-<?= $escaper->escapeHtml($fieldCode) ?>" class="<?= $escaper->escapeHtml($css('', 'field-code')) ?>"></div>
+            <div class="<?= $escaper->escapeHtml($css('', 'messages')) ?>">
+                <div class="<?= $escaper->escapeHtml($css('error', 'message')) ?>" id="<?= $escaper->escapeHtml($viewModel->getElementId()) ?>-<?= $escaper->escapeHtml($fieldCode) ?>-error"></div>
             </div>
         </div>
     <?php endforeach; ?>
