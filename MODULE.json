@@ -40,8 +40,7 @@
         "Magento_Ui",
         "Magento_Vault",
         "Mollie_Payment",
-        "Yireo_CspUtilities",
-        "Yireo_HyvaThemeAutoRegistration"
+        "Yireo_CspUtilities"
     ],
     "components": [
         "loki-checkout.payment.methods",
@@ -51,5 +50,9 @@
         "loki-checkout.payment.methods.mollie_methods_ideal.form"
     ],
     "config": [],
-    "tests": []
+    "tests": {
+        "unit": 0,
+        "integration": 10,
+        "functional": 34
+    }
 }
