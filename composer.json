@@ -3,9 +3,8 @@
     "version": "2.0.14",
     "description": "Mollie compatibility for Loki Checkout",
     "keywords": [
-        "loki-checkout-payment",
         "loki-checkout",
-        "loki-checkout-core"
+        "loki-checkout-category-payment"
     ],
     "homepage": "https://loki-checkout.com/",
     "authors": [
