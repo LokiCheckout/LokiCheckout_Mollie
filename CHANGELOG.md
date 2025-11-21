@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.15] - 21 November 2025
+### Fixed
+- Remove deprecated LokiCheckoutPageTestCase in integration tests
+- Update composer keywords
+- Update composer keywords
+- Update composer keywords
+
 ## [2.0.14] - 22 October 2025
 ### Fixed
 - Do not escape `$css()` with `escapeHtmlAttr()` but `escapeHtml()`
