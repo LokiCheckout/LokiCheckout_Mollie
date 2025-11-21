@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\GetObjectManager;
 use LokiCheckout\Core\Test\Fixture\PaymentMethodFixture;
 use LokiCheckout\Core\Test\Fixture\ShippingAddressFixture;
-use LokiCheckout\Core\Test\Integration\LokiCheckoutPageTestCase;
+use LokiCheckout\Core\Test\Integration\LokiCheckoutTestCase;
 use LokiCheckout\Core\Test\Integration\Trait\AssertPaymentMethodOnPage;
 use LokiCheckout\Mollie\Test\Integration\Trait\AddPayentMethodManagementPluginStub;
 
@@ -25,13 +25,11 @@ use LokiCheckout\Mollie\Test\Integration\Trait\AddPayentMethodManagementPluginSt
     DataFixture(ShippingAddressFixture::class, ['cart_id' => '$cart.id$']),
     AppArea('frontend')
 ]
-final class FormPageTest extends LokiCheckoutPageTestCase
+final class FormPageTest extends LokiCheckoutTestCase
 {
     use GetObjectManager;
     use AddPayentMethodManagementPluginStub;
     use AssertPaymentMethodOnPage;
-
-    protected ?bool $skipDispatchToCheckout = true;
 
     public const PAYMENT_METHOD = 'mollie_methods_applepay';
 
