@@ -79,7 +79,5 @@ class CreditcardViewModel extends CheckoutViewModel
         $quote = $this->getContext()->getCheckoutState()->getQuote();
         $quote->getPayment()->setAdditionalInformation('card_token', $value);
         $quote->getPayment()->setAdditionalInformation('is_active_payment_token_enabler', true);
-
-        $this->getContext()->getCheckoutState()->saveQuote($quote);
     }
 }
