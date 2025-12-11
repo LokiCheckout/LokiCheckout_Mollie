@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.16] - 11 December 2025
+### Fixed
+- iRemove redundant quote save
+
 ## [2.0.15] - 21 November 2025
 ### Fixed
 - Remove deprecated LokiCheckoutPageTestCase in integration tests
