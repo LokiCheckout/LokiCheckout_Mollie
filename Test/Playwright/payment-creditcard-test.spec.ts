@@ -37,8 +37,6 @@ test.describe('creditcard payment with components test', () => {
             }
         });
 
-
-
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_creditcard');
         await paymentMethod.select();
 
