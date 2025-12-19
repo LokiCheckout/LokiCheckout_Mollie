@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.18] - 19 December 2025
+### Fixed
+- Formatting
+- Remove unwanted require config
+
 ## [2.0.17] - 17 December 2025
 ### Fixed
 - Add tsconfig.json that extends LokiCheckout_FunctionalTests
