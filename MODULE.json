@@ -1,4 +1,5 @@
 {
+    "integration": true,
     "sequence": [
         "LokiCheckout_Core",
         "Loki_Components",
