@@ -22,6 +22,16 @@ use Magento\Framework\Escaper;
                 mollieComponents: [],
                 mollieCompletedComponents: [],
                 initMollieComponents() {
+                    if (typeof define == 'function') {
+                        require(['https://js.mollie.com/v1/mollie.js'], function(Mollie) {
+                            window.Mollie = Mollie;
+
+                            this.renderMollieComponents();
+                        }.bind(this));
+
+                        return;
+                    }
+
                     var script = document.createElement('script');
                     script.src = 'https://js.mollie.com/v1/mollie.js';
                     script.onload = () => {
