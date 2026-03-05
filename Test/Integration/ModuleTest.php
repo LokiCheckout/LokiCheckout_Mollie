@@ -21,6 +21,7 @@ class ModuleTest extends TestCase
             'Loki_Components',
             'Mollie_Payment',
         ];
+
         foreach ($requiredModules as $moduleName) {
             $this->assertModuleIsRegistered($moduleName);
             $this->assertModuleIsEnabled($moduleName);

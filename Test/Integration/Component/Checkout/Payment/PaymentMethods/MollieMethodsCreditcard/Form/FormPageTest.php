@@ -17,13 +17,11 @@ use LokiCheckout\Core\Test\Integration\LokiCheckoutTestCase;
 use LokiCheckout\Core\Test\Integration\Trait\AssertPaymentMethodOnPage;
 use LokiCheckout\Mollie\Test\Integration\Trait\AddPayentMethodManagementPluginStub;
 
-#[
-    DataFixture(ProductFixture::class, ['sku' => 'simple-product-001'], as: 'product'),
-    DataFixture(GuestCartFixture::class, as: 'cart'),
-    DataFixture(AddProductToCartFixture::class, ['cart_id' => '$cart.id$', 'product_id' => '$product.id$']),
-    DataFixture(ShippingAddressFixture::class, ['cart_id' => '$cart.id$']),
-    AppArea('frontend')
-]
+#[DataFixture(ProductFixture::class, ['sku' => 'simple-product-001'], as: 'product')]
+#[DataFixture(GuestCartFixture::class, as: 'cart')]
+#[DataFixture(AddProductToCartFixture::class, ['cart_id' => '$cart.id$', 'product_id' => '$product.id$'])]
+#[DataFixture(ShippingAddressFixture::class, ['cart_id' => '$cart.id$'])]
+#[AppArea('frontend')]
 final class FormPageTest extends LokiCheckoutTestCase
 {
     use GetObjectManager;
@@ -32,6 +30,7 @@ final class FormPageTest extends LokiCheckoutTestCase
 
     public const PAYMENT_METHOD = 'mollie_methods_creditcard';
     const BLOCK_NAME = 'loki-checkout.payment.methods.mollie_methods_creditcard.form';
+    const ELEMENT_ID = 'loki-checkout-payment-methods-item-mollie-methods-creditcard-form';
 
     #[
         ConfigFixture('loki_checkout/general/theme', 'onestep', 'store', 'default'),
@@ -93,7 +92,7 @@ final class FormPageTest extends LokiCheckoutTestCase
         $this->assertSame('mollie_methods_creditcard', $this->getQuote()->getPayment()->getMethod());
 
         $this->assertPaymentMethodOnPage(self::PAYMENT_METHOD);
-        $this->assertComponentExistsOnPage(self::BLOCK_NAME, true);
+        $this->assertElementIdExistsOnPage(self::ELEMENT_ID, true);
 
         $body = $this->getResponse()->getBody();
         $this->assertStringContainsString('window.mollieCardComponent', $body);
