@@ -55,5 +55,17 @@
         "unit": 0,
         "integration": 10,
         "functional": 34
-    }
+    },
+    "module_name": "LokiCheckout_Mollie",
+    "composer_name": "loki-checkout/magento2-mollie",
+    "php_versions": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+    ],
+    "skip_magento_versions": [],
+    "skip_css_utils": false,
+    "phpcs_severity": 10,
+    "phpstan_level": 1
 }
