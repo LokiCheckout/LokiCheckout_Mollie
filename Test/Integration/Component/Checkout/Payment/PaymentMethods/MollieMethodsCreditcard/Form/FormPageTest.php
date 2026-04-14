@@ -44,7 +44,7 @@ final class FormPageTest extends LokiCheckoutTestCase
         $this->addMollieStubs();
         $this->dispatchToCheckout();
         $this->assertPaymentMethodNotOnPage(self::PAYMENT_METHOD);
-        $this->assertComponentNotExistsOnPage(self::BLOCK_NAME, true);
+        $this->assertComponentNotExistsOnPage(self::BLOCK_NAME);
     }
 
     #[
@@ -59,7 +59,7 @@ final class FormPageTest extends LokiCheckoutTestCase
         $this->addMollieStubs();
         $this->dispatchToCheckout();
         $this->assertPaymentMethodOnPage(self::PAYMENT_METHOD);
-        $this->assertComponentNotExistsOnPage(self::BLOCK_NAME, true);
+        $this->assertComponentNotExistsOnPage(self::BLOCK_NAME);
     }
 
     #[
@@ -92,7 +92,7 @@ final class FormPageTest extends LokiCheckoutTestCase
         $this->assertSame('mollie_methods_creditcard', $this->getQuote()->getPayment()->getMethod());
 
         $this->assertPaymentMethodOnPage(self::PAYMENT_METHOD);
-        $this->assertElementIdExistsOnPage(self::ELEMENT_ID, true);
+        $this->assertElementIdExistsOnPage(self::ELEMENT_ID);
 
         $body = $this->getResponse()->getBody();
         $this->assertStringContainsString('window.mollieCardComponent', $body);
