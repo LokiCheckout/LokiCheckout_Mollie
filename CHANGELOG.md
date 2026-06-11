@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.19] - 11 June 2026
+### Fixed
+- Add missing space between classnames
+- Make components work in a luma based checkout
+
 ## [2.0.18] - 19 December 2025
 ### Fixed
 - Formatting
