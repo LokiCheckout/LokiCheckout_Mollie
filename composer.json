@@ -41,5 +41,17 @@
         "psr-4": {
             "LokiCheckout\\Mollie\\": ""
         }
+    },
+    "extra": {
+        "loki": {
+            "countries": [
+                "DE",
+                "DK",
+                "FR",
+                "NL",
+                "PL",
+                "UK"
+            ]
+        }
     }
 }
