@@ -45,11 +45,20 @@
     "extra": {
         "loki": {
             "countries": [
+                "AT",
+                "BE",
+                "CH",
                 "DE",
                 "DK",
+                "FI",
                 "FR",
+                "IE",
+                "IT",
                 "NL",
+                "NO",
                 "PL",
+                "SE",
+                "SP",
                 "UK"
             ]
         }
