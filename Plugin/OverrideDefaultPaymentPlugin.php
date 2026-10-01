@@ -15,7 +15,7 @@ class OverrideDefaultPaymentPlugin
     public function afterGetDefaultPayment(PaymentMethodsRepository $subject, string $result): string
     {
         $defaultMethod = $this->scopeConfig->getValue('payment/mollie_general/default_selected_method');
-        $defaultMethod = trim((string)$defaultMethod);
+        $defaultMethod = trim((string)$defaultMethod, " \f\n\r\t\v\x00");
         if (empty($defaultMethod)) {
             return $result;
         }
