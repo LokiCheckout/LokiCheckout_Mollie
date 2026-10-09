@@ -210,7 +210,11 @@ jobs:
             set -e
             cd /tmp/magento
             composer config repositories.local-source path /tmp/magento/package-source
-            composer require -n --prefer-source -- "${COMPOSER_NAME}:@dev" loki/magento2-functional-tests:dev-main yireo/magento2-enable-module-sequence:@dev
+            EXTRA_PACKAGES=""
+            case "${COMPOSER_NAME}" in
+              loki-checkout/*) EXTRA_PACKAGES="loki-checkout/magento2-functional-tests:@dev" ;;
+            esac
+            composer require -n --prefer-source -- "${COMPOSER_NAME}:@dev" loki/magento2-functional-tests:dev-main ${EXTRA_PACKAGES} yireo/magento2-enable-module-sequence:@dev
           '
 
       - name: Setup Magento
@@ -229,7 +233,11 @@ jobs:
             cd /tmp/magento
             GITHUB_WORKSPACE=/tmp/magento/package-source /tmp/magento/package-source/.github/workflows/magento-install.sh
             bin/magento module:enable Yireo_EnableModuleSequence
-            bin/magento module:sequence Loki_FunctionalTests ${MAGENTO_MODULE}
+            EXTRA_MODULES=""
+            case "${COMPOSER_NAME}" in
+              loki-checkout/*) EXTRA_MODULES="LokiCheckout_FunctionalTests" ;;
+            esac
+            bin/magento module:sequence Loki_FunctionalTests ${EXTRA_MODULES} ${MAGENTO_MODULE}
             bin/magento setup:upgrade
             bin/magento config:set dev/static/sign 0
             bin/magento setup:static-content:deploy -f --area frontend en_US
