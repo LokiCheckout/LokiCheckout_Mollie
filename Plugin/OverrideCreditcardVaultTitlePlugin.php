@@ -2,9 +2,11 @@
 
 namespace LokiCheckout\Mollie\Plugin;
 
+use Magento\Payment\Model\MethodInterface;
+
 class OverrideCreditcardVaultTitlePlugin
 {
-    public function afterGetTitle(\Mollie\Payment\Model\Methods\CreditcardVault $subject, string $title): string
+    public function afterGetTitle(MethodInterface $subject, string $title): string
     {
         return (string)__('Saved Credit Card');
     }

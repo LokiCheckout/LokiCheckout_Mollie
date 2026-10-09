@@ -3,7 +3,6 @@
 namespace LokiCheckout\Mollie\Payment\Redirect;
 
 use Magento\Payment\Helper\Data;
-use Mollie\Payment\Model\Methods\CreditcardVault;
 use Mollie\Payment\Model\Mollie;
 use Mollie\Payment\Service\Mollie\Order\RedirectUrl as MollieRedirectUrl;
 use LokiCheckout\Core\Payment\Redirect\RedirectResolverInterface;
@@ -24,7 +23,7 @@ class RedirectResolver implements RedirectResolverInterface
             return false;
         }
 
-        if ($paymentMethod instanceof CreditcardVault) {
+        if ($paymentMethod->getCode() === 'mollie_methods_creditcard_vault') {
             $paymentMethod = $this->paymentHelper->getMethodInstance('mollie_methods_creditcard');
         }
 
