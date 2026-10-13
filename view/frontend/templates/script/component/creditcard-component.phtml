@@ -58,8 +58,8 @@ use Magento\Framework\Escaper;
                     this.post({save_card: this.saveCard ? 1 : 0, render: 0});
                 },
                 initMollieComponents() {
-                    if (typeof define == 'function') {
-                        define(['https://js.mollie.com/v1/mollie.js'], function(Mollie) {
+                    if (typeof require == 'function' && typeof define == 'function' && define.amd) {
+                        require(['https://js.mollie.com/v1/mollie.js'], function(Mollie) {
                             window.Mollie = Mollie;
 
                             this.renderMollieComponents();

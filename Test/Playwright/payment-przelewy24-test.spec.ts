@@ -14,6 +14,8 @@ test.describe('przelewy24 payment test', () => {
                 ...mollieConfig.config,
                 'payment/mollie_methods_przelewy24/active': 1,
                 'currency/options/base': 'PLN',
+                'currency/options/default': 'PLN',
+                'currency/options/allow': 'PLN',
             }
         });
 

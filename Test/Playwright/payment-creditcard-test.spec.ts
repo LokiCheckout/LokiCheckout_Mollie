@@ -3,7 +3,7 @@ import {setupCheckout} from '@loki/setup-checkout';
 import {test, expect} from '@loki/test';
 
 import {MolliePortal} from './helpers/mollie-objects';
-import mollieConfig from './config/config';
+import mollieConfig, {testCard} from './config/config';
 
 test.describe('creditcard payment without components test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
@@ -41,12 +41,12 @@ test.describe('creditcard payment with components test', () => {
         const paymentMethod = new PaymentMethod(page, 'mollie_methods_creditcard');
         await paymentMethod.select();
 
-        const idPrefix = '#loki-checkout-payment-payment-methods-mollie-methods-creditcard-form-';
+        const idPrefix = '#loki-checkout-payment-methods-item-mollie-methods-creditcard-form-';
 
-        await page.locator(idPrefix + 'card-holder iframe').contentFrame().locator('id=cardHolder').fill('J. B. Reitsma');
-        await page.locator(idPrefix + 'card-number iframe').contentFrame().locator('id=cardNumber').fill('378282246310005');
-        await page.locator(idPrefix + 'expiry-date iframe').contentFrame().locator('id=expiryDate').fill('03/30');
-        await page.locator(idPrefix + 'verification-code iframe').contentFrame().locator('id=verificationCode').fill('1111');
+        await page.locator(idPrefix + 'card-holder iframe').contentFrame().locator('id=cardHolder').fill(testCard.holder);
+        await page.locator(idPrefix + 'card-number iframe').contentFrame().locator('id=cardNumber').fill(testCard.number);
+        await page.locator(idPrefix + 'expiry-date iframe').contentFrame().locator('id=expiryDate').fill(testCard.expiry);
+        await page.locator(idPrefix + 'verification-code iframe').contentFrame().locator('id=verificationCode').fill(testCard.cvc);
 
         await page.waitForTimeout(1000); // Give it a second
 
