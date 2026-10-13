@@ -18,23 +18,93 @@ $fields = [
     ['expiry-date', 'Expiry Date', ''],
     ['verification-code', 'Verification Code', ''],
 ];
+$savedCardsEnabled = $viewModel->isSavedCardsEnabled();
+$mandates = $savedCardsEnabled ? $viewModel->getMandates() : [];
+$consentText = $savedCardsEnabled ? $viewModel->getConsentText() : '';
+$elementId = $viewModel->getElementId();
 ?>
-<div class="<?= $escaper->escapeHtml($css('grid grid-cols-2 gap-4')) ?>">
-    <?php foreach ($fields as $field): ?>
-        <?php $fieldCode = $field[0]; ?>
-        <?php $fieldLabel = $field[1]; ?>
-        <?php $fieldClass = $field[2]; ?>
-        <label class="<?= $escaper->escapeHtml($fieldClass) ?> <?= $escaper->escapeHtml($css('', 'field')) ?>">
-            <span class="<?= $escaper->escapeHtml($css('inline-block mb-1.5', 'label')) ?>">
-                <?= $escaper->escapeHtml(__($fieldLabel)) ?>
-            </span>
+<div>
+    <?php if (!empty($mandates)): ?>
+        <div class="<?= $escaper->escapeHtml($css('mb-4', 'saved-cards')) ?>">
+            <p class="<?= $escaper->escapeHtml($css('mb-2 font-semibold', 'saved-cards-heading')) ?>">
+                <?= $escaper->escapeHtml(__('Use a saved card')) ?>
+            </p>
+            <ul>
+                <?php foreach ($mandates as $mandate): ?>
+                    <?php $cardLogoUrl = $viewModel->getCardLogoUrl($mandate); ?>
+                    <li class="<?= $escaper->escapeHtml($css('my-2', 'saved-card')) ?>">
+                        <label class="<?= $escaper->escapeHtml($css('flex items-center gap-2', 'saved-card-label')) ?>">
+                            <input type="radio"
+                                   name="<?= $escaper->escapeHtmlAttr($elementId) ?>-mandate"
+                                   value="<?= $escaper->escapeHtmlAttr($mandate['mandate_id']) ?>"
+                                   :checked="selectedMandateId === '<?= $escaper->escapeJs($mandate['mandate_id']) ?>'"
+                                   @change="selectMandate"
+                            />
+                            <?php if ($cardLogoUrl): ?>
+                                <img class="<?= $escaper->escapeHtml($css('inline-block', 'saved-card-logo')) ?>"
+                                     loading="lazy"
+                                     width="38"
+                                     height="24"
+                                     alt="<?= $escaper->escapeHtmlAttr($mandate['card_label']) ?>"
+                                     src="<?= $escaper->escapeUrl($cardLogoUrl) ?>"/>
+                            <?php endif; ?>
+                            <span>
+                                <?= $escaper->escapeHtml($mandate['card_label'] . ' •••• ' . $mandate['card_number_last4']) ?>
+                                <?php if (!empty($mandate['card_expiry_date'])): ?>
+                                    &ndash; <?= $escaper->escapeHtml(__('Expires %1', $mandate['card_expiry_date'])) ?>
+                                <?php endif; ?>
+                            </span>
+                        </label>
+                    </li>
+                <?php endforeach; ?>
+                <li class="<?= $escaper->escapeHtml($css('my-2', 'saved-card')) ?>">
+                    <label class="<?= $escaper->escapeHtml($css('flex items-center gap-2', 'saved-card-label')) ?>">
+                        <input type="radio"
+                               name="<?= $escaper->escapeHtmlAttr($elementId) ?>-mandate"
+                               value=""
+                               :checked="!selectedMandateId"
+                               @change="selectMandate"
+                        />
+                        <span><?= $escaper->escapeHtml(__('Use a new card')) ?></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-            <span id="<?= $escaper->escapeHtml($viewModel->getElementId()) ?>-<?= $escaper->escapeHtml($fieldCode) ?>" class="<?= $escaper->escapeHtml($css('', 'field-code')) ?>"></span>
-            <span class="<?= $escaper->escapeHtml($css('', 'messages')) ?>">
-                <span class="<?= $escaper->escapeHtml($css('error', 'message')) ?>" id="<?= $escaper->escapeHtml($viewModel->getElementId()) ?>-<?= $escaper->escapeHtml($fieldCode) ?>-error"></span>
-            </span>
-        </label>
-    <?php endforeach; ?>
+    <div x-show="!selectedMandateId" class="<?= $escaper->escapeHtml($css('grid grid-cols-2 gap-4')) ?>">
+        <?php foreach ($fields as $field): ?>
+            <?php $fieldCode = $field[0]; ?>
+            <?php $fieldLabel = $field[1]; ?>
+            <?php $fieldClass = $field[2]; ?>
+            <label class="<?= $escaper->escapeHtml($fieldClass) ?> <?= $escaper->escapeHtml($css('', 'field')) ?>">
+                <span class="<?= $escaper->escapeHtml($css('inline-block mb-1.5', 'label')) ?>">
+                    <?= $escaper->escapeHtml(__($fieldLabel)) ?>
+                </span>
+
+                <span id="<?= $escaper->escapeHtml($elementId) ?>-<?= $escaper->escapeHtml($fieldCode) ?>" class="<?= $escaper->escapeHtml($css('', 'field-code')) ?>"></span>
+                <span class="<?= $escaper->escapeHtml($css('', 'messages')) ?>">
+                    <span class="<?= $escaper->escapeHtml($css('error', 'message')) ?>" id="<?= $escaper->escapeHtml($elementId) ?>-<?= $escaper->escapeHtml($fieldCode) ?>-error"></span>
+                </span>
+            </label>
+        <?php endforeach; ?>
+
+        <?php if ($consentText !== ''): ?>
+            <div class="<?= $escaper->escapeHtml($css('col-span-2', 'save-card')) ?>">
+                <label class="<?= $escaper->escapeHtml($css('flex items-center gap-2', 'save-card-label')) ?>">
+                    <input type="checkbox"
+                           <?= $viewModel->isSaveCard() ? 'checked' : '' ?>
+                           :checked="saveCard"
+                           @change="toggleSaveCard"
+                    />
+                    <span><?= $escaper->escapeHtml(__('Save your card for faster checkout')) ?></span>
+                </label>
+                <p x-show="saveCard" class="<?= $escaper->escapeHtml($css('mt-2 text-sm', 'save-card-consent')) ?>">
+                    <?= $escaper->escapeHtml($consentText, ['a']) ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
 
     <style>
         .mollie-component {

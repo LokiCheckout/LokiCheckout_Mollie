@@ -22,6 +22,7 @@ use LokiCheckout\Core\ViewModel\CheckoutState;
 use LokiCheckout\Core\ViewModel\State\BillingAddressState;
 use LokiCheckout\Core\ViewModel\State\ShippingAddressState;
 use LokiCheckout\Mollie\Provider\IssuerProvider;
+use LokiCheckout\Mollie\Provider\SavedCardProvider;
 use Loki\Components\Component\ComponentContextInterface;
 use Loki\Components\Messages\GlobalMessageRegistry;
 
@@ -47,6 +48,7 @@ class MollieContext implements ComponentContextInterface
         private readonly PaymentTokenProvider $paymentTokenProvider,
         private readonly IssuerProvider $issuerProvider,
         private readonly SupportedNetworks $supportedNetworks,
+        private readonly SavedCardProvider $savedCardProvider,
     ) {
     }
 
@@ -148,5 +150,10 @@ class MollieContext implements ComponentContextInterface
     public function getSupportedNetworks(): SupportedNetworks
     {
         return $this->supportedNetworks;
+    }
+
+    public function getSavedCardProvider(): SavedCardProvider
+    {
+        return $this->savedCardProvider;
     }
 }

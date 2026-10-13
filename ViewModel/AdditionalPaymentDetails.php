@@ -6,7 +6,9 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use LokiCheckout\Core\Payment\Vault\PaymentTokenProvider;
 use LokiCheckout\Core\ViewModel\CheckoutState;
+use LokiCheckout\Mollie\Component\Checkout\Payment\Method\Creditcard\CreditcardRepository;
 use LokiCheckout\Mollie\Provider\IssuerProvider;
+use LokiCheckout\Mollie\Provider\SavedCardProvider;
 
 class AdditionalPaymentDetails implements ArgumentInterface
 {
@@ -14,6 +16,7 @@ class AdditionalPaymentDetails implements ArgumentInterface
         private readonly CheckoutState $checkoutState,
         private IssuerProvider $issuerProvider,
         private PaymentTokenProvider $paymentTokenProvider,
+        private SavedCardProvider $savedCardProvider,
     ) {
     }
 
@@ -28,6 +31,11 @@ class AdditionalPaymentDetails implements ArgumentInterface
         $issuerLabel = $this->getIssuerLabel();
         if (!empty($issuerLabel)) {
             return $issuerLabel;
+        }
+
+        $savedCardInfo = $this->getSavedCardInfo();
+        if (!empty($savedCardInfo)) {
+            return $savedCardInfo;
         }
 
         $paymentTokenInfo = $this->getPaymentTokenInfo();
@@ -53,6 +61,22 @@ class AdditionalPaymentDetails implements ArgumentInterface
         }
 
         return $label;
+    }
+
+    private function getSavedCardInfo(): string
+    {
+        $quote = $this->checkoutState->getQuote();
+        $mandateId = (string)$quote->getPayment()->getAdditionalInformation(CreditcardRepository::MANDATE_ID);
+        if ($mandateId === '') {
+            return '';
+        }
+
+        $mandate = $this->savedCardProvider->getMandateById($mandateId);
+        if (null === $mandate) {
+            return '';
+        }
+
+        return $mandate['card_label'] . ' ending with ' . $mandate['card_number_last4'];
     }
 
     private function getPaymentTokenInfo(): string

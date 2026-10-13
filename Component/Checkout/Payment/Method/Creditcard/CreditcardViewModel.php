@@ -35,7 +35,66 @@ class CreditcardViewModel extends CheckoutViewModel
             'profileId' => $this->getProfileId(),
             'testMode' => $this->isTestMode(),
             'locale' => $this->getLocale(),
+            'savedCardsEnabled' => $this->isSavedCardsEnabled(),
+            'selectedMandateId' => $this->getSelectedMandateId(),
+            'storedMandateId' => (string)$this->getContext()->getCheckoutState()->getQuote()->getPayment()
+                ->getAdditionalInformation(CreditcardRepository::MANDATE_ID),
+            'saveCard' => $this->isSaveCard(),
         ];
+    }
+
+    public function isSavedCardsEnabled(): bool
+    {
+        return $this->getContext()->getSavedCardProvider()->isAvailable();
+    }
+
+    public function getMandates(): array
+    {
+        return $this->getContext()->getSavedCardProvider()->getMandates();
+    }
+
+    public function getSelectedMandateId(): string
+    {
+        if (false === $this->isSavedCardsEnabled()) {
+            return '';
+        }
+
+        $payment = $this->getContext()->getCheckoutState()->getQuote()->getPayment();
+        $mandateId = (string)$payment->getAdditionalInformation(CreditcardRepository::MANDATE_ID);
+        if ($mandateId !== '' && null !== $this->getContext()->getSavedCardProvider()->getMandateById($mandateId)) {
+            return $mandateId;
+        }
+
+        if ((string)$payment->getAdditionalInformation(CreditcardRepository::CARD_TOKEN) !== '') {
+            return '';
+        }
+
+        $mandates = $this->getMandates();
+        if (empty($mandates)) {
+            return '';
+        }
+
+        return (string)$mandates[0]['mandate_id'];
+    }
+
+    public function isSaveCard(): bool
+    {
+        $payment = $this->getContext()->getCheckoutState()->getQuote()->getPayment();
+        return (bool)$payment->getAdditionalInformation(CreditcardRepository::SAVE_CARD);
+    }
+
+    public function getConsentText(): string
+    {
+        return $this->getContext()->getSavedCardProvider()->getConsentText();
+    }
+
+    public function getCardLogoUrl(array $mandate): string
+    {
+        if (empty($mandate['card_type'])) {
+            return '';
+        }
+
+        return $this->getBlock()->getViewFileUrl('Mollie_Payment::images/cards/'.$mandate['card_type'].'.svg');
     }
 
     private function getProfileId(): string

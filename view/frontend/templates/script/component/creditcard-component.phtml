@@ -21,6 +21,42 @@ use Magento\Framework\Escaper;
                 testMode: true,
                 mollieComponents: [],
                 mollieCompletedComponents: [],
+                savedCardsEnabled: false,
+                selectedMandateId: '',
+                storedMandateId: '',
+                saveCard: false,
+                initSavedCard() {
+                    if (!this.savedCardsEnabled || !this.selectedMandateId) {
+                        return;
+                    }
+
+                    if (this.selectedMandateId === this.storedMandateId) {
+                        return;
+                    }
+
+                    this.storedMandateId = this.selectedMandateId;
+                    this.post({mandate_id: this.selectedMandateId, render: 0});
+                },
+                selectMandate(event) {
+                    this.selectedMandateId = event.target.value;
+                    this.storedMandateId = this.selectedMandateId;
+
+                    if (this.selectedMandateId) {
+                        this.post({mandate_id: this.selectedMandateId, render: 0});
+                        return;
+                    }
+
+                    if (Object.keys(this.mollieCompletedComponents).length === 4) {
+                        this.submit();
+                        return;
+                    }
+
+                    this.post({mandate_id: '', save_card: this.saveCard ? 1 : 0, render: 0});
+                },
+                toggleSaveCard(event) {
+                    this.saveCard = event.target.checked;
+                    this.post({save_card: this.saveCard ? 1 : 0, render: 0});
+                },
                 initMollieComponents() {
                     if (typeof define == 'function') {
                         define(['https://js.mollie.com/v1/mollie.js'], function(Mollie) {
@@ -65,7 +101,7 @@ use Magento\Framework\Escaper;
                         errorElement.textContent = '';
 
                         this.mollieCompletedComponents[componentType] = true;
-                        if (Object.keys(this.mollieCompletedComponents).length === 4) {
+                        if (Object.keys(this.mollieCompletedComponents).length === 4 && !this.selectedMandateId) {
                             this.submit();
                         }
                     });
@@ -110,7 +146,12 @@ use Magento\Framework\Escaper;
                         return false;
                     }
 
-                    this.post({token: token, render: 0});
+                    const value = {token: token, render: 0};
+                    if (this.savedCardsEnabled) {
+                        value.save_card = this.saveCard ? 1 : 0;
+                    }
+
+                    this.post(value);
                 },
                 destroyMollieComponents() {
                     Object.keys(this.mollieComponents).forEach((domId, component) => {
