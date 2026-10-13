@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove hard dependency on CreditcardVault class removed in mollie/magento2 3.2.0
 - Add `trim()` its second argument for PHP 8.6 compatibility
 
+### Removed
+- Remove Trustly Playwright test, because Trustly is no longer available in Mollie
+
 ## [2.0.19] - 11 June 2026
 ### Fixed
 - Add missing space between classnames
@@ -35,9 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.15] - 21 November 2025
 ### Fixed
 - Remove deprecated LokiCheckoutPageTestCase in integration tests
-- Update composer keywords
-- Update composer keywords
-- Update composer keywords
 
 ## [2.0.14] - 22 October 2025
 ### Fixed

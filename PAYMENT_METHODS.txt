@@ -29,7 +29,6 @@ Bank Transfer
 Satispay
 Swish
 TWINT
-Trustly
 Visa
 iDEAL
 iDEAL in3
