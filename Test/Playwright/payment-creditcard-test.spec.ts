@@ -32,6 +32,7 @@ test.describe('creditcard payment with components test', () => {
         await setupCheckout(page, context, {
             ...mollieConfig,
             config: {
+                ...mollieConfig.config,
                 'payment/mollie_methods_creditcard/active': 1,
                 'payment/mollie_methods_creditcard/use_components': 1,
             }
