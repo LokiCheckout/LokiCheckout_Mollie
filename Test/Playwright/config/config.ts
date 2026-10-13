@@ -1,4 +1,4 @@
-import coreConfig from '@loki/config';
+import coreConfig from '@loki-checkout/config';
 
 export default {
     ...coreConfig,
