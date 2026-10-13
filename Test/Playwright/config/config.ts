@@ -20,6 +20,7 @@ export default {
         ...coreConfig.config,
         'currency/options/default': 'EUR',
         'currency/options/allow': 'EUR',
+        'customer/address/dob_show': '',
         'payment/mollie_general/enabled': 1,
         'payment/mollie_general/type': 'test',
         'payment/mollie_general/profileid': process.env.MOLLIE_PROFILE_ID || '',
