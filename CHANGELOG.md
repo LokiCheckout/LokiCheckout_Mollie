@@ -5,8 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.1.0] - 13 October 2026
 ### Added
+- Support for Mollie plugin v3
 - Support saved cards (Mollie mandates) of mollie/magento2 3.x within the creditcard form
+
+### Fixed
+- Remove hard dependency on CreditcardVault class removed in mollie/magento2 3.2.0
+- Add `trim()` its second argument for PHP 8.6 compatibility
 
 ## [2.0.19] - 11 June 2026
 ### Fixed
@@ -15,16 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.18] - 19 December 2025
 ### Fixed
-- Formatting
 - Remove unwanted require config
 
 ## [2.0.17] - 17 December 2025
 ### Fixed
-- Add tsconfig.json that extends LokiCheckout_FunctionalTests
+- Add tsconfig.json that extends `LokiCheckout_FunctionalTests`
 
 ## [2.0.16] - 11 December 2025
 ### Fixed
-- iRemove redundant quote save
+- Remove redundant quote save
 
 ## [2.0.15] - 21 November 2025
 ### Fixed

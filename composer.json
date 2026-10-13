@@ -1,6 +1,6 @@
 {
     "name": "loki-checkout/magento2-mollie",
-    "version": "2.0.19",
+    "version": "2.1.0",
     "description": "Compatibility module for the Mollie payment solution",
     "keywords": [
         "loki-checkout",
