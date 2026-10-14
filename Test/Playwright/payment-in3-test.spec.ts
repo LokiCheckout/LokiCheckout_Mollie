@@ -9,7 +9,9 @@ test.describe('in3 payment test', () => {
     test('should allow me to go to the checkout', async ({page, context}) => {
         await setupCheckout(page, context, {
             ...mollieConfig,
-            qty: 2, // in3 requires a minimum order amount of EUR 50
+            // in3 requires a minimum order amount of EUR 50
+            product: {sku: 'loki-mollie-in3-product', name: 'Loki Mollie in3 Product', price: 60},
+            sku: 'loki-mollie-in3-product',
             config: {
                 ...mollieConfig.config,
                 'customer/address/dob_show': 'opt',
